@@ -36,6 +36,7 @@ jobs:
         working-directory: server
         run: npm audit --audit-level=high
 
-      # Placeholder until the Phase 2 test suite lands — then: npm test here.
-      - name: Tests
-        run: echo "no test suite yet (BRIEF Phase 2, punch-list C1)"
+      # Unit suite: the app's pure functions, extracted from thesismaster.html
+      # and run against real EN + AR chapter fixtures (eval/).
+      - name: Unit tests
+        run: node --test 'tests/*.test.js'

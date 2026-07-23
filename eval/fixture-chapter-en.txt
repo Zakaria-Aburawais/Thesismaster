@@ -1,0 +1,29 @@
+# Chapter 3 — Methodology and Data Governance
+
+This chapter sets out the mixed-methods design used to examine adaptive governance in federated energy systems. The design follows the sequential explanatory model described by Almasi and Verren, in which a quantitative survey phase establishes broad patterns and a qualitative interview phase interrogates the mechanisms behind them [1]. The survey instrument was adapted from the Fictional Governance Index and translated into three working languages before piloting.
+
+The sampling frame deserves particular attention because it shapes every claim made in Chapters 4 and 5. Municipal utilities were stratified by size, ownership model, and regulatory regime, and a proportional random sample was drawn within each stratum. The measurement campaign was repeated across three independent metropolitan sites to control for regional policy effects, and enumerators followed a common written protocol at every stage of the fieldwork so that procedural drift between teams could not contaminate the comparison.
+
+Prior studies of distributed infrastructure have documented persistent gaps between formal decision rights and operational practice [2-4]. The present design responds to that literature in two ways. First, decision rights were coded from statutes and bylaws rather than from self-report. Second, operational practice was observed directly during scheduled control-room visits (Almasi, 2021).
+
+One reviewer of the pilot instrument observed that “the questionnaire measures what managers say about coordination, not what their dispatch logs actually record about coordination” — a criticism the final design addresses by pairing every self-report item with a log-derived behavioural indicator.
+
+A second methodological caution comes from Verren, who argues that “grid federation studies systematically overstate institutional convergence because they sample only utilities that survived the reform period” [5]. Survivorship correction weights were therefore applied to all cross-sectional estimates.
+
+The interview phase used a semi-structured protocol with fourteen prompts, each mapped to a construct in the analytical framework. Interviews averaged fifty-one minutes and were transcribed verbatim. Coding proceeded in two cycles: a descriptive first cycle using the a-priori codebook, and a pattern-coding second cycle in which emergent categories were permitted. Intercoder reliability reached a Cohen's kappa of 0.81 on the held-out reliability sample, which exceeds the conventional threshold for substantive analysis. The measurement campaign was repeated across three independent metropolitan sites to control for seasonal load variation as well.
+
+Ethical clearance was granted by the Fictional University Research Board under protocol FURB-2020-117. All participants received an information sheet and signed consent forms; utilities are identified only by stratum codes throughout. Data handling follows the retention schedule agreed with the board [7,9].
+
+The quantitative and qualitative strands were integrated through a joint display matrix in which each survey construct is confronted with its interview-derived counterpart. Divergent findings were not smoothed over; they are reported as tensions and examined case by case in Chapter 5. This treatment of divergence follows the tradition of analytical transparency advocated in recent methods scholarship [6].
+
+References
+
+[1] J. Almasi and K. Verren, "Sequencing Mixed Designs in Infrastructure Research," Journal of Fictional Methods, vol. 12, no. 3, pp. 45-67, 2019.
+[2] Q. Doe, "Decision Rights on Paper and in Practice," Fictional Governance Review, vol. 8, no. 1, pp. 12-29, 2017.
+[3] L. Karim and M. Voss, "Signal Integrity in Layered Meshes: A Study of
+    Federated Dispatch Rooms," Fictional Networks Quarterly, vol. 7, pp. 101-118, 2018.
+[4] R. Ostrovski, "Bylaws as Data: Coding Formal Authority," Proceedings of the Fictional Institutions Conference, pp. 233-241, 2016.
+[5] K. Verren, "Survivorship in Grid Federation Samples," Fictional Energy Policy, vol. 15, no. 2, pp. 88-104, 2020.
+[6] TBD — add the analytical transparency citation here.
+[7] S. Ibanez, "Retention Schedules for Field Data," Fictional Ethics Bulletin, vol. 3, pp. 5-19, 2015.
+[8] H. Tan, "Joint Displays for Mixed Methods," Fictional Analysis Letters, vol. 2, pp. 61-74.
