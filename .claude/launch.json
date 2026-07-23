@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "static-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path');h.createServer((q,r)=>{const u=q.url==='/'?'/index.html':q.url.split('?')[0];const fp=p.join(process.cwd(),'public',u);f.readFile(fp,(e,d)=>{if(e){r.writeHead(404);r.end('not found');return}r.writeHead(200,{'Content-Type':u.endsWith('.html')?'text/html; charset=utf-8':'application/octet-stream'});r.end(d)})}).listen(8123,()=>console.log('static on 8123'))"],
+      "port": 8123
+    }
+  ]
+}
