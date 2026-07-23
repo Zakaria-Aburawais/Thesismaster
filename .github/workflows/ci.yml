@@ -25,6 +25,11 @@ jobs:
       - name: public/index.html byte-identical to thesismaster.html
         run: cmp thesismaster.html public/index.html && echo "deploy copy identical"
 
+      # XSS posture as a gate: every innerHTML concatenation must be esc()'d
+      # or on the reviewed allowlist in tools/lint-escaping.js.
+      - name: Escaping lint
+        run: node tools/lint-escaping.js
+
       - name: Server syntax
         run: node --check server/server.js
 

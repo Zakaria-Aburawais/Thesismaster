@@ -129,4 +129,4 @@ function load(names, opts = {}) {
   return new Function(...keys, body)(...keys.map(k => globals[k]));
 }
 
-module.exports = { load, declarationsOf, scriptSource };
+module.exports = { load, declarationsOf, scriptSource, scanCode };

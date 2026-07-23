@@ -2593,8 +2593,17 @@ async function saveThesisNow() {
 function saveThesis() {
   if (!storageOK) return;
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveThesisNow, 1200); // debounce: a 4-round pass loop = 1 write, not 5
+  saveTimer = setTimeout(() => { saveTimer = null; saveThesisNow(); }, 1200); // debounce: a 4-round pass loop = 1 write, not 5
 }
+/* the debounce window must not become a data-loss window: flush a pending
+   save the moment the tab is hidden (covers tab close, app switch on mobile,
+   laptop lid) — visibilitychange fires where beforeunload doesn't */
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && saveTimer) {
+    clearTimeout(saveTimer); saveTimer = null;
+    saveThesisNow();
+  }
+});
 const fmtDate = ts => new Date(ts).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 const wc = t => (t || '').split(/\s+/).filter(Boolean).length;
 
