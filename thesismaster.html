@@ -646,7 +646,53 @@ html.light .fac-speaking .fac-photo{animation:facSpeakPulseL 1.2s ease-in-out in
 @media(max-width:900px){.faculty-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:560px){.faculty-grid{grid-template-columns:repeat(2,1fr);gap:14px}.fac-name{font-size:16px}.fac-bubble{font-size:13px}}
 
+.lb-row{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:12px;border:1px solid var(--border);margin-bottom:8px;background:var(--surface)}
+.lb-row:hover{border-color:rgba(201,165,87,.4)}
+.lb-num{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright);min-width:26px;padding-top:2px}
+.lb-body{flex:1;min-width:0}
+.lb-cite{font-size:13.5px;line-height:1.55;color:var(--text-2)}
+.lb-meta{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:5px}
+.lb-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.lb-acts .ch-btn{padding:4px 10px;font-size:11.5px}
+.lb-dup{border-color:rgba(217,166,91,.5);background:rgba(217,166,91,.07)}
+.lb-low{border-color:rgba(207,122,110,.45);background:rgba(207,122,110,.05)}
+.lb-raw{margin-top:8px;padding:9px 11px;border-radius:9px;background:var(--surface-2);border:1px dashed var(--border-strong);
+  font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-3);white-space:pre-wrap}
+.lb-edit{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.lb-edit input,.lb-edit select{background:var(--surface-2);border:1px solid var(--border-strong);border-radius:8px;padding:7px 10px;color:var(--text);font-size:13px;min-width:0}
+.lb-edit .wide{grid-column:1/-1}
+.lb-map{width:100%;border-collapse:collapse;margin-top:10px;font-family:var(--font-mono);font-size:12px}
+.lb-map td,.lb-map th{padding:5px 8px;border-bottom:1px solid var(--border);text-align:start;color:var(--text-2)}
+.lb-map th{color:var(--text-3);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.lb-map .to{color:var(--accent-bright)}
+@media(max-width:560px){.lb-edit{grid-template-columns:1fr}}
 a[data-target]{cursor:pointer}
+.howto-card{margin-top:38px;padding:38px 26px;border-radius:22px;text-align:center;
+  background:radial-gradient(120% 140% at 50% 0%,rgba(201,165,87,.14),transparent 62%),linear-gradient(160deg,var(--surface-2),var(--surface));
+  border:1px solid rgba(201,165,87,.35);box-shadow:var(--shadow-1)}
+.howto-play{display:inline-flex;align-items:center;gap:13px;padding:15px 30px;border-radius:999px;cursor:pointer;
+  background:linear-gradient(135deg,#C9A557,#9A7A32);color:#12151F;border:none;font-family:var(--font-body);font-weight:800;font-size:16px;
+  box-shadow:0 14px 34px rgba(201,165,87,.3);transition:transform .3s,box-shadow .3s}
+.howto-play:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(201,165,87,.42)}
+.howto-tri{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(18,21,31,.16)}
+.howto-min{margin-top:13px;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+.howto-flags{margin-top:8px;font-size:13px;color:var(--text-2)}
+#tour-modal{position:fixed;inset:0;z-index:210;background:rgba(8,10,16,.82);backdrop-filter:blur(9px);display:flex;align-items:center;justify-content:center;padding:20px}
+.tour-card{position:relative;width:min(560px,95vw);max-height:90vh;overflow:auto;padding:34px 30px 26px;border-radius:22px;text-align:center;
+  background:linear-gradient(160deg,var(--surface-2),var(--surface));border:1px solid rgba(201,165,87,.42);box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.tour-x{position:absolute;inset-inline-end:14px;top:10px;background:none;border:none;color:var(--text-3);font-size:26px;cursor:pointer;line-height:1}
+.tour-video{margin-bottom:18px;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:#0B0E15}
+.tour-video iframe{width:100%;height:100%;border:0;display:block}
+.tour-ico{width:64px;height:64px;margin:0 auto 16px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+  color:var(--accent-bright);background:rgba(201,165,87,.12);border:1px solid rgba(201,165,87,.4)}
+.tour-t{font-family:var(--font-display);font-size:24px;margin:0 0 10px;color:var(--text)}
+.tour-b{font-size:15.5px;line-height:1.65;color:var(--text-2);margin:0 auto;max-width:44ch}
+.tour-dots{display:flex;gap:8px;justify-content:center;margin:22px 0 18px}
+.tour-dots span{width:9px;height:9px;border-radius:50%;background:var(--border-strong);cursor:pointer;transition:all .3s}
+.tour-dots span.on{background:var(--accent);transform:scale(1.25)}
+.tour-nav{display:flex;gap:10px;align-items:center}
+html[dir="rtl"] .tour-b,html[dir="rtl"] .tour-t{direction:rtl}
+html[lang="ar"] .howto-flags{direction:rtl}
 .tm-settings{position:absolute;z-index:70;margin-top:10px;min-width:270px;background:linear-gradient(160deg,var(--surface-2),var(--surface));
   border:1px solid rgba(201,165,87,.4);border-radius:14px;padding:16px;box-shadow:var(--shadow-1)}
 .tm-settings select{width:100%;background:var(--surface);border:1px solid var(--border-strong);border-radius:9px;padding:8px 10px;color:var(--text);font-size:13.5px}
@@ -789,6 +835,7 @@ html[dir="rtl"] .prof-bubble{direction:rtl}
     <a data-target="#capabilities" tabindex="0" role="link">Capabilities</a>
     <a data-target="#faculty" tabindex="0" role="link">Faculty</a>
     <a data-target="#studio" tabindex="0" role="link">Studio</a>
+    <a data-target="#howto" tabindex="0" role="link">How to use</a>
     <a data-target="#method" tabindex="0" role="link">Method</a>
     <span class="prof-wrap">
       <button class="prof-switch" id="prof-switch" title="Profiles">
@@ -797,7 +844,7 @@ html[dir="rtl"] .prof-bubble{direction:rtl}
       </button>
       <div class="prof-pop" id="prof-pop"></div>
     </span>
-    <button class="theme-toggle lang-toggle" id="lang-toggle" aria-label="Language / اللغة" title="English / العربية">ع</button>
+    <span class="prof-wrap"><button class="theme-toggle lang-toggle" id="lang-toggle" aria-label="Language" title="Language">EN</button><div class="prof-pop" id="lang-pop"></div></span>
     <button class="theme-toggle" id="theme-toggle" aria-label="Switch between day and night mode" title="Day / night mode">
       <svg class="ic-moon" width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M21 12.8A8.5 8.5 0 1111.2 3a6.6 6.6 0 009.8 9.8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
       <svg class="ic-sun" width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3L19 19M19 5l-1.7 1.7M6.7 17.3L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -864,6 +911,24 @@ html[dir="rtl"] .prof-bubble{direction:rtl}
 </section>
 
 <!-- ============ STUDIO ============ -->
+<section class="section-pad" id="howto">
+  <div class="wrap">
+    <div class="section-head rv">
+      <div class="section-eyebrow">A guided walkthrough</div>
+      <h2 class="section-title">How to use ThesisMaster.</h2>
+      <p class="section-sub">Six short steps, in your language, narrated aloud — from uploading a chapter to a verified, examined, export-ready draft.</p>
+    </div>
+    <div class="howto-card rv">
+      <button class="howto-play" id="howto-play">
+        <span class="howto-tri"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+        Watch the walkthrough
+      </button>
+      <div class="howto-min" id="howto-min">6 steps · about 3 minutes</div>
+      <div class="howto-flags">English · العربية · Türkçe · Bahasa Indonesia · Français · Español</div>
+    </div>
+  </div>
+</section>
+
 <section class="section-pad" id="faculty">
   <div class="wrap">
     <div class="section-head rv">
@@ -955,6 +1020,10 @@ html[dir="rtl"] .prof-bubble{direction:rtl}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7h7M9 11h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           References
         </button>
+        <button class="tab" data-panel="library" role="tab" aria-selected="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5A2.5 2.5 0 014 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 7h8M8 11h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Library
+        </button>
       </div>
 
       <!-- REFERENCES PANEL -->
@@ -998,6 +1067,55 @@ html[dir="rtl"] .prof-bubble{direction:rtl}
               <p>The registrar's desk awaits.<br>Every citation matched, every reference checked against the record.</p>
             </div>
             <div class="result" id="f-result" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIBRARY PANEL -->
+      <div class="panel" id="panel-library">
+        <div class="panel-grid">
+          <div>
+            <div class="field">
+              <label>Reference library</label>
+              <p class="hint-line" style="margin-top:0">Your sources, structured once and reusable everywhere: switch citation style, renumber citations into order of appearance, detect duplicates, and export a formatted bibliography.</p>
+            </div>
+            <div class="field">
+              <label>Citation style</label>
+              <select id="lb-style">
+                <option value="ieee">IEEE — numeric [n]</option>
+                <option value="vancouver">Vancouver — numeric [n]</option>
+                <option value="apa">APA 7 — author–date</option>
+                <option value="harvard">Harvard — author–date</option>
+                <option value="chicago">Chicago — author–date</option>
+                <option value="mla">MLA 9 — author–page</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Import references</label>
+              <div class="dropzone dz-sm" id="lb-drop" role="button" tabindex="0" aria-label="Import BibTeX or RIS">
+                <div class="dz-icon">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke="#C9A557" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3" stroke="#C9A557" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <div><b>Import .bib or .ris</b><br><span>BibTeX from Google Scholar, RIS from Scopus or PubMed</span></div>
+              </div>
+              <input type="file" id="lb-file" accept=".bib,.ris,.txt" style="display:none">
+            </div>
+            <button class="ch-btn" id="lb-extract" style="margin-bottom:10px">Extract from my chapter's reference list</button>
+            <button class="ch-btn" id="lb-add" style="margin-bottom:10px">+ Add a reference manually</button>
+            <button class="run-btn" id="lb-renumber">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 7h10M4 12h7M4 17h13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18 5v8M18 13l-2.5-2.5M18 13l2.5-2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Renumber citations in order of appearance
+            </button>
+            <p class="hint-line">Renumbering rewrites every [n] marker in the Audit tab's text so numbering runs 1, 2, 3… in the order sources first appear, expands and re-collapses ranges like [2-4], and rebuilds the bibliography to match. You see the full mapping and approve before anything changes.</p>
+          </div>
+          <div class="out" id="lb-out">
+            <div class="out-empty" id="lb-empty">
+              <div class="quill">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z" stroke="#C9A557" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 8h8M8 12h5" stroke="#C9A557" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </div>
+              <p>The library is empty.<br>Import a .bib or .ris file, or extract the references already in your chapter.</p>
+            </div>
+            <div class="result" id="lb-result" style="display:none"></div>
           </div>
         </div>
       </div>
@@ -1642,17 +1760,18 @@ function facPickVoice(g) {
          facVoices[0];
 }
 function facSpeak(key, card) {
-  const LINES = (typeof uiLang !== 'undefined' && uiLang === 'ar') ? FACULTY_LINES_AR : FACULTY_LINES;
+  const LINES = (typeof FAC_LINES !== 'undefined' && FAC_LINES[uiLang]) ? FAC_LINES[uiLang] : FACULTY_LINES;
   if (!facVoicesOn || !('speechSynthesis' in window) || !LINES[key]) return;
   try {
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(LINES[key]);
     const cfg = FACULTY_VOICE[key] || {};
     u.pitch = cfg.pitch || 1; u.rate = cfg.rate || 1; u.volume = 1;
-    if (typeof uiLang !== 'undefined' && uiLang === 'ar') {
-      const arv = (speechSynthesis.getVoices() || []).find(x => /^ar/i.test(x.lang));
-      if (!arv) return; /* no Arabic voice: the bubble introduces them silently */
-      u.voice = arv; u.lang = arv.lang;
+    if (typeof uiLang !== 'undefined' && uiLang !== 'en') {
+      const code = (typeof langMeta === 'function' ? langMeta().v : uiLang);
+      const lv = (speechSynthesis.getVoices() || []).find(x => x.lang && x.lang.toLowerCase().startsWith(code));
+      if (!lv) return; /* no voice for this language: the bubble introduces them silently */
+      u.voice = lv; u.lang = lv.lang;
     } else {
       const v = facPickVoice(cfg.g);
       if (v) u.voice = v;
@@ -1687,118 +1806,249 @@ function facHush(card) {
   });
 })();
 
-/* ==================== I18N — English / Arabic (RTL) ==================== */
+/* ==================== I18N — six languages, RTL-aware ==================== */
 let uiLang = 'en';
-const AR_MAP = [
-  ['.nav-links a[data-target="#capabilities"]', '\u0627\u0644\u0642\u062F\u0631\u0627\u062A'],
-  ['.nav-links a[data-target="#faculty"]', '\u0647\u064A\u0626\u0629 \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646'],
-  ['.nav-links a[data-target="#studio"]', '\u0627\u0644\u0627\u0633\u062A\u0648\u062F\u064A\u0648'],
-  ['.nav-links a[data-target="#method"]', '\u0627\u0644\u0645\u0646\u0647\u062C'],
-  ['.nav-cta', '\u0627\u0641\u062A\u062D \u0627\u0644\u0627\u0633\u062A\u0648\u062F\u064A\u0648'],
-  ['.tab[data-panel="dashboard"]', '\u0644\u0648\u062D\u0629 \u0627\u0644\u062A\u062D\u0643\u0645'],
-  ['.tab[data-panel="write"]', '\u0627\u0644\u0643\u062A\u0627\u0628\u0629'],
-  ['.tab[data-panel="review"]', '\u0627\u0644\u0645\u0631\u0627\u062C\u0639\u0629'],
-  ['.tab[data-panel="audit"]', '\u0627\u0644\u062A\u062F\u0642\u064A\u0642'],
-  ['.tab[data-panel="manuscript"]', '\u0627\u0644\u0645\u062E\u0637\u0648\u0637\u0629'],
-  ['.tab[data-panel="refine"]', '\u0645\u0646\u0642\u0651\u062D \u0627\u0644\u0630\u0643\u0627\u0621'],
-  ['.tab[data-panel="refs"]', '\u0627\u0644\u0645\u0631\u0627\u062C\u0639'],
-  ['#w-run', '\u0627\u0643\u062A\u0628 \u0627\u0644\u0642\u0633\u0645'],
-  ['#r-run', '\u0631\u0627\u062C\u0639 \u0627\u0644\u0646\u0635'],
-  ['#a-run', '\u0627\u0639\u0642\u062F \u062C\u0644\u0633\u0629 \u0627\u0644\u062A\u062F\u0642\u064A\u0642'],
-  ['#a-pass', '\u062F\u0642\u0651\u0642 \u062D\u062A\u0649 \u0627\u0644\u0646\u062C\u0627\u062D'],
-  ['#a-plag', '\u0641\u062D\u0635 \u0627\u0644\u0627\u0646\u062A\u062D\u0627\u0644'],
-  ['#m-run', '\u0627\u0639\u062A\u0645\u062F \u0623\u0648 \u0635\u062D\u0651\u062D'],
-  ['#g-run', '\u0646\u0642\u0651\u062D \u0627\u0644\u0646\u0635'],
-  ['#f-run', '\u062A\u062D\u0642\u0651\u0642 \u0645\u0646 \u0627\u0644\u0627\u0633\u062A\u0634\u0647\u0627\u062F\u0627\u062A \u0648\u0627\u0644\u0645\u0631\u0627\u062C\u0639'],
-  ['#f-pull', '\u0627\u0633\u062A\u062E\u062F\u0645 \u0646\u0635 \u062A\u0628\u0648\u064A\u0628 \u0627\u0644\u062A\u062F\u0642\u064A\u0642'],
-  ['#dch-add', '\u0623\u0636\u0641 \u0627\u0644\u0641\u0635\u0644'],
-  ['#dch-upload', '\u0627\u0631\u0641\u0639 \u0645\u0644\u0641\u0627\u064B'],
-  ['#faculty .section-eyebrow', '\u0647\u064A\u0626\u0629 \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646'],
-  ['#faculty .section-title', '\u0633\u062A\u0629 \u0639\u0644\u0645\u0627\u0621 \u0641\u064A \u0644\u062C\u0646\u062A\u0643.'],
-  ['#faculty .section-sub', '\u062B\u0644\u0627\u062B\u0629 \u0623\u0633\u0627\u062A\u0630\u0629 \u0648\u062B\u0644\u0627\u062B \u062F\u0643\u062A\u0648\u0631\u0627\u062A \u2014 \u0644\u0643\u0644\u0651\u064D \u062F\u0648\u0631\u064F\u0647 \u0648\u0637\u0628\u0639\u064F\u0647 \u0648\u0623\u062F\u0627\u062A\u064F\u0647. \u0645\u0631\u0651\u0631 \u0627\u0644\u0645\u0624\u0634\u0631 \u0641\u0648\u0642 \u0623\u064A \u0639\u0627\u0644\u0645 \u0644\u064A\u0642\u062F\u0651\u0645 \u0646\u0641\u0633\u0647 \u2014 \u0628\u0635\u0648\u062A\u064D \u0645\u0633\u0645\u0648\u0639.']
+const LANGS = [
+  { c: 'en', name: 'English', dir: 'ltr', v: 'en' },
+  { c: 'ar', name: 'العربية', dir: 'rtl', v: 'ar' },
+  { c: 'tr', name: 'Türkçe', dir: 'ltr', v: 'tr' },
+  { c: 'id', name: 'Bahasa Indonesia', dir: 'ltr', v: 'id' },
+  { c: 'fr', name: 'Français', dir: 'ltr', v: 'fr' },
+  { c: 'es', name: 'Español', dir: 'ltr', v: 'es' }
 ];
-const AR_PLACEHOLDERS = [
-  ['#a-text', '\u0627\u0644\u0635\u0642 \u0646\u0635 \u0627\u0644\u0641\u0635\u0644 \u0647\u0646\u0627 \u0644\u0644\u062A\u062F\u0642\u064A\u0642\u2026'],
-  ['#f-text', '\u0627\u0644\u0635\u0642 \u0627\u0644\u0646\u0635 \u0627\u0644\u0643\u0627\u0645\u0644 \u0645\u0639 \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0631\u0627\u062C\u0639\u2026']
+const I18N = {
+  en: {
+    nav_cap: 'Capabilities', nav_fac: 'Faculty', nav_std: 'Studio', nav_met: 'Method', nav_how: 'How to use', nav_cta: 'Open the studio',
+    tab_dash: 'Dashboard', tab_write: 'Write', tab_rev: 'Review', tab_aud: 'Audit', tab_man: 'Manuscript', tab_ref: 'AI Refiner', tab_refs: 'References',
+    b_write: 'Write the section', b_rev: 'Review the text', b_aud: 'Convene the examination', b_pass: 'Audit until it passes', b_plag: 'Plagiarism check',
+    b_man: 'Approve or correct', b_ref: 'Refine the text', b_refs: 'Verify citations & references', b_pull: 'Use the text in the Audit tab',
+    b_add: 'Add chapter', b_up: 'Upload a file',
+    fac_eyebrow: 'The examination board', fac_title: 'Six scholars sit your panel.',
+    fac_sub: 'Three professors, three doctors — each with a role, a temperament, and a tool in hand. Hover over a scholar and they introduce themselves — out loud.',
+    voices_on: 'Voices on', voices_off: 'Voices off',
+    how_eyebrow: 'A guided walkthrough', how_title: 'How to use ThesisMaster.',
+    how_sub: 'Six short steps, in your language, narrated aloud — from uploading a chapter to a verified, examined, export-ready draft.',
+    how_play: 'Watch the walkthrough', how_min: '6 steps · about 3 minutes',
+    tour_next: 'Next', tour_prev: 'Back', tour_close: 'Close', tour_narrate: 'Narrate', tour_stop: 'Stop', tour_done: 'Start working',
+    s1t: '1 · Add your chapter', s1b: 'Open the Dashboard and paste your text or upload a .docx file. Each chapter is saved to your portfolio with its full audit history.',
+    s2t: '2 · Convene the board', s2b: 'Go to the Audit tab and start the examination. Six scholars judge your chapter across eleven dimensions in four boards.',
+    s3t: '3 · Read the verdict', s3b: 'You get a grade, a score for every dimension with the examiner’s reasoning, a citation scan of the whole document, and specific flagged passages.',
+    s4t: '4 · Fix and climb', s4b: 'Apply the suggested corrections, or run “Audit until it passes”: the board rewrites, re-examines blindly, and changes strategy each round until it reaches your target.',
+    s5t: '5 · Close the gap', s5b: 'When only substance remains, the assistant matches uncited paragraphs to your existing sources — you approve each one — and proposes original framing angles.',
+    s6t: '6 · Verify and export', s6b: 'The References tab checks that every source is real and every citation matches. Then export to Word or PDF with an AI-assistance disclosure statement.'
+  },
+  ar: {
+    nav_cap: 'القدرات', nav_fac: 'هيئة الامتحان', nav_std: 'الاستوديو', nav_met: 'المنهج', nav_how: 'طريقة الاستخدام', nav_cta: 'افتح الاستوديو',
+    tab_dash: 'لوحة التحكم', tab_write: 'الكتابة', tab_rev: 'المراجعة', tab_aud: 'التدقيق', tab_man: 'المخطوطة', tab_ref: 'منقّح الذكاء', tab_refs: 'المراجع',
+    b_write: 'اكتب القسم', b_rev: 'راجع النص', b_aud: 'اعقد جلسة التدقيق', b_pass: 'دقّق حتى النجاح', b_plag: 'فحص الانتحال',
+    b_man: 'اعتمد أو صحّح', b_ref: 'نقّح النص', b_refs: 'تحقّق من الاستشهادات والمراجع', b_pull: 'استخدم نص تبويب التدقيق',
+    b_add: 'أضف الفصل', b_up: 'ارفع ملفاً',
+    fac_eyebrow: 'هيئة الامتحان', fac_title: 'ستة علماء في لجنتك.',
+    fac_sub: 'ثلاثة أساتذة وثلاث دكتورات — لكلٍّ دورُه وطبعُه وأداتُه. مرّر المؤشر فوق أي عالم ليقدّم نفسه — بصوتٍ مسموع.',
+    voices_on: 'الأصوات مفعّلة', voices_off: 'الأصوات موقوفة',
+    how_eyebrow: 'جولة إرشادية', how_title: 'كيف تستخدم ThesisMaster.',
+    how_sub: 'ست خطوات قصيرة بلغتك، مع سرد صوتي — من رفع الفصل إلى مسودة مُدقّقة وموثّقة وجاهزة للتصدير.',
+    how_play: 'شاهد الجولة', how_min: '٦ خطوات · نحو ٣ دقائق',
+    tour_next: 'التالي', tour_prev: 'السابق', tour_close: 'إغلاق', tour_narrate: 'استمع', tour_stop: 'إيقاف', tour_done: 'ابدأ العمل',
+    s1t: '١ · أضف فصلك', s1b: 'افتح لوحة التحكم والصق نصك أو ارفع ملف .docx. يُحفظ كل فصل في ملفك مع سجل تدقيقه الكامل.',
+    s2t: '٢ · اعقد جلسة اللجنة', s2b: 'انتقل إلى تبويب التدقيق وابدأ الامتحان. ستة علماء يحكمون على فصلك عبر إحدى عشرة معياراً في أربع لجان.',
+    s3t: '٣ · اقرأ الحكم', s3b: 'تحصل على درجة، ودرجة لكل معيار مع تعليل الممتحن، ومسح للاستشهادات في كامل المستند، ومقاطع محددة مُعلَّمة.',
+    s4t: '٤ · صحّح وارتقِ', s4b: 'طبّق التصحيحات المقترحة، أو شغّل «دقّق حتى النجاح»: تعيد اللجنة الصياغة ثم تمتحن من جديد بحيادية، وتغيّر استراتيجيتها كل جولة حتى تبلغ هدفك.',
+    s5t: '٥ · أغلق الفجوة', s5b: 'حين يتبقى الجوهر فقط، يطابق المساعد الفقرات غير الموثّقة مع مصادرك الموجودة — وتعتمد أنت كل اقتراح — ويقترح زوايا تحليلية أصيلة.',
+    s6t: '٦ · تحقّق وصدّر', s6b: 'يتحقق تبويب المراجع من أن كل مصدر حقيقي وأن كل استشهاد مطابق. ثم صدّر إلى Word أو PDF مع بيان الإفصاح عن استخدام الذكاء الاصطناعي.'
+  },
+  tr: {
+    nav_cap: 'Yetenekler', nav_fac: 'Jüri', nav_std: 'Stüdyo', nav_met: 'Yöntem', nav_how: 'Nasıl kullanılır', nav_cta: 'Stüdyoyu aç',
+    tab_dash: 'Panel', tab_write: 'Yaz', tab_rev: 'İncele', tab_aud: 'Denetim', tab_man: 'Metin', tab_ref: 'YZ Rötuş', tab_refs: 'Kaynaklar',
+    b_write: 'Bölümü yaz', b_rev: 'Metni incele', b_aud: 'Jüriyi topla', b_pass: 'Geçene kadar denetle', b_plag: 'İntihal kontrolü',
+    b_man: 'Onayla veya düzelt', b_ref: 'Metni rötuşla', b_refs: 'Atıf ve kaynakları doğrula', b_pull: 'Denetim sekmesindeki metni kullan',
+    b_add: 'Bölüm ekle', b_up: 'Dosya yükle',
+    fac_eyebrow: 'Jüri heyeti', fac_title: 'Altı akademisyen jürinizde.',
+    fac_sub: 'Üç profesör, üç doktor — her birinin bir rolü, bir mizacı ve elinde bir aracı var. Üzerine gelin, kendilerini sesli tanıtsınlar.',
+    voices_on: 'Sesler açık', voices_off: 'Sesler kapalı',
+    how_eyebrow: 'Rehberli tanıtım', how_title: 'ThesisMaster nasıl kullanılır.',
+    how_sub: 'Kendi dilinizde, sesli anlatımlı altı kısa adım — bölüm yüklemekten doğrulanmış, denetlenmiş ve dışa aktarıma hazır taslağa.',
+    how_play: 'Tanıtımı izle', how_min: '6 adım · yaklaşık 3 dakika',
+    tour_next: 'İleri', tour_prev: 'Geri', tour_close: 'Kapat', tour_narrate: 'Seslendir', tour_stop: 'Durdur', tour_done: 'Çalışmaya başla',
+    s1t: '1 · Bölümünüzü ekleyin', s1b: 'Paneli açın, metninizi yapıştırın veya bir .docx dosyası yükleyin. Her bölüm tüm denetim geçmişiyle birlikte kaydedilir.',
+    s2t: '2 · Jüriyi toplayın', s2b: 'Denetim sekmesine gidin ve sınavı başlatın. Altı akademisyen bölümünüzü dört kurulda on bir ölçüte göre değerlendirir.',
+    s3t: '3 · Kararı okuyun', s3b: 'Bir not, her ölçüt için gerekçeli puan, tüm belge için atıf taraması ve işaretlenmiş belirli pasajlar alırsınız.',
+    s4t: '4 · Düzeltin ve yükselin', s4b: 'Önerilen düzeltmeleri uygulayın veya “Geçene kadar denetle”yi çalıştırın: jüri yeniden yazar, tarafsızca yeniden sınar ve hedefinize ulaşana dek her turda strateji değiştirir.',
+    s5t: '5 · Farkı kapatın', s5b: 'Geriye yalnızca içerik kaldığında, asistan atıfsız paragrafları mevcut kaynaklarınızla eşleştirir — her birini siz onaylarsınız — ve özgün çerçeveleme açıları önerir.',
+    s6t: '6 · Doğrulayın ve dışa aktarın', s6b: 'Kaynaklar sekmesi her kaynağın gerçek, her atfın eşleşir olduğunu denetler. Ardından Word veya PDF olarak, YZ kullanım beyanıyla dışa aktarın.'
+  },
+  id: {
+    nav_cap: 'Kemampuan', nav_fac: 'Dewan penguji', nav_std: 'Studio', nav_met: 'Metode', nav_how: 'Cara pakai', nav_cta: 'Buka studio',
+    tab_dash: 'Dasbor', tab_write: 'Tulis', tab_rev: 'Tinjau', tab_aud: 'Audit', tab_man: 'Naskah', tab_ref: 'Pemoles AI', tab_refs: 'Referensi',
+    b_write: 'Tulis bagian ini', b_rev: 'Tinjau teks', b_aud: 'Gelar sidang penguji', b_pass: 'Audit sampai lulus', b_plag: 'Cek plagiarisme',
+    b_man: 'Setujui atau koreksi', b_ref: 'Poles teks', b_refs: 'Verifikasi sitasi & referensi', b_pull: 'Pakai teks di tab Audit',
+    b_add: 'Tambah bab', b_up: 'Unggah berkas',
+    fac_eyebrow: 'Dewan penguji', fac_title: 'Enam ilmuwan menguji Anda.',
+    fac_sub: 'Tiga profesor, tiga doktor — masing-masing dengan peran, watak, dan alatnya. Arahkan kursor, mereka memperkenalkan diri dengan suara.',
+    voices_on: 'Suara aktif', voices_off: 'Suara mati',
+    how_eyebrow: 'Panduan langkah', how_title: 'Cara memakai ThesisMaster.',
+    how_sub: 'Enam langkah singkat dalam bahasa Anda, dengan narasi suara — dari mengunggah bab hingga draf terverifikasi dan siap diekspor.',
+    how_play: 'Tonton panduan', how_min: '6 langkah · sekitar 3 menit',
+    tour_next: 'Lanjut', tour_prev: 'Kembali', tour_close: 'Tutup', tour_narrate: 'Narasikan', tour_stop: 'Berhenti', tour_done: 'Mulai bekerja',
+    s1t: '1 · Tambahkan bab Anda', s1b: 'Buka Dasbor lalu tempel teks atau unggah berkas .docx. Setiap bab tersimpan lengkap dengan riwayat auditnya.',
+    s2t: '2 · Gelar sidang', s2b: 'Buka tab Audit dan mulai ujian. Enam ilmuwan menilai bab Anda pada sebelas dimensi dalam empat dewan.',
+    s3t: '3 · Baca putusannya', s3b: 'Anda menerima nilai, skor tiap dimensi beserta alasan penguji, pemindaian sitasi seluruh dokumen, dan bagian-bagian yang ditandai.',
+    s4t: '4 · Perbaiki dan naik', s4b: 'Terapkan koreksi yang disarankan, atau jalankan “Audit sampai lulus”: dewan menulis ulang, menguji ulang secara buta, dan mengganti strategi tiap putaran hingga target tercapai.',
+    s5t: '5 · Tutup selisihnya', s5b: 'Ketika tinggal soal substansi, asisten mencocokkan paragraf tanpa sitasi dengan sumber yang sudah Anda punya — Anda menyetujui satu per satu — dan mengusulkan sudut analisis orisinal.',
+    s6t: '6 · Verifikasi dan ekspor', s6b: 'Tab Referensi memastikan setiap sumber nyata dan setiap sitasi cocok. Lalu ekspor ke Word atau PDF beserta pernyataan penggunaan AI.'
+  },
+  fr: {
+    nav_cap: 'Capacités', nav_fac: 'Le jury', nav_std: 'Studio', nav_met: 'Méthode', nav_how: 'Mode d’emploi', nav_cta: 'Ouvrir le studio',
+    tab_dash: 'Tableau de bord', tab_write: 'Rédiger', tab_rev: 'Relire', tab_aud: 'Examen', tab_man: 'Manuscrit', tab_ref: 'Affineur IA', tab_refs: 'Références',
+    b_write: 'Rédiger la section', b_rev: 'Relire le texte', b_aud: 'Réunir le jury', b_pass: 'Examiner jusqu’à la réussite', b_plag: 'Contrôle de plagiat',
+    b_man: 'Approuver ou corriger', b_ref: 'Affiner le texte', b_refs: 'Vérifier citations et références', b_pull: 'Utiliser le texte de l’onglet Examen',
+    b_add: 'Ajouter un chapitre', b_up: 'Téléverser un fichier',
+    fac_eyebrow: 'Le jury d’examen', fac_title: 'Six universitaires composent votre jury.',
+    fac_sub: 'Trois professeurs, trois docteurs — chacun son rôle, son tempérament et son outil. Survolez un savant : il se présente, à voix haute.',
+    voices_on: 'Voix activées', voices_off: 'Voix désactivées',
+    how_eyebrow: 'Visite guidée', how_title: 'Comment utiliser ThesisMaster.',
+    how_sub: 'Six étapes courtes dans votre langue, avec narration — du téléversement d’un chapitre à un brouillon vérifié, examiné et prêt à exporter.',
+    how_play: 'Voir la visite guidée', how_min: '6 étapes · environ 3 minutes',
+    tour_next: 'Suivant', tour_prev: 'Retour', tour_close: 'Fermer', tour_narrate: 'Écouter', tour_stop: 'Arrêter', tour_done: 'Commencer',
+    s1t: '1 · Ajoutez votre chapitre', s1b: 'Ouvrez le tableau de bord, collez votre texte ou téléversez un fichier .docx. Chaque chapitre est conservé avec tout son historique d’examens.',
+    s2t: '2 · Réunissez le jury', s2b: 'Allez dans l’onglet Examen et lancez la session. Six universitaires évaluent votre chapitre selon onze dimensions réparties en quatre commissions.',
+    s3t: '3 · Lisez le verdict', s3b: 'Vous obtenez une note, un score par dimension avec le raisonnement de l’examinateur, une analyse des citations du document entier et des passages précisément signalés.',
+    s4t: '4 · Corrigez et progressez', s4b: 'Appliquez les corrections proposées ou lancez « Examiner jusqu’à la réussite » : le jury réécrit, réexamine à l’aveugle et change de stratégie à chaque tour jusqu’à votre objectif.',
+    s5t: '5 · Combler l’écart', s5b: 'Quand il ne reste que le fond, l’assistant rapproche les paragraphes sans citation de vos sources existantes — vous validez chaque proposition — et suggère des angles d’analyse originaux.',
+    s6t: '6 · Vérifiez et exportez', s6b: 'L’onglet Références contrôle que chaque source existe vraiment et que chaque citation correspond. Exportez ensuite en Word ou PDF avec une déclaration d’usage de l’IA.'
+  },
+  es: {
+    nav_cap: 'Capacidades', nav_fac: 'El tribunal', nav_std: 'Estudio', nav_met: 'Método', nav_how: 'Cómo se usa', nav_cta: 'Abrir el estudio',
+    tab_dash: 'Panel', tab_write: 'Escribir', tab_rev: 'Revisar', tab_aud: 'Examen', tab_man: 'Manuscrito', tab_ref: 'Pulidor IA', tab_refs: 'Referencias',
+    b_write: 'Escribir la sección', b_rev: 'Revisar el texto', b_aud: 'Convocar al tribunal', b_pass: 'Examinar hasta aprobar', b_plag: 'Control de plagio',
+    b_man: 'Aprobar o corregir', b_ref: 'Pulir el texto', b_refs: 'Verificar citas y referencias', b_pull: 'Usar el texto de la pestaña Examen',
+    b_add: 'Añadir capítulo', b_up: 'Subir un archivo',
+    fac_eyebrow: 'El tribunal de examen', fac_title: 'Seis académicos forman tu tribunal.',
+    fac_sub: 'Tres catedráticos, tres doctoras — cada uno con su papel, su carácter y su herramienta. Pasa el cursor y se presentan en voz alta.',
+    voices_on: 'Voces activadas', voices_off: 'Voces desactivadas',
+    how_eyebrow: 'Recorrido guiado', how_title: 'Cómo usar ThesisMaster.',
+    how_sub: 'Seis pasos breves en tu idioma, con narración — desde subir un capítulo hasta un borrador verificado, examinado y listo para exportar.',
+    how_play: 'Ver el recorrido', how_min: '6 pasos · unos 3 minutos',
+    tour_next: 'Siguiente', tour_prev: 'Atrás', tour_close: 'Cerrar', tour_narrate: 'Narrar', tour_stop: 'Detener', tour_done: 'Empezar',
+    s1t: '1 · Añade tu capítulo', s1b: 'Abre el Panel y pega tu texto o sube un archivo .docx. Cada capítulo se guarda con todo su historial de exámenes.',
+    s2t: '2 · Convoca al tribunal', s2b: 'Ve a la pestaña Examen e inicia la sesión. Seis académicos juzgan tu capítulo en once dimensiones repartidas en cuatro comisiones.',
+    s3t: '3 · Lee el veredicto', s3b: 'Recibes una calificación, una puntuación por dimensión con el razonamiento del examinador, un análisis de citas de todo el documento y pasajes concretos señalados.',
+    s4t: '4 · Corrige y sube', s4b: 'Aplica las correcciones sugeridas o ejecuta «Examinar hasta aprobar»: el tribunal reescribe, vuelve a examinar a ciegas y cambia de estrategia en cada ronda hasta tu objetivo.',
+    s5t: '5 · Cierra la brecha', s5b: 'Cuando solo queda el fondo, el asistente empareja los párrafos sin cita con tus fuentes existentes — tú apruebas cada una — y propone enfoques analíticos originales.',
+    s6t: '6 · Verifica y exporta', s6b: 'La pestaña Referencias comprueba que cada fuente es real y que cada cita concuerda. Después exporta a Word o PDF con una declaración de uso de IA.'
+  }
+};
+function t(k) { return (I18N[uiLang] && I18N[uiLang][k]) || I18N.en[k] || k; }
+const SEL_KEYS = [
+  ['.nav-links a[data-target="#capabilities"]', 'nav_cap'], ['.nav-links a[data-target="#faculty"]', 'nav_fac'],
+  ['.nav-links a[data-target="#studio"]', 'nav_std'], ['.nav-links a[data-target="#method"]', 'nav_met'],
+  ['.nav-links a[data-target="#howto"]', 'nav_how'], ['.nav-cta', 'nav_cta'],
+  ['.tab[data-panel="dashboard"]', 'tab_dash'], ['.tab[data-panel="write"]', 'tab_write'], ['.tab[data-panel="review"]', 'tab_rev'],
+  ['.tab[data-panel="audit"]', 'tab_aud'], ['.tab[data-panel="manuscript"]', 'tab_man'], ['.tab[data-panel="refine"]', 'tab_ref'],
+  ['.tab[data-panel="refs"]', 'tab_refs'],
+  ['#w-run', 'b_write'], ['#r-run', 'b_rev'], ['#a-run', 'b_aud'], ['#a-pass', 'b_pass'], ['#a-plag', 'b_plag'],
+  ['#m-run', 'b_man'], ['#g-run', 'b_ref'], ['#f-run', 'b_refs'], ['#f-pull', 'b_pull'], ['#dch-add', 'b_add'], ['#dch-upload', 'b_up'],
+  ['#faculty .section-eyebrow', 'fac_eyebrow'], ['#faculty .section-title', 'fac_title'], ['#faculty .section-sub', 'fac_sub'],
+  ['#howto .section-eyebrow', 'how_eyebrow'], ['#howto .section-title', 'how_title'], ['#howto .section-sub', 'how_sub'],
+  ['#howto-play', 'how_play'], ['#howto-min', 'how_min']
 ];
-const FAC_META_AR = {
-  haddad: { name: '\u0628\u0631\u0648\u0641. \u062D\u062F\u0651\u0627\u062F', role: '\u0631\u0626\u064A\u0633 \u0627\u0644\u0644\u062C\u0646\u0629 \u00B7 \u062A\u062F\u0642\u064A\u0642' },
-  novak: { name: '\u0628\u0631\u0648\u0641. \u0646\u0648\u0641\u0627\u0643', role: '\u0627\u0644\u0645\u0634\u0631\u0641\u0629 \u00B7 \u0645\u0631\u0627\u062C\u0639\u0629 \u0648\u062A\u0635\u062D\u064A\u062D' },
-  idris: { name: '\u0628\u0631\u0648\u0641. \u0625\u062F\u0631\u064A\u0633', role: '\u0643\u0627\u062A\u0628 \u0627\u0644\u0623\u0637\u0631\u0648\u062D\u0629 \u00B7 \u0635\u064A\u0627\u063A\u0629' },
-  chen: { name: '\u062F. \u062A\u0634\u064A\u0646', role: '\u0627\u0644\u0645\u0645\u062A\u062D\u0646 \u0627\u0644\u0639\u0644\u0645\u064A \u00B7 \u062A\u062F\u0642\u064A\u0642' },
-  salma: { name: '\u062F. \u0633\u0644\u0645\u0649', role: '\u0645\u0645\u062A\u062D\u0646\u0629 \u0627\u0644\u0644\u063A\u0629 \u00B7 \u062A\u062F\u0642\u064A\u0642 \u0648\u0645\u0631\u0627\u062C\u0639\u0629' },
-  amara: { name: '\u062F. \u0623\u0645\u0627\u0631\u0629', role: '\u0645\u062D\u0631\u0631\u0629 \u0627\u0644\u0635\u0642\u0644 \u00B7 \u0645\u0646\u0642\u0651\u062D \u0627\u0644\u0630\u0643\u0627\u0621' }
+const FAC_ROLES = {
+  en: { haddad: 'Board chair · Audit', novak: 'Supervisor · Review & corrections', idris: 'Thesis writer · Drafting', chen: 'Scientific examiner · Audit', salma: 'Language examiner · Audit & review', amara: 'Refinement editor · AI refiner' },
+  ar: { haddad: 'رئيس اللجنة · تدقيق', novak: 'المشرفة · مراجعة وتصحيح', idris: 'كاتب الأطروحة · صياغة', chen: 'الممتحن العلمي · تدقيق', salma: 'ممتحنة اللغة · تدقيق ومراجعة', amara: 'محررة الصقل · منقّح الذكاء' },
+  tr: { haddad: 'Jüri başkanı · Denetim', novak: 'Danışman · İnceleme ve düzeltme', idris: 'Tez yazarı · Taslak', chen: 'Bilimsel jüri · Denetim', salma: 'Dil jürisi · Denetim ve inceleme', amara: 'Rötuş editörü · YZ rötuş' },
+  id: { haddad: 'Ketua dewan · Audit', novak: 'Pembimbing · Tinjauan & koreksi', idris: 'Penulis tesis · Penyusunan', chen: 'Penguji ilmiah · Audit', salma: 'Penguji bahasa · Audit & tinjauan', amara: 'Editor pemolesan · Pemoles AI' },
+  fr: { haddad: 'Président du jury · Examen', novak: 'Directrice · Relecture et corrections', idris: 'Rédacteur de thèse · Rédaction', chen: 'Examinateur scientifique · Examen', salma: 'Examinatrice de langue · Examen et relecture', amara: 'Éditrice de finition · Affineur IA' },
+  es: { haddad: 'Presidente del tribunal · Examen', novak: 'Directora · Revisión y correcciones', idris: 'Redactor de tesis · Redacción', chen: 'Examinador científico · Examen', salma: 'Examinadora de lengua · Examen y revisión', amara: 'Editora de pulido · Pulidor IA' }
 };
-const FAC_BUBBLES_AR = {
-  haddad: '\u00AB\u0623\u0646\u0627 \u0627\u0644\u0628\u0631\u0648\u0641\u064A\u0633\u0648\u0631 \u062D\u062F\u0651\u0627\u062F\u060C \u0631\u0626\u064A\u0633 \u0647\u0630\u0647 \u0627\u0644\u0644\u062C\u0646\u0629. \u0633\u0624\u0627\u0644 \u0648\u0627\u062D\u062F \u064A\u062D\u0633\u0645 \u0643\u0644 \u0634\u064A\u0621: <em>\u0623\u062A\u0633\u062A\u0637\u064A\u0639 \u0627\u0644\u062F\u0641\u0627\u0639 \u0639\u0646 \u0643\u0644 \u0633\u0637\u0631\u061F</em> \u0623\u062D\u0636\u0631 \u0641\u0635\u0644\u0643\u060C \u0648\u0633\u0646\u0631\u0649.\u00BB',
-  novak: '\u00AB\u0627\u0644\u0628\u0631\u0648\u0641\u064A\u0633\u0648\u0631\u0629 \u0646\u0648\u0641\u0627\u0643\u060C \u0645\u0634\u0631\u0641\u062A\u0643. \u0623\u0642\u0631\u0623 \u0633\u0637\u0631\u0627\u064B \u0628\u0633\u0637\u0631 \u0648\u0627\u0644\u0642\u0644\u0645 \u0627\u0644\u0623\u062D\u0645\u0631 \u062C\u0627\u0647\u0632. \u0623\u064F\u0639\u0644\u0651\u0645 \u0645\u0627 \u0644\u0627 \u064A\u0642\u0648\u0644\u0647 \u0635\u062F\u064A\u0642 \u0644\u0637\u064A\u0641 \u2014 \u0648\u0633\u064A\u0642\u0648\u0644\u0647 \u0627\u0644\u0645\u0645\u062A\u062D\u0646 \u062D\u062A\u0645\u0627\u064B.\u00BB',
-  idris: '\u00AB\u0627\u0644\u0628\u0631\u0648\u0641\u064A\u0633\u0648\u0631 \u0625\u062F\u0631\u064A\u0633\u060C \u0643\u0627\u062A\u0628 \u0627\u0644\u0623\u0637\u0631\u0648\u062D\u0629. \u0623\u0639\u0637\u0646\u064A \u0627\u0644\u0645\u0648\u0636\u0648\u0639 \u0648\u0627\u0644\u062A\u062E\u0635\u0635\u060C \u0648\u0633\u0623\u0635\u0648\u063A \u0646\u0635\u0627\u064B \u062A\u0642\u0641 \u062E\u0644\u0641\u0647 \u0628\u062B\u0642\u0629 \u2014 \u0645\u0639 \u0645\u0633\u0627\u062D\u0629 \u0644\u0635\u0648\u062A\u0643 \u0623\u0646\u062A.\u00BB',
-  chen: '\u00AB\u0627\u0644\u062F\u0643\u062A\u0648\u0631 \u062A\u0634\u064A\u0646\u060C \u0645\u0645\u062A\u062D\u0646 \u0627\u0644\u062C\u0627\u0646\u0628 \u0627\u0644\u0639\u0644\u0645\u064A. \u0627\u0644\u0645\u0646\u0647\u062C\u060C \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A\u060C \u0627\u0644\u0645\u0639\u0627\u062F\u0644\u0627\u062A\u060C \u0627\u0644\u0645\u0635\u0637\u0644\u062D. \u0625\u0646 \u0623\u062E\u0637\u0623\u062A \u0648\u062D\u062F\u0629 \u0642\u064A\u0627\u0633\u060C \u0633\u062A\u062C\u062F\u0647\u0627 \u0639\u062F\u0633\u062A\u064A.\u00BB',
-  salma: '\u00AB\u0627\u0644\u062F\u0643\u062A\u0648\u0631\u0629 \u0633\u0644\u0645\u0649\u060C \u0645\u0645\u062A\u062D\u0646\u0629 \u0627\u0644\u0644\u063A\u0629. \u0642\u0648\u0627\u0639\u062F\u060C \u0648\u0633\u062C\u0644\u0651 \u0623\u0643\u0627\u062F\u064A\u0645\u064A\u060C \u0648\u0625\u064A\u0642\u0627\u0639. \u0623\u0636\u0645\u0646 \u0623\u0646 \u062A\u0635\u0644 \u0623\u0641\u0643\u0627\u0631\u0643 \u0628\u0644\u0628\u0627\u0633\u0647\u0627 \u0627\u0644\u0644\u0627\u0626\u0642.\u00BB',
-  amara: '\u00AB\u0627\u0644\u062F\u0643\u062A\u0648\u0631\u0629 \u0623\u0645\u0627\u0631\u0629\u060C \u0645\u062D\u0631\u0631\u0629 \u0627\u0644\u0635\u0642\u0644. \u0635\u064A\u0627\u063A\u0629 \u0628\u0646\u0643\u0647\u0629 \u0627\u0644\u0622\u0644\u0629\u061F \u0625\u064A\u0642\u0627\u0639 \u0628\u0627\u0647\u062A\u061F \u0644\u0645\u0633\u0629 \u0648\u0627\u062D\u062F\u0629 \u0645\u0646 \u0639\u0635\u0627\u064A\u060C \u0648\u064A\u0639\u0648\u062F \u0646\u0635\u0651\u0643 \u064A\u062A\u0646\u0641\u0633.\u00BB'
+const FAC_LINES = {
+  en: FACULTY_LINES,
+  ar: {
+    haddad: 'أنا البروفيسور حداد، رئيس هذه اللجنة. سؤال واحد يحسم كل شيء: أتستطيع الدفاع عن كل سطر؟',
+    novak: 'البروفيسورة نوفاك، مشرفتك. أقرأ سطراً بسطر والقلم الأحمر جاهز.',
+    idris: 'البروفيسور إدريس، كاتب الأطروحة. أعطني الموضوع والتخصص وسأصوغ نصاً تقف خلفه بثقة.',
+    chen: 'الدكتور تشين، الممتحن العلمي. إن أخطأت وحدة قياس ستجدها عدستي.',
+    salma: 'الدكتورة سلمى، ممتحنة اللغة. أضمن أن تصل أفكارك بلباسها اللائق.',
+    amara: 'الدكتورة أمارة، محررة الصقل. لمسة واحدة من عصاي ويعود نصك يتنفس.'
+  },
+  tr: {
+    haddad: 'Ben Profesör Haddad, bu jürinin başkanı. Tek bir soru her şeyi belirler: her satırı savunabilir misiniz?',
+    novak: 'Profesör Novak, danışmanınız. Kırmızı kalem elimde, satır satır okurum.',
+    idris: 'Profesör İdris, tez yazarı. Konuyu ve alanı verin, arkasında durabileceğiniz bir metin yazayım.',
+    chen: 'Doktor Chen, bilimsel jüri üyesi. Bir birim yanlışsa, merceğim onu bulur.',
+    salma: 'Doktor Salma, dil jürisi. Fikirlerinizin hak ettiği kıyafetle sunulmasını sağlarım.',
+    amara: 'Doktor Amara, rötuş editörü. Değneğimin bir dokunuşuyla metniniz yeniden nefes alır.'
+  },
+  id: {
+    haddad: 'Saya Profesor Haddad, ketua dewan ini. Satu pertanyaan menentukan segalanya: dapatkah Anda membela setiap baris?',
+    novak: 'Profesor Novak, pembimbing Anda. Saya membaca baris demi baris dengan pena merah siap.',
+    idris: 'Profesor Idris, penulis tesis. Beri saya topik dan bidangnya, saya susun teks yang bisa Anda pertanggungjawabkan.',
+    chen: 'Dokter Chen, penguji ilmiah. Jika ada satuan yang keliru, kaca pembesar saya menemukannya.',
+    salma: 'Dokter Salma, penguji bahasa. Saya pastikan gagasan Anda tampil dengan busana yang pantas.',
+    amara: 'Dokter Amara, editor pemolesan. Satu sapuan tongkat saya, teks Anda bernapas lagi.'
+  },
+  fr: {
+    haddad: 'Je suis le professeur Haddad, président de ce jury. Une seule question décide de tout : pouvez-vous défendre chaque ligne ?',
+    novak: 'Professeure Novak, votre directrice. Je lis ligne à ligne, stylo rouge décapuchonné.',
+    idris: 'Professeur Idris, rédacteur de thèse. Donnez-moi un sujet et une discipline, j’écrirai un texte que vous pourrez assumer.',
+    chen: 'Docteur Chen, examinateur scientifique. Si une unité est fausse, ma loupe la trouvera.',
+    salma: 'Docteure Salma, examinatrice de langue. Je veille à ce que vos idées arrivent correctement vêtues.',
+    amara: 'Docteure Amara, éditrice de finition. Un passage de ma baguette et votre prose respire à nouveau.'
+  },
+  es: {
+    haddad: 'Soy el profesor Haddad, presidente de este tribunal. Una sola pregunta lo decide todo: ¿puedes defender cada línea?',
+    novak: 'Profesora Novak, tu directora. Leo línea por línea, con el bolígrafo rojo destapado.',
+    idris: 'Profesor Idris, redactor de tesis. Dame el tema y la disciplina y escribiré un texto que puedas defender.',
+    chen: 'Doctor Chen, examinador científico. Si una unidad está mal, mi lupa la encontrará.',
+    salma: 'Doctora Salma, examinadora de lengua. Me aseguro de que tus ideas lleguen bien vestidas.',
+    amara: 'Doctora Amara, editora de pulido. Un toque de mi varita y tu prosa vuelve a respirar.'
+  }
 };
-const FACULTY_LINES_AR = {
-  haddad: '\u0623\u0646\u0627 \u0627\u0644\u0628\u0631\u0648\u0641\u064A\u0633\u0648\u0631 \u062D\u062F\u0627\u062F\u060C \u0631\u0626\u064A\u0633 \u0647\u0630\u0647 \u0627\u0644\u0644\u062C\u0646\u0629. \u0633\u0624\u0627\u0644 \u0648\u0627\u062D\u062F \u064A\u062D\u0633\u0645 \u0643\u0644 \u0634\u064A\u0621: \u0623\u062A\u0633\u062A\u0637\u064A\u0639 \u0627\u0644\u062F\u0641\u0627\u0639 \u0639\u0646 \u0643\u0644 \u0633\u0637\u0631\u061F \u0623\u062D\u0636\u0631 \u0641\u0635\u0644\u0643 \u0648\u0633\u0646\u0631\u0649.',
-  novak: '\u0627\u0644\u0628\u0631\u0648\u0641\u064A\u0633\u0648\u0631\u0629 \u0646\u0648\u0641\u0627\u0643\u060C \u0645\u0634\u0631\u0641\u062A\u0643. \u0623\u0642\u0631\u0623 \u0633\u0637\u0631\u0627 \u0628\u0633\u0637\u0631 \u0648\u0627\u0644\u0642\u0644\u0645 \u0627\u0644\u0623\u062D\u0645\u0631 \u062C\u0627\u0647\u0632. \u0623\u0639\u0644\u0645 \u0645\u0627 \u0644\u0627 \u064A\u0642\u0648\u0644\u0647 \u0635\u062F\u064A\u0642 \u0644\u0637\u064A\u0641\u060C \u0648\u0633\u064A\u0642\u0648\u0644\u0647 \u0627\u0644\u0645\u0645\u062A\u062D\u0646 \u062D\u062A\u0645\u0627.',
-  idris: '\u0627\u0644\u0628\u0631\u0648\u0641\u064A\u0633\u0648\u0631 \u0625\u062F\u0631\u064A\u0633\u060C \u0643\u0627\u062A\u0628 \u0627\u0644\u0623\u0637\u0631\u0648\u062D\u0629. \u0623\u0639\u0637\u0646\u064A \u0627\u0644\u0645\u0648\u0636\u0648\u0639 \u0648\u0627\u0644\u062A\u062E\u0635\u0635 \u0648\u0633\u0623\u0635\u0648\u063A \u0646\u0635\u0627 \u062A\u0642\u0641 \u062E\u0644\u0641\u0647 \u0628\u062B\u0642\u0629.',
-  chen: '\u0627\u0644\u062F\u0643\u062A\u0648\u0631 \u062A\u0634\u064A\u0646\u060C \u0627\u0644\u0645\u0645\u062A\u062D\u0646 \u0627\u0644\u0639\u0644\u0645\u064A. \u0627\u0644\u0645\u0646\u0647\u062C \u0648\u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0648\u0627\u0644\u0645\u0639\u0627\u062F\u0644\u0627\u062A. \u0625\u0646 \u0623\u062E\u0637\u0623\u062A \u0648\u062D\u062F\u0629 \u0642\u064A\u0627\u0633 \u0633\u062A\u062C\u062F\u0647\u0627 \u0639\u062F\u0633\u062A\u064A.',
-  salma: '\u0627\u0644\u062F\u0643\u062A\u0648\u0631\u0629 \u0633\u0644\u0645\u0649\u060C \u0645\u0645\u062A\u062D\u0646\u0629 \u0627\u0644\u0644\u063A\u0629. \u0623\u0636\u0645\u0646 \u0623\u0646 \u062A\u0635\u0644 \u0623\u0641\u0643\u0627\u0631\u0643 \u0628\u0644\u0628\u0627\u0633\u0647\u0627 \u0627\u0644\u0644\u0627\u0626\u0642.',
-  amara: '\u0627\u0644\u062F\u0643\u062A\u0648\u0631\u0629 \u0623\u0645\u0627\u0631\u0629\u060C \u0645\u062D\u0631\u0631\u0629 \u0627\u0644\u0635\u0642\u0644. \u0644\u0645\u0633\u0629 \u0648\u0627\u062D\u062F\u0629 \u0645\u0646 \u0639\u0635\u0627\u064A \u0648\u064A\u0639\u0648\u062F \u0646\u0635\u0643 \u064A\u062A\u0646\u0641\u0633.'
+const ENGINE_PHRASES_L = {
+  ar: { w: ['أختار أطروحة يمكن الدفاع عنها…'], r: ['أقرأ سطراً بسطر…'], a: ['تنعقد اللجنة الآن.', 'نراجع الاستشهادات…'], m: ['أشحذ هذه الجملة…'], g: ['أجعل النص يتنفس…'] },
+  tr: { w: ['Savunulabilir bir tez cümlesi seçiyorum…'], r: ['Satır satır okuyorum…'], a: ['Jüri toplanıyor.', 'Atıfları denetliyoruz…'], m: ['Bu cümleyi keskinleştiriyorum…'], g: ['Metnin nefes almasını sağlıyorum…'] },
+  id: { w: ['Memilih tesis yang bisa dipertahankan…'], r: ['Membaca baris demi baris…'], a: ['Sidang dibuka.', 'Memeriksa sitasi…'], m: ['Mempertajam kalimat ini…'], g: ['Membuat teks bernapas…'] },
+  fr: { w: ['Je choisis une thèse défendable…'], r: ['Je lis ligne à ligne…'], a: ['Le jury est réuni.', 'Nous vérifions les citations…'], m: ['J’affûte cette phrase…'], g: ['Je fais respirer le texte…'] },
+  es: { w: ['Elijo una tesis defendible…'], r: ['Leo línea por línea…'], a: ['Se constituye el tribunal.', 'Revisamos las citas…'], m: ['Afilo esta frase…'], g: ['Hago respirar el texto…'] }
 };
-const ENGINE_PHRASES_AR = {
-  w: ['\u0623\u062E\u062A\u0627\u0631 \u0623\u0637\u0631\u0648\u062D\u0629 \u064A\u0645\u0643\u0646 \u0627\u0644\u062F\u0641\u0627\u0639 \u0639\u0646\u0647\u0627\u2026', '\u0623\u0636\u0628\u0637 \u0627\u0644\u062A\u062D\u0648\u0651\u0637 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0627\u062F\u0639\u0627\u0621\u2026', '\u0644\u0627 \u062D\u0634\u0648 \u062A\u062D\u062A \u0646\u0627\u0638\u0631\u064A\u2026'],
-  r: ['\u0623\u0642\u0631\u0623 \u0633\u0637\u0631\u0627\u064B \u0628\u0633\u0637\u0631\u2026', '\u0647\u0644 \u064A\u0645\u0643\u0646\u0643 \u0627\u0644\u062F\u0641\u0627\u0639 \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u0627\u062F\u0639\u0627\u0621\u061F', '\u0623\u062F\u0648\u0651\u0646 \u0645\u0644\u0627\u062D\u0638\u0627\u062A\u064A \u0641\u064A \u0627\u0644\u0647\u0627\u0645\u0634\u2026'],
-  a: ['\u062A\u0646\u0639\u0642\u062F \u0627\u0644\u0644\u062C\u0646\u0629 \u0627\u0644\u0622\u0646.', '\u0646\u0631\u0627\u062C\u0639 \u0627\u0644\u0627\u0633\u062A\u0634\u0647\u0627\u062F\u0627\u062A\u2026', '\u0631\u0623\u064A\u0643 \u0641\u064A \u0627\u0644\u0645\u0646\u0647\u062C\u064A\u0629 \u064A\u0627 \u062F\u0643\u062A\u0648\u0631 \u062A\u0634\u064A\u0646\u061F', '\u0646\u062A\u062F\u0627\u0648\u0644 \u0641\u064A \u0627\u0644\u062F\u0631\u062C\u0629\u2026'],
-  m: ['\u0623\u0634\u062D\u0630 \u0647\u0630\u0647 \u0627\u0644\u062C\u0645\u0644\u0629\u2026', '\u0623\u062D\u0627\u0641\u0638 \u0639\u0644\u0649 \u0645\u0639\u0627\u062F\u0644\u0627\u062A\u0643 \u0643\u0645\u0627 \u0647\u064A\u2026'],
-  g: ['\u0647\u0630\u0647 \u0627\u0644\u0635\u064A\u0627\u063A\u0629 \u062A\u0641\u0648\u062D \u0645\u0646\u0647\u0627 \u0627\u0644\u0622\u0644\u0629\u2026', '\u0623\u0646\u0648\u0651\u0639 \u0625\u064A\u0642\u0627\u0639 \u0627\u0644\u062C\u0645\u0644\u2026', '\u0623\u062C\u0639\u0644 \u0627\u0644\u0646\u0635 \u064A\u062A\u0646\u0641\u0633\u2026']
-};
-const VOICE_LBL = { en: ['Voices on', 'Voices off'], ar: ['\u0627\u0644\u0623\u0635\u0648\u0627\u062A \u0645\u0641\u0639\u0651\u0644\u0629', '\u0627\u0644\u0623\u0635\u0648\u0627\u062A \u0645\u0648\u0642\u0648\u0641\u0629'] };
+function enginePhrases(prefix) {
+  const loc = ENGINE_PHRASES_L[uiLang];
+  return (loc && loc[prefix] && loc[prefix].length) ? loc[prefix] : (ENGINE_PHRASES[prefix] || []);
+}
+function langMeta(c) { return LANGS.find(l => l.c === (c || uiLang)) || LANGS[0]; }
 function setLastText(el, txt) {
   let node = null;
   el.childNodes.forEach(n => { if (n.nodeType === 3 && n.textContent.trim()) node = n; });
   if (node) node.textContent = ' ' + txt; else el.appendChild(document.createTextNode(' ' + txt));
 }
-function lastText(el) {
-  let t = '';
-  el.childNodes.forEach(n => { if (n.nodeType === 3 && n.textContent.trim()) t = n.textContent.trim(); });
-  return t;
-}
 function applyI18N() {
-  const ar = uiLang === 'ar';
-  AR_MAP.forEach(([sel, txt]) => {
+  SEL_KEYS.forEach(([sel, key]) => {
     const el = document.querySelector(sel);
-    if (!el) return;
-    if (!el.dataset.i18nEn) el.dataset.i18nEn = lastText(el);
-    setLastText(el, ar ? txt : el.dataset.i18nEn);
-  });
-  AR_PLACEHOLDERS.forEach(([sel, txt]) => {
-    const el = document.querySelector(sel);
-    if (!el) return;
-    if (!el.dataset.i18nEnPh) el.dataset.i18nEnPh = el.placeholder || '';
-    el.placeholder = ar ? txt : el.dataset.i18nEnPh;
+    if (el) setLastText(el, t(key));
   });
   document.querySelectorAll('.fac-card[data-fac]').forEach(card => {
     const key = card.dataset.fac;
-    const nameEl = card.querySelector('.fac-name'), roleEl = card.querySelector('.fac-role'), bub = card.querySelector('.fac-bubble');
-    if (nameEl) { if (!nameEl.dataset.en) nameEl.dataset.en = nameEl.textContent; nameEl.textContent = ar ? FAC_META_AR[key].name : nameEl.dataset.en; }
-    if (roleEl) { if (!roleEl.dataset.en) roleEl.dataset.en = roleEl.textContent; roleEl.textContent = ar ? FAC_META_AR[key].role : roleEl.dataset.en; }
-    if (bub) { if (!bub.dataset.en) bub.dataset.en = bub.innerHTML; bub.innerHTML = ar ? FAC_BUBBLES_AR[key] : bub.dataset.en; }
+    const roleEl = card.querySelector('.fac-role'), bub = card.querySelector('.fac-bubble');
+    const roles = FAC_ROLES[uiLang] || FAC_ROLES.en;
+    if (roleEl) roleEl.textContent = roles[key] || FAC_ROLES.en[key];
+    const lines = FAC_LINES[uiLang] || FAC_LINES.en;
+    if (bub) bub.textContent = '\u201C' + (lines[key] || FAC_LINES.en[key]) + '\u201D';
   });
   const vt = document.getElementById('fac-voice');
   if (vt) {
-    const lbl = VOICE_LBL[uiLang];
-    vt.dataset.on = vt.dataset.on.replace(/>\s*[^<]*$/, '> ' + lbl[0]);
-    vt.dataset.off = vt.dataset.off.replace(/>\s*[^<]*$/, '> ' + lbl[1]);
+    vt.dataset.on = vt.dataset.on.replace(/>\s*[^<]*$/, '> ' + t('voices_on'));
+    vt.dataset.off = vt.dataset.off.replace(/>\s*[^<]*$/, '> ' + t('voices_off'));
     vt.innerHTML = facVoicesOn ? vt.dataset.on : vt.dataset.off;
   }
+  const lt = document.getElementById('lang-toggle');
+  if (lt) lt.textContent = uiLang === 'ar' ? 'ع' : uiLang.toUpperCase();
 }
 function setUILang(lang) {
-  uiLang = lang === 'ar' ? 'ar' : 'en';
+  uiLang = LANGS.some(l => l.c === lang) ? lang : 'en';
+  const meta = langMeta(uiLang);
   document.documentElement.lang = uiLang;
-  document.documentElement.dir = uiLang === 'ar' ? 'rtl' : 'ltr';
-  const t = document.getElementById('lang-toggle');
-  if (t) t.textContent = uiLang === 'ar' ? 'EN' : '\u0639';
+  document.documentElement.dir = meta.dir;
   applyI18N();
+  if (document.getElementById('tour-modal')) renderTour();
   persistSettings();
 }
 async function persistSettings() {
@@ -1806,16 +2056,115 @@ async function persistSettings() {
   try { await window.storage.set('settings:ui', JSON.stringify({ lang: uiLang })); } catch (e) { if (isCapabilityError(e)) storageOK = false; }
 }
 async function initSettings() {
-  applyI18N(); // seed the English cache before any switch
   let lang = 'en';
   if (storageOK) {
-    try { const r = await window.storage.get('settings:ui'); if (r && r.value) lang = (JSON.parse(r.value).lang) || 'en'; } catch (e) {}
+    try { const r = await window.storage.get('settings:ui'); if (r && r.value) lang = JSON.parse(r.value).lang || 'en'; } catch (e) {}
   }
-  if (lang !== 'en') setUILang(lang);
-  const t = document.getElementById('lang-toggle');
-  if (t) t.addEventListener('click', () => setUILang(uiLang === 'ar' ? 'en' : 'ar'));
+  if (!LANGS.some(l => l.c === lang)) {
+    const nav = (navigator.language || 'en').slice(0, 2);
+    lang = LANGS.some(l => l.c === nav) ? nav : 'en';
+  }
+  setUILang(lang);
+  const btn = document.getElementById('lang-toggle');
+  const pop = document.getElementById('lang-pop');
+  if (btn && pop) {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      pop.innerHTML = LANGS.map(l => '<div class="prof-item' + (l.c === uiLang ? ' active' : '') + '" data-lang="' + l.c + '">' + l.name + (l.c === uiLang ? ' \u2713' : '') + '</div>').join('');
+      pop.querySelectorAll('[data-lang]').forEach(el => el.addEventListener('click', () => { setUILang(el.dataset.lang); pop.classList.remove('open'); }));
+      pop.classList.toggle('open');
+    });
+    document.addEventListener('click', e => { if (!pop.contains(e.target)) pop.classList.remove('open'); });
+  }
 }
 initSettings();
+
+/* engines reply in the document's own language, whatever the UI language */
+function docLangLine(t2) {
+  const txt = typeof t2 === 'string' ? t2 : (t2 && t2.body) || '';
+  const ar = (txt.match(/[\u0600-\u06FF]/g) || []).length > txt.length * 0.2;
+  return '\nREPLY LANGUAGE: write your entire reply in the same language as the document below' +
+    (ar ? ', which is Arabic \u2014 use Modern Standard Arabic (\u0627\u0644\u0641\u0635\u062D\u0649) in formal academic register' : '') +
+    '. Keep numerals, equations and [n] citation markers exactly as they appear.';
+}
+
+/* ==================== GUIDED WALKTHROUGH (localized, narrated) ==================== */
+const TOUR_STEPS = ['s1', 's2', 's3', 's4', 's5', 's6'];
+const TOUR_ICONS = [
+  '<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  '<circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c1.4-3.6 4.2-5.4 8-5.4s6.6 1.8 8 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  '<path d="M4 18h4V9H4zM10 18h4V4h-4zM16 18h4v-6h-4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  '<path d="M4 17l5-5 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 4h-5M20 4v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  '<path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>',
+  '<path d="M12 3l8 4v6c0 4.4-3.2 8.4-8 10-4.8-1.6-8-5.6-8-10V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+];
+/* Per-language recorded videos: paste an embed URL when a real video exists;
+   until then the interactive walkthrough below is shown. */
+const TOUR_VIDEOS = { en: '', ar: '', tr: '', id: '', fr: '', es: '' };
+let tourIdx = 0;
+function tourStop() { try { speechSynthesis.cancel(); } catch (e) {} }
+function tourNarrate(btn) {
+  if (!('speechSynthesis' in window)) return;
+  const meta = langMeta();
+  const voice = (speechSynthesis.getVoices() || []).find(v => v.lang && v.lang.toLowerCase().startsWith(meta.v));
+  if (!voice) { btn.textContent = '\u2014'; btn.disabled = true; return; }
+  tourStop();
+  const s = TOUR_STEPS[tourIdx];
+  const u = new SpeechSynthesisUtterance(t(s + 't').replace(/^[\d\u0660-\u0669]+\s*[\u00b7·]\s*/, '') + '. ' + t(s + 'b'));
+  u.voice = voice; u.lang = voice.lang; u.rate = 0.98;
+  btn.textContent = t('tour_stop');
+  u.onend = u.onerror = () => { btn.textContent = t('tour_narrate'); };
+  speechSynthesis.speak(u);
+}
+function renderTour() {
+  const m = document.getElementById('tour-modal');
+  if (!m) return;
+  const s = TOUR_STEPS[tourIdx];
+  const vid = TOUR_VIDEOS[uiLang];
+  m.querySelector('.tour-card').innerHTML =
+    '<button class="tour-x" id="tour-close" aria-label="' + t('tour_close') + '">\u00d7</button>' +
+    (vid ? '<div class="tour-video"><iframe src="' + vid + '" allowfullscreen loading="lazy" title="' + t('how_title') + '"></iframe></div>' : '') +
+    '<div class="tour-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none">' + TOUR_ICONS[tourIdx] + '</svg></div>' +
+    '<h3 class="tour-t">' + t(s + 't') + '</h3>' +
+    '<p class="tour-b">' + t(s + 'b') + '</p>' +
+    '<div class="tour-dots">' + TOUR_STEPS.map((_, i) => '<span class="' + (i === tourIdx ? 'on' : '') + '" data-go="' + i + '"></span>').join('') + '</div>' +
+    '<div class="tour-nav">' +
+      '<button class="ch-btn" id="tour-narr">' + t('tour_narrate') + '</button>' +
+      '<div style="flex:1"></div>' +
+      (tourIdx > 0 ? '<button class="ch-btn" id="tour-prev">' + t('tour_prev') + '</button>' : '') +
+      '<button class="ch-btn primary" id="tour-next">' + (tourIdx === TOUR_STEPS.length - 1 ? t('tour_done') : t('tour_next')) + '</button>' +
+    '</div>';
+  m.querySelector('#tour-close').onclick = closeTour;
+  m.querySelector('#tour-narr').onclick = function () { this.textContent === t('tour_stop') ? (tourStop(), this.textContent = t('tour_narrate')) : tourNarrate(this); };
+  const nx = m.querySelector('#tour-next');
+  nx.onclick = () => { tourStop(); if (tourIdx === TOUR_STEPS.length - 1) { closeTour(); scrollToTarget('#studio'); } else { tourIdx++; renderTour(); } };
+  const pv = m.querySelector('#tour-prev');
+  if (pv) pv.onclick = () => { tourStop(); tourIdx--; renderTour(); };
+  m.querySelectorAll('[data-go]').forEach(d => d.onclick = () => { tourStop(); tourIdx = +d.dataset.go; renderTour(); });
+}
+function openTour() {
+  let m = document.getElementById('tour-modal');
+  if (!m) {
+    m = document.createElement('div');
+    m.id = 'tour-modal';
+    m.innerHTML = '<div class="tour-card"></div>';
+    m.addEventListener('click', e => { if (e.target === m) closeTour(); });
+    document.body.appendChild(m);
+  }
+  m.style.display = 'flex';
+  tourIdx = 0;
+  renderTour();
+}
+function closeTour() {
+  tourStop();
+  const m = document.getElementById('tour-modal');
+  if (m) m.style.display = 'none';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTour(); });
+(function wireTour() {
+  const b = document.getElementById('howto-play');
+  if (b) b.addEventListener('click', openTour);
+})();
 
 /* in-page anchors: sandboxed previews treat #hash links as external navigation,
    so intercept and scroll directly — no navigation ever leaves the page */
@@ -1948,7 +2297,7 @@ function startCommittee(prefix) {
   const mount = document.getElementById(prefix + '-committee');
   if (!mount) return;
   const cast = ENGINE_CAST[prefix] || [];
-  const phrases = ((typeof uiLang !== 'undefined' && uiLang === 'ar' && ENGINE_PHRASES_AR[prefix]) ? ENGINE_PHRASES_AR : ENGINE_PHRASES)[prefix] || [];
+  const phrases = (typeof enginePhrases === 'function' ? enginePhrases(prefix) : (ENGINE_PHRASES[prefix] || []));
   const taskProps = TASK_PROPS[prefix] || [];
   mount.innerHTML =
     '<div class="prof-bubble" id="' + prefix + '-bubble">' + esc(phrases[0] || '') + '</div>' +
@@ -3008,6 +3357,598 @@ document.getElementById('a-run').addEventListener('click', async () => {
     setLoading('a', false);
   }
 });
+
+/* ==================== REFERENCE LIBRARY (EndNote-style) ==================== */
+Object.assign(I18N.en, { tab_lib: 'Library', b_lib_extract: "Extract from my chapter's reference list", b_lib_add: '+ Add a reference manually', b_lib_renum: 'Renumber citations in order of appearance' });
+Object.assign(I18N.ar, { tab_lib: 'المكتبة', b_lib_extract: 'استخرج من قائمة مراجع فصلي', b_lib_add: '+ أضف مرجعاً يدوياً', b_lib_renum: 'أعد الترقيم حسب ترتيب الورود' });
+Object.assign(I18N.tr, { tab_lib: 'Kütüphane', b_lib_extract: 'Bölümümün kaynakçasından çıkar', b_lib_add: '+ Elle kaynak ekle', b_lib_renum: 'Atıfları görülme sırasına göre yeniden numaralandır' });
+Object.assign(I18N.id, { tab_lib: 'Pustaka', b_lib_extract: 'Ambil dari daftar pustaka bab saya', b_lib_add: '+ Tambah referensi manual', b_lib_renum: 'Nomori ulang sitasi sesuai urutan kemunculan' });
+Object.assign(I18N.fr, { tab_lib: 'Bibliothèque', b_lib_extract: 'Extraire de la bibliographie de mon chapitre', b_lib_add: '+ Ajouter une référence', b_lib_renum: 'Renuméroter les citations par ordre d’apparition' });
+Object.assign(I18N.es, { tab_lib: 'Biblioteca', b_lib_extract: 'Extraer de la bibliografía de mi capítulo', b_lib_add: '+ Añadir una referencia', b_lib_renum: 'Renumerar las citas por orden de aparición' });
+SEL_KEYS.push(['.tab[data-panel="library"]', 'tab_lib'], ['#lb-extract', 'b_lib_extract'], ['#lb-add', 'b_lib_add'], ['#lb-renumber', 'b_lib_renum']);
+
+let library = { items: [] };
+let libStyle = 'ieee';
+const libKey = () => 'thesis:' + (typeof profiles !== 'undefined' ? profiles.active : 'p1') + ':library';
+let libTimer = null;
+function saveLib() { clearTimeout(libTimer); libTimer = setTimeout(saveLibNow, 900); }
+async function saveLibNow() {
+  if (!storageOK) return;
+  try { await window.storage.set(libKey(), JSON.stringify(library)); }
+  catch (e) { if (isCapabilityError(e)) storageOK = false; }
+}
+async function loadLib() {
+  if (!storageOK) return;
+  try { const r = await window.storage.get(libKey()); if (r && r.value) { const p = JSON.parse(r.value); if (p && Array.isArray(p.items)) library = p; } }
+  catch (e) { if (isCapabilityError(e)) storageOK = false; }
+  renderLib();
+}
+const libId = () => 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+/* ---- author handling ---- */
+function splitAuthors(raw) {
+  if (Array.isArray(raw)) return raw.filter(Boolean);
+  return String(raw || '').split(/\s+and\s+|;/).map(x => x.trim()).filter(Boolean);
+}
+function nameParts(a) {
+  a = String(a || '').trim();
+  if (a.indexOf(',') > -1) { const p = a.split(','); return { last: p[0].trim(), first: (p[1] || '').trim() }; }
+  const p = a.split(/\s+/);
+  return { last: p.pop() || '', first: p.join(' ') };
+}
+const initials = f => String(f || '').split(/[\s.]+/).filter(Boolean).map(x => x[0].toUpperCase() + '.').join(' ');
+function authorsFor(list, style) {
+  const A = list.map(nameParts);
+  if (!A.length) return '';
+  const j = (arr, sep, last) => arr.length > 1 ? arr.slice(0, -1).join(sep) + last + arr[arr.length - 1] : arr[0];
+  if (style === 'ieee') return j(A.map(p => (initials(p.first) ? initials(p.first) + ' ' : '') + p.last), ', ', ' and ');
+  if (style === 'vancouver') return A.map(p => p.last + ' ' + String(p.first || '').split(/[\s.]+/).filter(Boolean).map(x => x[0].toUpperCase()).join('')).join(', ');
+  if (style === 'apa') return j(A.map(p => p.last + (initials(p.first) ? ', ' + initials(p.first) : '')), ', ', ', & ');
+  if (style === 'harvard') return j(A.map(p => p.last + (initials(p.first) ? ', ' + initials(p.first).replace(/\s/g, '') : '')), ', ', ' and ');
+  if (style === 'chicago' || style === 'mla') {
+    const first = A[0].last + (A[0].first ? ', ' + A[0].first : '');
+    const rest = A.slice(1).map(p => (p.first ? p.first + ' ' : '') + p.last);
+    return rest.length ? j([first].concat(rest), ', ', style === 'mla' ? ', and ' : ', and ') : first;
+  }
+  return A.map(p => p.last).join(', ');
+}
+const NUMERIC_STYLES = ['ieee', 'vancouver'];
+const isNumeric = st => NUMERIC_STYLES.indexOf(st || libStyle) > -1;
+
+/* ---- bibliography formatting ---- */
+function formatRef(it, style) {
+  style = style || libStyle;
+  const a = authorsFor(splitAuthors(it.authors), style);
+  const y = it.year || 'n.d.';
+  const T = it.title || 'Untitled';
+  const C = it.container || '';
+  const vol = it.volume ? String(it.volume) : '';
+  const iss = it.issue ? String(it.issue) : '';
+  const pg = it.pages ? String(it.pages) : '';
+  const doi = it.doi ? (/^https?:/.test(it.doi) ? it.doi : 'https://doi.org/' + it.doi) : (it.url || '');
+  const pub = it.publisher || '';
+  const isBook = it.type === 'book' || it.type === 'thesis' || it.type === 'report';
+  if (style === 'ieee') {
+    let s = (a ? a + ', ' : '') + '"' + T + ',"';
+    if (C) s += ' <i>' + C + '</i>,';
+    if (isBook && pub) s += ' ' + pub + ',';
+    if (vol) s += ' vol. ' + vol + ',';
+    if (iss) s += ' no. ' + iss + ',';
+    if (pg) s += ' pp. ' + pg + ',';
+    return s + ' ' + y + '.' + (doi ? ' ' + doi : '');
+  }
+  if (style === 'vancouver') {
+    let s = (a ? a + '. ' : '') + T + '. ';
+    if (C) s += C + '. ';
+    if (isBook && pub) s += pub + '; ';
+    s += y;
+    if (vol) s += ';' + vol;
+    if (iss) s += '(' + iss + ')';
+    if (pg) s += ':' + pg;
+    return s + '.' + (doi ? ' ' + doi : '');
+  }
+  if (style === 'apa') {
+    let s = (a ? a + ' ' : '') + '(' + y + '). ' + T + '. ';
+    if (C) s += '<i>' + C + '</i>' + (vol ? ', <i>' + vol + '</i>' : '') + (iss ? '(' + iss + ')' : '') + (pg ? ', ' + pg : '') + '. ';
+    else if (pub) s += pub + '. ';
+    return s.trim() + (doi ? ' ' + doi : '');
+  }
+  if (style === 'harvard') {
+    let s = (a ? a + ' ' : '') + '(' + y + ") '" + T + "', ";
+    if (C) s += '<i>' + C + '</i>' + (vol ? ', ' + vol : '') + (iss ? '(' + iss + ')' : '') + (pg ? ', pp. ' + pg : '') + '.';
+    else if (pub) s += pub + '.';
+    return s.trim() + (doi ? ' Available at: ' + doi : '');
+  }
+  if (style === 'chicago') {
+    let s = (a ? a + '. ' : '') + y + '. "' + T + '." ';
+    if (C) s += '<i>' + C + '</i>' + (vol ? ' ' + vol : '') + (iss ? ' (' + iss + ')' : '') + (pg ? ': ' + pg : '') + '.';
+    else if (pub) s += pub + '.';
+    return s.trim() + (doi ? ' ' + doi : '');
+  }
+  let s = (a ? a + '. ' : '') + '"' + T + '." ';
+  if (C) s += '<i>' + C + '</i>, ' + (vol ? 'vol. ' + vol + ', ' : '') + (iss ? 'no. ' + iss + ', ' : '') + y + (pg ? ', pp. ' + pg : '') + '.';
+  else s += (pub ? pub + ', ' : '') + y + '.';
+  return s.trim() + (doi ? ' ' + doi : '');
+}
+function inTextFor(it, n) {
+  if (isNumeric()) return '[' + n + ']';
+  const A = splitAuthors(it.authors).map(nameParts);
+  const nm = A.length === 0 ? (it.title || '').slice(0, 18) : A.length === 1 ? A[0].last : A.length === 2 ? A[0].last + ' & ' + A[1].last : A[0].last + ' et al.';
+  return libStyle === 'mla' ? '(' + nm + (it.pages ? ' ' + String(it.pages).split(/[\u2013-]/)[0] : '') + ')' : '(' + nm + ', ' + (it.year || 'n.d.') + ')';
+}
+
+/* ---- importers ---- */
+const BIB_MAP = { journal: 'container', booktitle: 'container', publisher: 'publisher', year: 'year', volume: 'volume', number: 'issue', pages: 'pages', doi: 'doi', url: 'url', title: 'title', author: 'authors', school: 'publisher', edition: 'edition' };
+function parseBibTeX(txt) {
+  const out = [];
+  const re = /@(\w+)\s*\{([^,]*),([\s\S]*?)\n\}/g;
+  let m;
+  while ((m = re.exec(txt))) {
+    const it = { id: libId(), type: /article/i.test(m[1]) ? 'article' : /book/i.test(m[1]) ? 'book' : /(inproceedings|conference)/i.test(m[1]) ? 'conference' : /(phdthesis|mastersthesis)/i.test(m[1]) ? 'thesis' : 'article', authors: [] };
+    const fre = /(\w+)\s*=\s*[{"]([\s\S]*?)["}]\s*,?\s*\n/g;
+    let f;
+    while ((f = fre.exec(m[3] + '\n'))) {
+      const k = BIB_MAP[f[1].toLowerCase()];
+      if (!k) continue;
+      const v = f[2].replace(/[{}]/g, '').trim();
+      if (k === 'authors') it.authors = splitAuthors(v); else it[k] = v;
+    }
+    if (it.title) out.push(it);
+  }
+  return out;
+}
+const RIS_MAP = { TI: 'title', T1: 'title', AU: 'authors', A1: 'authors', PY: 'year', Y1: 'year', JO: 'container', JF: 'container', T2: 'container', VL: 'volume', IS: 'issue', SP: 'pages', EP: 'pages_end', DO: 'doi', UR: 'url', PB: 'publisher' };
+function parseRIS(txt) {
+  const out = [];
+  txt.split(/\n(?=TY\s{2}-)/).forEach(block => {
+    if (!/TY\s{2}-/.test(block)) return;
+    const it = { id: libId(), type: /TY\s{2}-\s*(BOOK|CHAP)/i.test(block) ? 'book' : /TY\s{2}-\s*(CONF|CPAPER)/i.test(block) ? 'conference' : /TY\s{2}-\s*THES/i.test(block) ? 'thesis' : 'article', authors: [] };
+    block.split('\n').forEach(line => {
+      const m = /^([A-Z][A-Z0-9])\s{2}-\s*(.*)$/.exec(line.trim());
+      if (!m) return;
+      const k = RIS_MAP[m[1]];
+      if (!k) return;
+      if (k === 'authors') it.authors.push(m[2].trim());
+      else if (k === 'pages_end') it.pages = (it.pages ? it.pages + '\u2013' : '') + m[2].trim();
+      else if (k === 'year') it.year = (m[2].match(/\d{4}/) || [''])[0];
+      else it[k] = m[2].trim();
+    });
+    if (it.title) out.push(it);
+  });
+  return out;
+}
+/* ---- reference parsing: local structuring, evidence-gated AI assist, confidence ---- */
+function normTok(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9\u00c0-\u024f]+/g, ' ').trim(); }
+function supportedByRaw(value, raw) {
+  const v = normTok(value).split(' ').filter(w => w.length > 2);
+  if (!v.length) return false;
+  const r = ' ' + normTok(raw) + ' ';
+  return v.filter(w => r.indexOf(w) > -1).length / v.length >= 0.6;
+}
+const INST_RE = /\b(agency|commission|ministry|organi[sz]ation|institute|council|association|committee|department|bureau|administration|university|iea|iec|iso|ieee|bsi|cen|unep|world bank)\b/i;
+function splitAuthorSegment(seg) {
+  seg = seg.replace(/\bet\s+al\.?/i, '').replace(/\s*&\s*/g, ' and ').trim();
+  if (!seg) return [];
+  if (INST_RE.test(seg) && !/[A-Z]\.\s/.test(seg)) return [seg.replace(/[,.]+$/, '')];
+  let parts = seg.split(/\s+and\s+/).filter(Boolean);
+  const out = [];
+  const INITIALS_FIRST = /^(?:[A-Z]\.\s*){1,4}[A-Z]/;      /* "J. A. Smith" */
+  const SURNAME_FIRST = /^[A-Z][A-Za-z'\u2019\-]+,\s*(?:[A-Z]\.?\s*){1,4}$/; /* "Smith, J. A." */
+  parts.forEach(p => {
+    p = p.trim();
+    if (p.indexOf(',') === -1) { out.push(p); return; }
+    if (INITIALS_FIRST.test(p)) {                            /* commas separate whole authors */
+      p.split(',').map(x => x.trim()).filter(Boolean).forEach(x => out.push(x));
+      return;
+    }
+    const toks = p.split(',').map(x => x.trim()).filter(Boolean);
+    if (SURNAME_FIRST.test(toks[0] + ', ' + (toks[1] || ''))) {  /* surname/initials pairs */
+      for (let i = 0; i < toks.length; i += 2) out.push(toks[i] + (toks[i + 1] ? ', ' + toks[i + 1] : ''));
+      return;
+    }
+    toks.forEach(x => out.push(x));
+  });
+  return out.map(a => a.replace(/[,.;]+$/, '').trim()).filter(a => a.length > 1 && a.length < 70);
+}
+function structureEntry(raw) {
+  const src = String(raw || '').trim().replace(/^\[?\d{1,3}[\]\.\)]\s*/, '');
+  const it = { id: libId(), type: 'article', authors: [], raw: src };
+  const doi = src.match(/10\.\d{4,9}\/[^\s,;)\]]+/); if (doi) it.doi = doi[0].replace(/[.,;]$/, '');
+  const url = src.match(/https?:\/\/[^\s,;)\]]+/); if (url && !it.doi) it.url = url[0].replace(/[.,;]$/, '');
+  const acc = src.match(/accessed[:\s]+([^.;]+)/i); if (acc) it.accessed = acc[1].trim();
+  const years = src.match(/\b(19|20)\d{2}\b/g); if (years) it.year = years[years.length > 1 && it.accessed ? 0 : years.length - 1];
+  const ed = src.match(/\b(\d+)(?:st|nd|rd|th)\s+ed\b/i); if (ed) it.edition = ed[1];
+  /* standards and reports first — they break normal author/title patterns */
+  const std = src.match(/\b((?:IEC|ISO|IEEE|EN|BS|SAE|NFPA)\s?(?:Std\.?\s?)?[\d\-\.:]+(?:[\-\u2013]\d+)?)/i);
+  if (std && /standard|std|iec|iso/i.test(src.slice(0, 60))) {
+    it.type = 'standard'; it.container = std[1].trim();
+    const cut = src.indexOf(std[1]);
+    const pre = src.slice(0, cut).replace(/[,.\s:\-\u2013]+$/, '').trim();
+    const post = src.slice(cut + std[1].length).replace(/^[\s,.:\-\u2013]+/, '');
+    it.authors = pre && INST_RE.test(pre) ? [pre.replace(/\s*\([^)]*\)\s*$/, '').trim()]
+      : [(src.match(/\b(IEC|ISO|IEEE|CEN|BSI|SAE|NFPA)\b/i) || ['Standards body'])[0]];
+    const cand = post.split(/[.](?=\s)/)[0].replace(/[,.;]+$/, '').trim();
+    it.title = (cand.length > 8 ? cand : (pre.length > 8 ? pre : src)).replace(/[,.;]+$/, '').trim();
+  } else {
+    const q = src.match(/["\u201C]([^"\u201D]{6,300})["\u201D]/);
+    if (q) {
+      it.title = q[1].trim().replace(/[,;.]+$/, '');
+      it.authors = splitAuthorSegment(src.slice(0, src.indexOf(q[0])));
+    } else {
+      /* author–date: Authors (Year). Title. Container */
+      const ad = src.match(/^(.*?)\((?:19|20)\d{2}[a-z]?\)\.?\s*([^.]{6,300})\.?/);
+      if (ad) {
+        it.authors = splitAuthorSegment(ad[1]);
+        let ttl = ad[2].trim();
+        const bits = ttl.split(/,\s+/);
+        if (bits.length > 1 && /(Journal|Policy|Review|Transactions|Letters|Research|Studies|Science|Nature|Quarterly|Proceedings|Energy|Energies|Access|Bulletin|Annals|\bpp?\.|\d)/i.test(bits.slice(1).join(', ')))
+          ttl = bits[0];
+        it.title = ttl.replace(/[,;]+$/, '');
+      }
+      else {
+        const seg = src.split(/[.,]\s+/);
+        const isNamePart = x => /^[A-Z]\.?$/.test(x) || /^(?:[A-Z]\.\s*)+[A-Z][A-Za-z'\u2019\-]+$/.test(x) || /^[A-Z][A-Za-z'\u2019\-]+$/.test(x) || /^[A-Z][A-Za-z'\u2019\-]+\s+[A-Z]\.?$/.test(x);
+        let ai = 0;
+        while (ai < seg.length && ai < 8 && isNamePart(seg[ai].trim())) ai++;
+        it.authors = splitAuthorSegment(seg.slice(0, Math.max(1, ai)).join(', '));
+        const rest = seg.slice(Math.max(1, ai)).filter(x => x.trim().length > 3);
+        it.title = (rest[0] || seg[1] || seg[0] || src).trim();
+      }
+    }
+    const after = it.title && src.indexOf(it.title) > -1 ? src.slice(src.indexOf(it.title) + it.title.length) : src;
+    const KEY = /(Journal|Transactions|Review|Letters|Proceedings|Conference|Symposium|Magazine|Bulletin|Reports?|Energies|Energy|Access|Science|Nature|Studies|Research|Quarterly|Annals|Advances)/i;
+    const chunks = after.replace(/["\u201C\u201D]/g, ' ').split(/[,.](?:\s|$)/).map(x => x.replace(/^[",.;:\s\u201C\u201D]+/, '').trim())
+      .filter(x => x.length > 5 && x.length < 80 && /^[A-Z]/.test(x) && !/\d{4}/.test(x) && !/^(vol|no|pp?|in|available|accessed|online)\b/i.test(x));
+    const keyed = chunks.filter(x => KEY.test(x));
+    const pick = keyed[0] || chunks[0];
+    if (pick) {
+      if (/\b(press|publish|wiley|springer|elsevier|routledge|mcgraw|francis|crc|hall)\b/i.test(pick)) it.publisher = pick;
+      else it.container = pick;
+    }
+    const pub = after.match(/\b([A-Z][A-Za-z&.\s]{2,40}(?:Press|Publishers?|Wiley|Springer|Elsevier|Routledge|McGraw[-\s]?Hill|Taylor\s*&\s*Francis|CRC))\b/);
+    if (pub) it.publisher = pub[1].trim();
+  }
+  const vol = src.match(/\bvol\.?\s*(\d+)/i) || src.match(/;\s*(\d+)\s*\(/); if (vol) it.volume = vol[1];
+  const iss = src.match(/\bno\.?\s*(\d+)/i) || src.match(/\((\d+)\)\s*[:,]/); if (iss) it.issue = iss[1];
+  const pg = src.match(/\bpp?\.?\s*(\d+\s*[\u2013\-]\s*\d+|\d+)/i) || src.match(/:\s*(\d+\s*[\u2013\-]\s*\d+)/); if (pg) it.pages = pg[1].replace(/\s/g, '');
+  if (it.url && /\b(online|available|accessed|website|web page)\b/i.test(src)) it.type = 'web';
+  else if (/thesis|dissertation/i.test(src)) it.type = 'thesis';
+  else if (/\b(proc\.|proceedings|conference|symposium|congress)\b/i.test(src)) it.type = 'conference';
+  else if (/\b(technical report|report no|working paper|white paper|outlook|roadmap)\b/i.test(src) || (INST_RE.test(it.authors[0] || '') && !it.container && !it.url)) it.type = 'report';
+  else if (it.type === 'article' && !it.container && (it.publisher || it.edition)) it.type = 'book';
+  else if (it.type === 'article' && !it.container && it.url) it.type = 'web';
+  if (/\bet\s+al\b/i.test(src)) it._etal = true;
+  scoreEntry(it);
+  return it;
+}
+function scoreEntry(it) {
+  const raw = it.raw || '';
+  let s = 0;
+  const first = nameParts(splitAuthors(it.authors)[0] || '').last;
+  if (first && normTok(raw).indexOf(normTok(first)) > -1) s++;
+  if (it.year && raw.indexOf(it.year) > -1) s++;
+  if (it.title && supportedByRaw(it.title, raw) && it.title.length > 8) s++;
+  if ((it.container && supportedByRaw(it.container, raw)) || it.publisher) s++;
+  if (it.doi || it.pages || it.volume) s++;
+  it._score = s;
+  it._conf = s >= 4 ? 'high' : s >= 3 ? 'medium' : 'low';
+  if (it._etal) it._conf = it._conf === 'high' ? 'medium' : it._conf;
+  return it._conf;
+}
+/* AI structuring — every field it returns must be supported by the original string */
+async function aiStructureBatch(items) {
+  const prompt =
+    'You are a bibliographic parser. For each numbered raw reference string below, split it into fields EXACTLY as they appear. Copy text from the string; never add, correct, translate or invent anything. If a field is absent, use "".\n' +
+    'Reply with ONLY this compact JSON, no fences: {"r":[[index,"type","authors separated by ; ","title","journal or book or standard","year","volume","issue","pages","doi","publisher"], ...]}\n' +
+    'type is one of: article, book, chapter, conference, thesis, report, standard, web.\n' +
+    'RAW REFERENCES:\n' + items.map((it, i) => (i + 1) + '. ' + (it.raw || '').slice(0, 320)).join('\n');
+  const d = await callJSON(prompt);
+  const rows = (d && d.r) || [];
+  const KEYS = ['type', 'authors', 'title', 'container', 'year', 'volume', 'issue', 'pages', 'doi', 'publisher'];
+  rows.forEach(row => {
+    if (!Array.isArray(row)) return;
+    const it = items[(+row[0] || 0) - 1];
+    if (!it) return;
+    const raw = it.raw || '';
+    KEYS.forEach((k, i) => {
+      const v = String(row[i + 1] == null ? '' : row[i + 1]).trim();
+      if (!v) return;
+      if (k === 'type') { if (/^(article|book|chapter|conference|thesis|report|standard|web)$/.test(v)) it.type = v; return; }
+      if (k === 'authors') {
+        const list = splitAuthorSegment(v.replace(/;/g, ' and '));
+        /* accept only if every surname genuinely appears in the original */
+        if (list.length && list.every(a => normTok(raw).indexOf(normTok(nameParts(a).last)) > -1)) it.authors = list;
+        return;
+      }
+      if (k === 'doi') { if (raw.indexOf(v.replace(/^https?:\/\/doi\.org\//, '')) > -1) it.doi = v; return; }
+      if (k === 'year' || k === 'volume' || k === 'issue') { if (raw.indexOf(v) > -1) it[k] = v; return; }
+      if (k === 'pages') { if (normTok(raw).replace(/\s/g, '').indexOf(normTok(v).replace(/\s/g, '')) > -1) it.pages = v; return; }
+      if (supportedByRaw(v, raw)) it[k] = v;           /* title, container, publisher */
+    });
+    it._ai = true;
+    scoreEntry(it);
+  });
+  return items;
+}
+function dupKey(it) { return String(it.title || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 60) + '|' + (it.year || ''); }
+function markDuplicates() {
+  const seen = {};
+  library.items.forEach(it => { const k = dupKey(it); it._dup = !!seen[k]; seen[k] = 1; });
+}
+
+/* ---- renumbering in order of appearance ---- */
+function expandMarkers(body) {
+  const order = [], seen = {};
+  const re = /\[(\d{1,3}(?:\s*[\u2013,\-]\s*\d{1,3})*)\]/g;
+  let m;
+  while ((m = re.exec(body))) {
+    m[1].split(',').forEach(part => {
+      const r = part.split(/[\u2013-]/).map(x => parseInt(x, 10));
+      const nums = (r.length === 2 && r[0] <= r[1] && r[1] - r[0] < 60) ? Array.from({ length: r[1] - r[0] + 1 }, (_, i) => r[0] + i) : [r[0]];
+      nums.forEach(n => { if (!isNaN(n) && !seen[n]) { seen[n] = 1; order.push(n); } });
+    });
+  }
+  return order;
+}
+function collapseRun(nums) {
+  nums = [...new Set(nums)].sort((a, b) => a - b);
+  const out = []; let i = 0;
+  while (i < nums.length) {
+    let j = i;
+    while (j + 1 < nums.length && nums[j + 1] === nums[j] + 1) j++;
+    out.push(j - i >= 2 ? nums[i] + '\u2013' + nums[j] : nums.slice(i, j + 1).join(', '));
+    i = j + 1;
+  }
+  return '[' + out.join(', ') + ']';
+}
+function renumberText(text) {
+  const pr = parseReferences(text);
+  const cut = pr.start > 0 ? pr.start : text.length;
+  const body = text.slice(0, cut), tail = text.slice(cut);
+  const order = expandMarkers(body);
+  const map = {};
+  order.forEach((old, i) => { map[old] = i + 1; });
+  const newBody = body.replace(/\[(\d{1,3}(?:\s*[\u2013,\-]\s*\d{1,3})*)\]/g, (full, inner) => {
+    const nums = [];
+    inner.split(',').forEach(part => {
+      const r = part.split(/[\u2013-]/).map(x => parseInt(x, 10));
+      const set = (r.length === 2 && r[0] <= r[1] && r[1] - r[0] < 60) ? Array.from({ length: r[1] - r[0] + 1 }, (_, i) => r[0] + i) : [r[0]];
+      set.forEach(n => { if (map[n]) nums.push(map[n]); });
+    });
+    return nums.length ? collapseRun(nums) : full;
+  });
+  return { map, order, newBody, tail, cut };
+}
+
+/* ---- rendering ---- */
+function bibliographyText(plain) {
+  const items = library.items.slice();
+  if (!isNumeric()) items.sort((a, b) => (nameParts(splitAuthors(a.authors)[0] || '').last || '').localeCompare(nameParts(splitAuthors(b.authors)[0] || '').last || ''));
+  return items.map((it, i) => (isNumeric() ? '[' + (i + 1) + '] ' : '') + formatRef(it).replace(/<\/?i>/g, plain ? '' : '')).join('\n\n');
+}
+function toBibTeX() {
+  return library.items.map((it, i) => {
+    const key = (nameParts(splitAuthors(it.authors)[0] || 'ref').last || 'ref').toLowerCase().replace(/\W/g, '') + (it.year || i);
+    const t = it.type === 'book' ? 'book' : it.type === 'conference' ? 'inproceedings' : it.type === 'thesis' ? 'phdthesis' : 'article';
+    const f = [['author', splitAuthors(it.authors).join(' and ')], ['title', it.title], [it.type === 'conference' ? 'booktitle' : 'journal', it.container], ['publisher', it.publisher], ['year', it.year], ['volume', it.volume], ['number', it.issue], ['pages', it.pages], ['doi', it.doi], ['url', it.url]];
+    return '@' + t + '{' + key + ',\n' + f.filter(x => x[1]).map(x => '  ' + x[0] + ' = {' + x[1] + '}').join(',\n') + '\n}';
+  }).join('\n\n');
+}
+function toRIS() {
+  return library.items.map(it => {
+    const ty = it.type === 'book' ? 'BOOK' : it.type === 'conference' ? 'CONF' : it.type === 'thesis' ? 'THES' : 'JOUR';
+    let s = 'TY  - ' + ty + '\n';
+    splitAuthors(it.authors).forEach(a => { s += 'AU  - ' + a + '\n'; });
+    [['TI', it.title], ['JO', it.container], ['PY', it.year], ['VL', it.volume], ['IS', it.issue], ['SP', it.pages], ['DO', it.doi], ['UR', it.url], ['PB', it.publisher]].forEach(x => { if (x[1]) s += x[0] + '  - ' + x[1] + '\n'; });
+    return s + 'ER  - \n';
+  }).join('\n');
+}
+function confChip(c) {
+  if (c === 'high') return '<span class="i-sev" style="background:rgba(127,191,142,.14);color:var(--good)">PARSED CLEANLY</span>';
+  if (c === 'medium') return '<span class="i-sev" style="background:rgba(217,166,91,.14);color:var(--warn)">CHECK THIS ENTRY</span>';
+  return '<span class="i-sev" style="background:rgba(207,122,110,.14);color:var(--bad)">NEEDS YOUR REVIEW</span>';
+}
+let libReviewFirst = false;
+function libOrder() {
+  const rank = { low: 0, medium: 1, high: 2 };
+  const items = library.items.slice();
+  if (libReviewFirst) items.sort((a, b) => (rank[a._conf || 'high'] - rank[b._conf || 'high']));
+  return items;
+}
+function renderLib(extraHTML) {
+  const box = document.getElementById('lb-result');
+  const empty = document.getElementById('lb-empty');
+  if (!box) return;
+  markDuplicates();
+  if (!library.items.length && !extraHTML) { box.style.display = 'none'; if (empty) empty.style.display = ''; return; }
+  if (empty) empty.style.display = 'none';
+  box.style.display = 'block';
+  const dups = library.items.filter(i => i._dup).length;
+  const low = library.items.filter(i => i._conf === 'low').length;
+  const med = library.items.filter(i => i._conf === 'medium').length;
+  const items = libOrder();
+  box.innerHTML = (extraHTML || '') +
+    '<p class="sub-label">Library \u00b7 ' + library.items.length + ' references \u00b7 ' + libStyle.toUpperCase() + '</p>' +
+    '<div class="chip-row"><span class="chip">' + library.items.length + ' entries</span>' +
+    (low + med ? '<span class="chip" style="background:rgba(217,166,91,.12);color:var(--warn);border-color:rgba(217,166,91,.3)">' + (low + med) + ' need checking</span>' : '<span class="chip" style="background:rgba(127,191,142,.12);color:var(--good);border-color:rgba(127,191,142,.3)">all parsed cleanly</span>') +
+    (dups ? '<span class="chip" style="background:rgba(217,166,91,.12);color:var(--warn);border-color:rgba(217,166,91,.3)">' + dups + ' possible duplicates</span>' : '') +
+    '<span class="chip">' + (isNumeric() ? 'numeric [n]' : 'author\u2013date') + '</span>' +
+    (low + med ? '<button class="ch-btn" id="lb-revfirst" style="padding:4px 11px;font-size:11.5px">' + (libReviewFirst ? 'Show original order' : 'Review flagged first') + '</button>' : '') +
+    '</div>' +
+    '<div style="margin-top:14px">' + items.map(it => {
+      const i = library.items.indexOf(it);
+      return '<div class="lb-row' + (it._dup ? ' lb-dup' : '') + (it._conf === 'low' ? ' lb-low' : '') + '" id="lb-' + it.id + '">' +
+        '<div class="lb-num">' + (isNumeric() ? '[' + (i + 1) + ']' : (i + 1) + '.') + '</div>' +
+        '<div class="lb-body">' +
+        '<div class="i-head" style="margin-bottom:6px">' + confChip(it._conf || 'high') + (it._ai ? '<span class="i-sev" style="background:rgba(140,150,170,.12);color:var(--text-3)">STRUCTURED</span>' : '') + (it._verified ? '<span class="i-sev" style="background:rgba(127,191,142,.14);color:var(--good)">VERIFIED ONLINE</span>' : '') + '</div>' +
+        '<div class="lb-cite">' + formatRef(it) + '</div>' +
+        '<div class="lb-meta">' + esc(it.type || 'article') + (it.doi ? ' \u00b7 DOI' : '') + (it._etal ? ' \u00b7 original used \u201Cet al.\u201D \u2014 authors incomplete' : '') + (it._dup ? ' \u00b7 possible duplicate' : '') + '</div>' +
+        (it.raw ? '<div class="lb-raw" id="raw-' + it.id + '" style="display:none">' + esc(it.raw) + '</div>' : '') +
+        '<div class="lb-acts">' +
+          '<button class="ch-btn" data-lb-cite="' + it.id + '">Copy ' + esc(inTextFor(it, i + 1)) + '</button>' +
+          '<button class="ch-btn" data-lb-edit="' + it.id + '">Edit</button>' +
+          (it.raw ? '<button class="ch-btn" data-lb-raw="' + it.id + '">Compare with original</button>' : '') +
+          '<button class="ch-btn" data-lb-look="' + it.id + '">Verify online</button>' +
+          '<button class="ch-btn" data-lb-del="' + it.id + '">Remove</button>' +
+        '</div><div class="lb-editzone"></div></div></div>';
+    }).join('') + '</div>' +
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">' +
+      '<button class="ch-btn" id="lb-x-bib">Export BibTeX</button>' +
+      '<button class="ch-btn" id="lb-x-ris">Export RIS</button>' +
+      '<button class="ch-btn primary" id="lb-x-txt">Download bibliography</button>' +
+    '</div>' +
+    '<p class="hint-line" style="margin-top:12px">Entries marked <strong>CHECK</strong> or <strong>NEEDS YOUR REVIEW</strong> were parsed from free text where a field could not be confirmed against the original string. Nothing is ever invented \u2014 unsupported values are discarded rather than guessed \u2014 but a discarded field is a missing field. Compare with the original before you rely on the bibliography.</p>';
+  const rf = box.querySelector('#lb-revfirst');
+  if (rf) rf.onclick = () => { libReviewFirst = !libReviewFirst; renderLib(); };
+  box.querySelectorAll('[data-lb-raw]').forEach(b => b.onclick = function () {
+    const r = document.getElementById('raw-' + this.dataset.lbRaw);
+    const on = r.style.display === 'none';
+    r.style.display = on ? 'block' : 'none';
+    this.textContent = on ? 'Hide original' : 'Compare with original';
+  });
+  box.querySelectorAll('[data-lb-del]').forEach(b => b.onclick = function () {
+    if (this.dataset.arm !== '1') { this.dataset.arm = '1'; this.textContent = 'Confirm remove'; setTimeout(() => { if (this.isConnected) { this.dataset.arm = ''; this.textContent = 'Remove'; } }, 4000); return; }
+    library.items = library.items.filter(x => x.id !== this.dataset.lbDel); saveLibNow(); renderLib();
+  });
+  box.querySelectorAll('[data-lb-cite]').forEach(b => b.onclick = function () {
+    const idx = library.items.findIndex(x => x.id === this.dataset.lbCite);
+    const txt = inTextFor(library.items[idx], idx + 1);
+    const done = () => { const o = this.textContent; this.textContent = '\u2713 Copied'; setTimeout(() => this.textContent = o, 1500); };
+    try { navigator.clipboard.writeText(txt).then(done, done); } catch (e) { done(); }
+  });
+  box.querySelectorAll('[data-lb-edit]').forEach(b => b.onclick = function () { editLib(this.dataset.lbEdit); });
+  box.querySelectorAll('[data-lb-look]').forEach(b => b.onclick = function () { lookupLib(this.dataset.lbLook, this); });
+  const bx = box.querySelector('#lb-x-bib'), rx = box.querySelector('#lb-x-ris'), tx = box.querySelector('#lb-x-txt');
+  if (bx) bx.onclick = () => downloadText('library.bib', toBibTeX());
+  if (rx) rx.onclick = () => downloadText('library.ris', toRIS());
+  if (tx) tx.onclick = () => downloadText('bibliography-' + libStyle + '.txt', bibliographyText(true));
+}
+function editLib(id) {
+  const it = library.items.find(x => x.id === id);
+  const row = document.getElementById('lb-' + id);
+  if (!it || !row) return;
+  const z = row.querySelector('.lb-editzone');
+  if (z.innerHTML) { z.innerHTML = ''; return; }
+  const F = [['authors', 'Authors (Last, First; separated by ;)', splitAuthors(it.authors).join('; ')], ['title', 'Title', it.title || ''], ['container', 'Journal / book / conference', it.container || ''], ['publisher', 'Publisher', it.publisher || ''], ['year', 'Year', it.year || ''], ['volume', 'Volume', it.volume || ''], ['issue', 'Issue', it.issue || ''], ['pages', 'Pages', it.pages || ''], ['doi', 'DOI', it.doi || ''], ['url', 'URL', it.url || '']];
+  z.innerHTML = '<div class="lb-edit">' +
+    '<select class="wide" data-f="type">' + ['article', 'book', 'conference', 'thesis', 'report', 'web'].map(t2 => '<option value="' + t2 + '"' + (it.type === t2 ? ' selected' : '') + '>' + t2 + '</option>').join('') + '</select>' +
+    F.map(f => '<input class="' + (f[0] === 'title' || f[0] === 'authors' || f[0] === 'container' ? 'wide' : '') + '" data-f="' + f[0] + '" placeholder="' + f[1] + '" value="' + esc(f[2]) + '">').join('') +
+    '<button class="ch-btn primary wide" data-save="1">Save reference</button></div>';
+  z.querySelector('[data-save]').onclick = () => {
+    z.querySelectorAll('[data-f]').forEach(el => {
+      const k = el.dataset.f;
+      if (k === 'authors') it.authors = splitAuthors(el.value.replace(/;/g, ' and '));
+      else it[k] = el.value.trim();
+    });
+    saveLibNow(); renderLib();
+  };
+}
+async function lookupLib(id, btn) {
+  const it = library.items.find(x => x.id === id);
+  if (!it) return;
+  btn.disabled = true; btn.textContent = 'Searching\u2026';
+  try {
+    const d = await callJSONSearch(
+      'Search the web for this academic reference and return its verified metadata. Run at most 2 searches, then STOP and output ONLY the JSON.\n' +
+      'If you cannot find the work, return {"found": false}. Never invent a source.\n' +
+      'Respond with ONLY valid JSON, no fences: {"found": true|false, "title": "", "authors": ["Last, First"], "year": "", "container": "", "volume": "", "issue": "", "pages": "", "doi": "", "publisher": ""}\n' +
+      'REFERENCE: ' + [splitAuthors(it.authors).join(', '), it.title, it.container, it.year, it.doi].filter(Boolean).join('. '));
+    if (d && d.found) {
+      ['title', 'year', 'container', 'volume', 'issue', 'pages', 'doi', 'publisher'].forEach(k => { if (d[k]) it[k] = String(d[k]); });
+      if (Array.isArray(d.authors) && d.authors.length) it.authors = d.authors;
+      it._verified = true;
+      saveLibNow(); renderLib();
+    } else { btn.textContent = 'Not found online'; }
+  } catch (e) { btn.disabled = false; btn.textContent = 'Verify & complete online'; }
+}
+
+/* ---- actions ---- */
+function addLibItems(items, note) {
+  const before = library.items.length;
+  items.forEach(it => library.items.push(it));
+  saveLibNow();
+  renderLib('<div class="dash-note" style="margin-bottom:12px">' + (library.items.length - before) + ' references imported' + (note ? ' \u2014 ' + note : '') + '. Review each entry: imported metadata is only as good as its source.</div>');
+}
+(function wireLibrary() {
+  const st = document.getElementById('lb-style');
+  if (!st) return;
+  st.addEventListener('change', () => { libStyle = st.value; renderLib(); });
+  const drop = document.getElementById('lb-drop'), file = document.getElementById('lb-file');
+  drop.addEventListener('click', () => file.click());
+  drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); file.click(); } });
+  ['dragover', 'dragenter'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('drag'); }));
+  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('drag'); }));
+  drop.addEventListener('drop', e => { if (e.dataTransfer.files.length) importLibFile(e.dataTransfer.files[0]); });
+  file.addEventListener('change', () => { if (file.files.length) importLibFile(file.files[0]); });
+  async function importLibFile(f) {
+    const txt = await f.text();
+    const items = /^\s*TY\s{2}-/m.test(txt) ? parseRIS(txt) : parseBibTeX(txt);
+    if (!items.length) { renderLib('<div class="err-box" style="margin-bottom:12px">No references found in that file \u2014 expected BibTeX (@article{\u2026}) or RIS (TY  - JOUR).</div>'); return; }
+    addLibItems(items, 'from ' + f.name);
+  }
+  document.getElementById('lb-add').addEventListener('click', () => {
+    library.items.push({ id: libId(), type: 'article', authors: [], title: 'New reference', year: '' });
+    saveLibNow(); renderLib();
+    const last = library.items[library.items.length - 1];
+    editLib(last.id);
+  });
+  document.getElementById('lb-extract').addEventListener('click', () => {
+    const text = (document.getElementById('a-text') || {}).value || (document.getElementById('f-text') || {}).value || '';
+    if (!text.trim()) { renderLib('<div class="err-box" style="margin-bottom:12px">Load your chapter in the Audit or References tab first \u2014 this reads its reference list.</div>'); return; }
+    const pr = parseReferences(text);
+    if (!pr.entries.length) { renderLib('<div class="err-box" style="margin-bottom:12px">No numbered reference list found in that text.</div>'); return; }
+    const items = pr.entries.map(e => { const it = structureEntry(e.text); it._n = e.num; return it; });
+    addLibItems(items, 'parsed from your chapter');
+    (async () => {
+      const box = document.getElementById('lb-result');
+      const note = t2 => { const n = document.getElementById('lb-struct'); if (n) n.innerHTML = t2; };
+      box.insertAdjacentHTML('afterbegin', '<div class="dash-note" id="lb-struct" style="margin-bottom:12px">Structuring the entries\u2026 every field is checked against the original text before it is accepted.</div>');
+      let done = 0;
+      for (let i = 0; i < items.length; i += 5) {
+        note('Structuring entries ' + (i + 1) + '\u2013' + Math.min(i + 5, items.length) + ' of ' + items.length + '\u2026');
+        try { await aiStructureBatch(items.slice(i, i + 5)); done += 1; } catch (e) {}
+      }
+      saveLibNow();
+      const need = library.items.filter(x => x._conf !== 'high').length;
+      renderLib('<div class="dash-note" style="margin-bottom:12px">' + items.length + ' references imported and structured. ' +
+        (need ? need + ' entr' + (need === 1 ? 'y needs' : 'ies need') + ' your eyes \u2014 use \u201CReview flagged first\u201D. ' : 'All entries parsed cleanly. ') +
+        'Fields that could not be confirmed against your original text were left empty rather than guessed.</div>');
+    })();
+  });
+  document.getElementById('lb-renumber').addEventListener('click', () => {
+    const ta = document.getElementById('a-text');
+    const text = ta ? ta.value : '';
+    if (!text.trim()) { renderLib('<div class="err-box" style="margin-bottom:12px">Load the chapter in the Audit tab first \u2014 renumbering rewrites that text.</div>'); return; }
+    if (!isNumeric()) { renderLib('<div class="dash-note" style="margin-bottom:12px">Renumbering applies to numeric styles only. Switch the style to IEEE or Vancouver to renumber.</div>'); return; }
+    const r = renumberText(text);
+    if (!r.order.length) { renderLib('<div class="err-box" style="margin-bottom:12px">No [n] citation markers found in the body text.</div>'); return; }
+    const changed = r.order.filter((old, i) => old !== i + 1).length;
+    const rows = r.order.map((old, i) => '<tr><td>[' + old + ']</td><td class="to">\u2192 [' + (i + 1) + ']</td><td>' + esc((library.items.find(x => x._n === old) || {}).title || '') + '</td></tr>').join('');
+    renderLib('<div class="verdict" style="margin-bottom:12px"><div class="v-score" style="font-size:19px;min-width:auto">' + changed + '</div><p>' + changed + ' of ' + r.order.length + ' citations would change number so that numbering runs in order of first appearance. Review the mapping, then apply.</p></div>' +
+      '<table class="lb-map"><tr><th>Now</th><th>Becomes</th><th>Source</th></tr>' + rows + '</table>' +
+      '<button class="run-btn" id="lb-apply" style="margin-top:12px">Apply renumbering to the Audit text</button>');
+    const ap = document.getElementById('lb-apply');
+    if (ap) ap.onclick = () => {
+      const reordered = r.order.map(old => library.items.find(x => x._n === old)).filter(Boolean);
+      let newTail = r.tail;
+      if (reordered.length === r.order.length && reordered.length) {
+        newTail = '\n\nReferences\n\n' + reordered.map((it, i) => '[' + (i + 1) + '] ' + formatRef(it).replace(/<\/?i>/g, '')).join('\n');
+        reordered.forEach((it, i) => { it._n = i + 1; });
+        library.items = reordered.concat(library.items.filter(x => reordered.indexOf(x) === -1));
+        saveLibNow();
+      }
+      ta.value = r.newBody.replace(/\s+$/, '') + newTail;
+      if (typeof lastAudit !== 'undefined') lastAudit.text = ta.value;
+      if (typeof linkedChapterId !== 'undefined' && linkedChapterId) {
+        const ch = thesis.chapters.find(c => c.id === linkedChapterId);
+        if (ch) { ch.text = ta.value; ch.updatedAt = Date.now(); saveThesis(); renderDash(); }
+      }
+      if (typeof recordProv === 'function') recordProv('renumbering', changed + ' citations renumbered in order of appearance');
+      renderLib('<div class="dash-note" style="margin-bottom:12px">Renumbering applied to the Audit tab\u2019s text' + (newTail !== r.tail ? ' and the reference list rebuilt in the new order' : '') + '. Read the result before submitting \u2014 you own the final text.</div>');
+    };
+  });
+  loadLib();
+})();
 
 /* ---------- REFERENCES TAB: citation cross-match + live reference verification ---------- */
 function parseReferences(text) {

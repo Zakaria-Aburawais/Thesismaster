@@ -1,23 +1,32 @@
 # ThesisMaster
 
-AI-powered academic thesis studio — writes, reviews, audits/grades, corrects, verifies references, checks plagiarism, and humanizes AI text, with a six-scholar examination board. Bilingual (EN/AR).
+AI-powered academic thesis studio — writes, reviews, audits/grades, corrects, verifies references, checks plagiarism, humanizes AI text, and manages references EndNote-style, with a six-scholar examination board. Six UI languages (EN/AR/TR/ID/FR/ES).
 
-## Quick start with Claude Code
+## Start here with Claude Code
+
 ```
 cd tm-project
 claude
 ```
-Claude Code reads `CLAUDE.md` first — it has the full operating manual, hard rules, and validation gate.
+
+Then paste prompt #1 from **PROMPTS.md** (orientation + baseline audit). Claude Code reads `CLAUDE.md` automatically.
+
+## The four documents that matter
+
+| File | What it is |
+|---|---|
+| `CLAUDE.md` | Operating manual — hard invariants, validation gate, editing lessons. Read first, always. |
+| `PROMPTS.md` | Paste-ready prompts for each kind of session (orientation, features, bugs, grading changes, deploy). |
+| `BRIEF.md` | The asset-quality programme: seven phases from security to unit economics. |
+| `docs-architecture.md` | Full technical spec — every algorithm, prompt, and design decision. |
 
 ## Structure
-- `thesismaster.html` — the whole client app, one file (edit this)
-- `public/index.html` — deployment copy (kept identical to the above)
-- `server/` — auth + quotas + Anthropic proxy + GDPR + payments (Node/Express)
-- `docs-architecture.md` — complete technical documentation
-- `CLAUDE.md` — operating manual for AI-assisted development
 
-## Run the app locally (preview mode)
-Open `thesismaster.html` in a browser. AI calls need the deployed server (see `server/README-deploy.md`) unless run inside a Claude preview.
+- `thesismaster.html` — the whole client app, one file (edit this)
+- `public/index.html` — deployment copy, kept identical
+- `server/` — auth, quotas, Anthropic proxy, GDPR endpoints, payments
+- `docs-video-production.md` — how-to video shot list and localized narration
 
 ## Deploy
+
 See `server/README-deploy.md`.

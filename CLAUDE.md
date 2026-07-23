@@ -47,3 +47,24 @@ Also run `node --check server/server.js` after server edits.
 
 ## Deploy
 Hostinger/any Node host: `public/index.html` + `server/`. Fill `server/.env` from `.env.example`, `npm install`, `node server.js`. Full checklist in `server/README-deploy.md`. Before real users: verify the Paddle webhook signature, write Terms/Privacy (the app's Trust section makes promises they must formalize), and build a calibration set of human-graded chapters.
+
+---
+
+## UPDATE — current feature set (this section supersedes older descriptions)
+
+The app now has **eight studio tabs**: Dashboard · Write · Review · Audit · Manuscript · AI Refiner · References · **Library**, plus a landing page with Capabilities, **How to use**, Faculty, Studio, Method, and Trust sections.
+
+**Added since the original doc — all of it must keep working:**
+
+- **Six UI languages** (en, ar, tr, id, fr, es) via a single `I18N` dictionary + `t(key)` helper + `SEL_KEYS` selector map. 52 keys per language, full parity. Arabic drives `dir="rtl"`. **Never hardcode a user-facing string** — add a key to all six dictionaries. Engines reply in the *document's* language via `docLangLine()`, independent of UI language.
+- **Guided walkthrough** (`openTour`, `TOUR_STEPS`): six localized, narrated steps; per-language recorded-video slots in `TOUR_VIDEOS` (empty = interactive fallback). See `docs-video-production.md`.
+- **Reference Library (EndNote-class)**: BibTeX/RIS import, extraction from a chapter's reference list, six citation styles (IEEE, Vancouver, APA 7, Harvard, Chicago, MLA), **renumbering citations into order of appearance** with range expand/collapse and a user-approved mapping table, duplicate detection, online verification, BibTeX/RIS/bibliography export.
+- **Platform layer**: `PLATFORM.mode` (preview vs deployed), `anthropicFetch` proxy routing, login gate, server-backed storage shim, account export/delete menu, ⚙ examiner settings (strictness profile, pass target, round budget), `EXAMINER_VERSION` stamping, ±variance disclosure, fairness feedback, provenance recording (`recordProv`) and **AI-assistance disclosure statements** (`disclosureText`).
+- **Per-user profiles** with namespaced storage keys and legacy migration.
+
+**Two additional hard invariants (join the list in the section above):**
+
+8. **Evidence gating.** No field, verdict, or claim may be accepted from a model unless the source text supports it. The Library's `supportedByRaw` gate discards unsupported fields rather than guessing; reference verification only reports SUSPECT with a *named contradiction*. Never relax these into "best guess" behaviour — a missing field is acceptable, an invented one is not.
+9. **In-page navigation is href-free.** Internal links use `data-target` + the scroll interceptor, because the sandboxed preview shows an external-link dialog for any anchor with an `href`. Never reintroduce `href="#..."`.
+
+**Validation gate (unchanged, run after every edit to thesismaster.html):** JS syntax via `new Function`, CSS brace balance, div balance, then copy to `public/index.html`. Unit-test pure functions against `/eval` fixtures or a real chapter — the parser suite caught four genuine defects the day it was written.
