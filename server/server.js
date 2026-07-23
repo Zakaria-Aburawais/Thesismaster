@@ -11,7 +11,8 @@ const path = require('path');
 const { ANTHROPIC_API_KEY, JWT_SECRET, PADDLE_WEBHOOK_SECRET, PORT = 3000 } = process.env;
 if (!ANTHROPIC_API_KEY || !JWT_SECRET) { console.error('Set ANTHROPIC_API_KEY and JWT_SECRET in .env'); process.exit(1); }
 
-const db = new Database(path.join(__dirname, 'thesismaster.db'));
+// TM_DB_PATH / ANTHROPIC_API_URL exist for the test suite; production uses the defaults.
+const db = new Database(process.env.TM_DB_PATH || path.join(__dirname, 'thesismaster.db'));
 db.pragma('journal_mode = WAL');
 db.exec(`
 CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT UNIQUE NOT NULL, hash TEXT NOT NULL,
@@ -27,7 +28,9 @@ CREATE TABLE IF NOT EXISTS auth_fails (email TEXT PRIMARY KEY, fails INTEGER DEF
 const QUOTAS = { free: 25, pro: 300 }; // AI calls per day
 const app = express();
 app.set('trust proxy', 1); // first hop only (Hostinger/nginx) so req.ip is the client, not the proxy
-app.use(express.json({ limit: '4mb' }));
+// verify() keeps the raw bytes: Paddle's HMAC must be computed over the exact
+// request body, and the parsed-then-restringified object would not match.
+app.use(express.json({ limit: '4mb', verify: (req, res, buf) => { req.rawBody = buf; } }));
 
 /* ---- abuse control ---- */
 // Per-IP: 30 auth attempts / 15 min. Per-email lockout below survives restarts (DB-backed).
@@ -50,7 +53,13 @@ app.use(express.static(path.join(__dirname, 'public'))); // put thesismaster.htm
 const sign = u => jwt.sign({ uid: u.id, email: u.email }, JWT_SECRET, { expiresIn: '30d' });
 function auth(req, res, next) {
   const t = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
-  try { req.user = jwt.verify(t, JWT_SECRET); next(); }
+  try {
+    req.user = jwt.verify(t, JWT_SECRET);
+    // a signed token must not outlive its account: GDPR deletion ends access NOW,
+    // not at token expiry 30 days later
+    if (!db.prepare('SELECT 1 FROM users WHERE id = ?').get(req.user.uid)) throw new Error('gone');
+    next();
+  }
   catch (e) { res.status(401).json({ error: 'Sign in required' }); }
 }
 const emailOk = e => /^\S+@\S+\.\S+$/.test(e || '');
@@ -107,13 +116,15 @@ app.post('/api/claude', auth, async (req, res) => {
   };
   if (Array.isArray(body.tools) && body.tools.every(t => t && t.type === 'web_search_20250305')) payload.tools = body.tools;
   try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch((process.env.ANTHROPIC_API_URL || 'https://api.anthropic.com') + '/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
       body: JSON.stringify(payload)
     });
     const j = await r.json();
-    db.prepare('INSERT INTO usage (user_id, day, calls) VALUES (?, ?, 1) ON CONFLICT(user_id, day) DO UPDATE SET calls = calls + 1')
+    // quota counts successful examinations only — an upstream error or
+    // rate-limit must never consume the user's daily allowance
+    if (r.ok) db.prepare('INSERT INTO usage (user_id, day, calls) VALUES (?, ?, 1) ON CONFLICT(user_id, day) DO UPDATE SET calls = calls + 1')
       .run(req.user.uid, day);
     res.status(r.status).json(j);
   } catch (e) { res.status(502).json({ error: 'The examination engine is unreachable — try again shortly.' }); }
@@ -150,7 +161,8 @@ function paddleSignatureOk(req, rawBody) {
 }
 app.post('/api/paddle/webhook', express.raw({ type: () => true, limit: '256kb' }), (req, res) => {
   if (!PADDLE_WEBHOOK_SECRET) return res.status(503).json({ error: 'webhook not configured' });
-  const raw = req.body.toString('utf8');
+  // JSON bodies were already consumed by express.json above — use its raw copy
+  const raw = (req.rawBody || req.body || Buffer.alloc(0)).toString('utf8');
   if (!paddleSignatureOk(req, raw)) return res.status(401).json({ error: 'bad signature' });
   let body; try { body = JSON.parse(raw); } catch (e) { return res.status(400).json({ error: 'bad payload' }); }
   const d = body.data || {};

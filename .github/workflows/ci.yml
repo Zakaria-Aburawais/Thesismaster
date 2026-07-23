@@ -40,3 +40,9 @@ jobs:
       # and run against real EN + AR chapter fixtures (eval/).
       - name: Unit tests
         run: node --test 'tests/*.test.js'
+
+      # API suite: real server + scratch DB + mock upstream. Proves store
+      # isolation, quota fairness, lockout, GDPR erasure, webhook signatures.
+      - name: Server API tests
+        working-directory: server
+        run: npm test
