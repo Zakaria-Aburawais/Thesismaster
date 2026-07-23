@@ -1644,13 +1644,26 @@ document.querySelectorAll('.tab').forEach(tab => {
 /* ---------- helpers ---------- */
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
+/* Surface what actually went wrong. The server sends {error:"..."} (quota,
+   auth); Anthropic sends {error:{message}}. Either beats "HTTP 429". */
+async function engineError(res) {
+  let detail = '';
+  try {
+    const j = await res.json();
+    detail = (j && (typeof j.error === 'string' ? j.error : (j.error && j.error.message) || j.message)) || '';
+  } catch (e) {}
+  if (res.status === 401) return detail || 'Your session has expired — sign in again to continue.';
+  if (res.status === 429) return detail || 'Daily examination quota reached. Try again tomorrow.';
+  if (res.status === 502) return detail || 'The examination engine is unreachable right now — try again shortly.';
+  return (detail || 'The studio could not reach its engine') + ' (HTTP ' + res.status + ').';
+}
 async function callClaude(prompt) {
   const res = await anthropicFetch({
     model: 'claude-sonnet-4-6',
     max_tokens: 1000,
     messages: [{ role: 'user', content: prompt }]
   });
-  if (!res.ok) throw new Error('The studio could not reach its engine (HTTP ' + res.status + '). Try again in a moment.');
+  if (!res.ok) throw new Error(await engineError(res));
   const data = await res.json();
   return (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
 }
@@ -2361,8 +2374,21 @@ function setLoading(prefix, on) {
 function showError(prefix, msg) {
   const box = document.getElementById(prefix + '-result');
   box.style.display = 'block';
-  box.innerHTML = '<div class="err-box"><strong>Something interrupted the session.</strong><br>' + esc(msg) +
-    '<br><br>This studio calls Claude directly, so it must be opened inside Claude (as an artifact preview) for the engines to run. Check your connection and try again.</div>';
+  const text = String(msg || '');
+  // a TypeError from fetch means the request never left the browser
+  const offline = /failed to fetch|networkerror|load failed|network request failed/i.test(text);
+  let advice;
+  if (PLATFORM.mode === 'deployed') {
+    advice = offline
+      ? 'The ThesisMaster server did not respond. Check that it is running and that you are still online, then try again.'
+      : 'Your work is safe — nothing was lost. Try again in a moment.';
+  } else {
+    advice = offline
+      ? 'This copy of the studio calls Claude directly, which only works inside Claude (as an artifact preview). To run the engines from your own machine, start the ThesisMaster server and open the app from it.'
+      : 'Check your connection and try again.';
+  }
+  box.innerHTML = '<div class="err-box"><strong>Something interrupted the session.</strong><br>' + esc(text) +
+    '<br><br>' + esc(advice) + '</div>';
 }
 
 function copyOut(id, btn) {
@@ -3121,7 +3147,7 @@ async function callClaudeSearch(prompt) {
     messages: [{ role: 'user', content: prompt }],
     tools: [{ type: 'web_search_20250305', name: 'web_search' }]
   });
-  if (!res.ok) throw new Error('The originality engine could not reach the web (HTTP ' + res.status + '). Try again in a moment.');
+  if (!res.ok) throw new Error(await engineError(res));
   const data = await res.json();
   return (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
 }
@@ -4115,6 +4141,7 @@ async function runRefVerify() {
       else fresh.push(e);
     });
     const BATCH = 5;
+    let verifyHalted = false;
     for (let i = 0; i < fresh.length; i += BATCH) {
       const batch = fresh.slice(i, i + BATCH);
       const prog = document.getElementById('f-progress');
@@ -4127,13 +4154,27 @@ async function runRefVerify() {
             card.querySelector('.f-chipslot').innerHTML = '<span class="i-sev" style="background:rgba(140,150,170,.14);color:var(--text-3)">UNCHECKED \u2014 RETRY LATER</span>';
           }
         });
+        // fail loud, fail specific: quota/auth failures affect every batch \u2014
+        // say so once and stop instead of silently marking the rest unchecked
+        if (/quota|sign in|expired|unreachable/i.test(String(err && err.message))) {
+          verifyHalted = true;
+          const prog2 = document.getElementById('f-progress');
+          if (prog2) prog2.innerHTML = '<span style="color:var(--warn)">' + esc(err.message) + '</span> Entries not yet verified are marked UNCHECKED \u2014 re-run when available.';
+          fresh.slice(i + BATCH).forEach(e => {
+            const card = document.getElementById('f-ref-' + e.num);
+            if (card && /CHECKING/.test(card.textContent)) {
+              card.querySelector('.f-chipslot').innerHTML = '<span class="i-sev" style="background:rgba(140,150,170,.14);color:var(--text-3)">UNCHECKED \u2014 RETRY LATER</span>';
+            }
+          });
+          break;
+        }
       }
     }
     const prog = document.getElementById('f-progress');
     const cards = box.querySelectorAll('[id^="f-ref-"]');
     let v = 0, su = 0, nf = 0;
     cards.forEach(c => { if (/VERIFIED/.test(c.textContent)) v++; else if (/LIKELY FAKE/.test(c.textContent)) nf++; else if (/SUSPECT/.test(c.textContent)) su++; });
-    if (prog) prog.innerHTML = '<strong>Verification complete:</strong> ' + v + ' verified real \u00b7 ' + su + ' suspect \u00b7 ' + nf + ' not found (likely fake)' + (reused ? ' \u00b7 ' + reused + ' verdicts reused from earlier this session' : '') + (phantoms.length ? ' \u00b7 ' + phantoms.length + ' phantom citations above' : '') + '.';
+    if (prog && !verifyHalted) prog.innerHTML = '<strong>Verification complete:</strong> ' + v + ' verified real \u00b7 ' + su + ' suspect \u00b7 ' + nf + ' not found (likely fake)' + (reused ? ' \u00b7 ' + reused + ' verdicts reused from earlier this session' : '') + (phantoms.length ? ' \u00b7 ' + phantoms.length + ' phantom citations above' : '') + '.';
     /* delegated re-check handler (attach once) */
     if (!box._recheckWired) {
       box._recheckWired = true;

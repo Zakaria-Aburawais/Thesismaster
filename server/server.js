@@ -55,17 +55,27 @@ const isLocked = email => { const r = lockRow(email); return r && r.locked_until
 // (script injection is the threat model that matters; see docs/AUDIT-baseline.md S3).
 const PUBLIC_DIR = [path.join(__dirname, 'public'), path.join(__dirname, '..', 'public')]
   .find(p => fs.existsSync(path.join(p, 'index.html'))) || path.join(__dirname, 'public');
-let scriptHash = null;
-try {
-  const html = fs.readFileSync(path.join(PUBLIC_DIR, 'index.html'), 'utf8');
-  const m = html.match(/<script>([\s\S]*)<\/script>/);
-  if (m) scriptHash = "'sha256-" + require('crypto').createHash('sha256').update(m[1]).digest('base64') + "'";
-} catch (e) { console.warn('CSP: no public/index.html found — inline script hash omitted'); }
+/* The inline-script hash must track the FILE, not the boot: deploying a new
+   index.html without restarting would otherwise silently kill the whole app
+   (CSP blocks the changed script). Recomputed only when mtime changes. */
+const INDEX_PATH = path.join(PUBLIC_DIR, 'index.html');
+let hashCache = { mtime: 0, value: null };
+function scriptHash() {
+  try {
+    const mtime = fs.statSync(INDEX_PATH).mtimeMs;
+    if (mtime !== hashCache.mtime) {
+      const m = fs.readFileSync(INDEX_PATH, 'utf8').match(/<script>([\s\S]*)<\/script>/);
+      hashCache = { mtime, value: m ? "'sha256-" + require('crypto').createHash('sha256').update(m[1]).digest('base64') + "'" : null };
+    }
+  } catch (e) { hashCache = { mtime: 0, value: null }; }
+  return hashCache.value;
+}
+if (!scriptHash()) console.warn('CSP: no public/index.html found — inline script hash omitted');
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", 'https://cdnjs.cloudflare.com'].concat(scriptHash ? [scriptHash] : []),
+      scriptSrc: ["'self'", 'https://cdnjs.cloudflare.com', (req, res) => scriptHash() || "'none'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", 'data:'],
       fontSrc: ["'self'", 'data:'],
