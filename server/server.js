@@ -2,12 +2,13 @@
    Run: cp .env.example .env (fill it) && npm install && node server.js */
 require('dotenv').config();
 const express = require('express');
+const { rateLimit } = require('express-rate-limit');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Database = require('better-sqlite3');
 const path = require('path');
 
-const { ANTHROPIC_API_KEY, JWT_SECRET, PORT = 3000 } = process.env;
+const { ANTHROPIC_API_KEY, JWT_SECRET, PADDLE_WEBHOOK_SECRET, PORT = 3000 } = process.env;
 if (!ANTHROPIC_API_KEY || !JWT_SECRET) { console.error('Set ANTHROPIC_API_KEY and JWT_SECRET in .env'); process.exit(1); }
 
 const db = new Database(path.join(__dirname, 'thesismaster.db'));
@@ -20,11 +21,27 @@ CREATE TABLE IF NOT EXISTS store (user_id INTEGER, key TEXT, value TEXT, updated
 CREATE TABLE IF NOT EXISTS usage (user_id INTEGER, day TEXT, calls INTEGER DEFAULT 0,
   PRIMARY KEY (user_id, day));
 CREATE TABLE IF NOT EXISTS feedback (user_id INTEGER, ts INTEGER, payload TEXT);
+CREATE TABLE IF NOT EXISTS auth_fails (email TEXT PRIMARY KEY, fails INTEGER DEFAULT 0, locked_until INTEGER DEFAULT 0);
 `);
 
 const QUOTAS = { free: 25, pro: 300 }; // AI calls per day
 const app = express();
+app.set('trust proxy', 1); // first hop only (Hostinger/nginx) so req.ip is the client, not the proxy
 app.use(express.json({ limit: '4mb' }));
+
+/* ---- abuse control ---- */
+// Per-IP: 30 auth attempts / 15 min. Per-email lockout below survives restarts (DB-backed).
+const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: 'draft-7', legacyHeaders: false,
+  message: { error: 'Too many attempts — try again in a few minutes' } });
+const LOCK_AFTER = 5, LOCK_MS = 15 * 60 * 1000;
+const lockRow = email => db.prepare('SELECT fails, locked_until FROM auth_fails WHERE email = ?').get(email);
+function noteAuthFail(email) {
+  const r = lockRow(email), fails = (r ? r.fails : 0) + 1;
+  db.prepare('INSERT INTO auth_fails (email, fails, locked_until) VALUES (?, ?, ?) ON CONFLICT(email) DO UPDATE SET fails = excluded.fails, locked_until = excluded.locked_until')
+    .run(email, fails, fails >= LOCK_AFTER ? Date.now() + LOCK_MS : (r ? r.locked_until : 0));
+}
+const clearAuthFails = email => db.prepare('DELETE FROM auth_fails WHERE email = ?').run(email);
+const isLocked = email => { const r = lockRow(email); return r && r.locked_until > Date.now(); };
 
 /* ---- serve the app ---- */
 app.use(express.static(path.join(__dirname, 'public'))); // put thesismaster.html here as index.html
@@ -38,7 +55,7 @@ function auth(req, res, next) {
 }
 const emailOk = e => /^\S+@\S+\.\S+$/.test(e || '');
 
-app.post('/api/auth/register', (req, res) => {
+app.post('/api/auth/register', authLimiter, (req, res) => {
   const { email, pass } = req.body || {};
   if (!emailOk(email) || !pass || pass.length < 8) return res.status(400).json({ error: 'Valid email and 8+ char password required' });
   try {
@@ -47,10 +64,13 @@ app.post('/api/auth/register', (req, res) => {
     res.json({ token: sign({ id: info.lastInsertRowid, email }) });
   } catch (e) { res.status(409).json({ error: 'An account with that email already exists' }); }
 });
-app.post('/api/auth/login', (req, res) => {
+app.post('/api/auth/login', authLimiter, (req, res) => {
   const { email, pass } = req.body || {};
-  const u = db.prepare('SELECT * FROM users WHERE email = ?').get((email || '').toLowerCase());
-  if (!u || !bcrypt.compareSync(pass || '', u.hash)) return res.status(401).json({ error: 'Wrong email or password' });
+  const em = (email || '').toLowerCase();
+  if (isLocked(em)) return res.status(429).json({ error: 'Too many failed sign-ins — this account is locked for 15 minutes' });
+  const u = db.prepare('SELECT * FROM users WHERE email = ?').get(em);
+  if (!u || !bcrypt.compareSync(pass || '', u.hash)) { noteAuthFail(em); return res.status(401).json({ error: 'Wrong email or password' }); }
+  clearAuthFails(em);
   res.json({ token: sign(u) });
 });
 
@@ -114,15 +134,32 @@ app.delete('/api/me', auth, (req, res) => {
   res.json({ deleted: true });
 });
 
-/* ---- payments (Paddle webhook stub: verify signature, upgrade plan) ---- */
-app.post('/api/paddle/webhook', express.urlencoded({ extended: true }), (req, res) => {
-  // TODO before going live: verify the Paddle signature with your public key.
-  const email = (req.body && (req.body.email || req.body.customer_email) || '').toLowerCase();
-  const event = req.body && (req.body.alert_name || req.body.event_type) || '';
-  if (email && /subscription_(created|payment_succeeded)|transaction\.completed/.test(event)) {
+/* ---- payments (Paddle Billing webhook — signature-verified, fail-closed) ----
+   Requires PADDLE_WEBHOOK_SECRET (Paddle dashboard → Notifications → webhook secret).
+   Without it the route refuses every request: an unverified upgrade path is an
+   account-privilege exploit, so this endpoint never trusts an unsigned body. */
+const crypto = require('crypto');
+function paddleSignatureOk(req, rawBody) {
+  const header = req.headers['paddle-signature'] || '';
+  const parts = Object.fromEntries(header.split(';').map(kv => kv.split('=').map(s => s.trim())).filter(p => p.length === 2));
+  const ts = parts.ts, h1 = parts.h1;
+  if (!ts || !h1 || Math.abs(Date.now() / 1000 - +ts) > 300) return false; // reject >5 min skew (replay)
+  const expected = crypto.createHmac('sha256', PADDLE_WEBHOOK_SECRET).update(ts + ':' + rawBody).digest('hex');
+  const a = Buffer.from(expected), b = Buffer.from(h1);
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+app.post('/api/paddle/webhook', express.raw({ type: () => true, limit: '256kb' }), (req, res) => {
+  if (!PADDLE_WEBHOOK_SECRET) return res.status(503).json({ error: 'webhook not configured' });
+  const raw = req.body.toString('utf8');
+  if (!paddleSignatureOk(req, raw)) return res.status(401).json({ error: 'bad signature' });
+  let body; try { body = JSON.parse(raw); } catch (e) { return res.status(400).json({ error: 'bad payload' }); }
+  const d = body.data || {};
+  const email = ((d.customer && d.customer.email) || d.customer_email || body.email || '').toLowerCase();
+  const event = body.event_type || body.alert_name || '';
+  if (email && /subscription\.(created|activated)|transaction\.completed|subscription_(created|payment_succeeded)/.test(event)) {
     db.prepare("UPDATE users SET plan = 'pro' WHERE email = ?").run(email);
   }
-  if (email && /subscription_cancelled|subscription\.canceled/.test(event)) {
+  if (email && /subscription\.canceled|subscription_cancelled/.test(event)) {
     db.prepare("UPDATE users SET plan = 'free' WHERE email = ?").run(email);
   }
   res.json({ ok: true });
