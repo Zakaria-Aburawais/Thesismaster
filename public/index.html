@@ -2377,8 +2377,12 @@ function showError(prefix, msg) {
   const text = String(msg || '');
   // a TypeError from fetch means the request never left the browser
   const offline = /failed to fetch|networkerror|load failed|network request failed/i.test(text);
+  const quota = /quota/i.test(text);
   let advice;
-  if (PLATFORM.mode === 'deployed') {
+  if (quota) {
+    // a daily limit is not a transient error — never say "try again in a moment"
+    advice = 'This is your daily allowance, not a fault — it resets at midnight UTC. Your work is safe and stays exactly where it is.';
+  } else if (PLATFORM.mode === 'deployed') {
     advice = offline
       ? 'The ThesisMaster server did not respond. Check that it is running and that you are still online, then try again.'
       : 'Your work is safe — nothing was lost. Try again in a moment.';
@@ -2865,6 +2869,18 @@ async function callJSON(prompt) {
 }
 
 /* ---------- WRITE engine ---------- */
+/* Each section type has its own rhetorical moves — the difference between a
+   paragraph ABOUT a topic and a section that does its argumentative job. */
+const SECTION_MOVES = {
+  'Abstract': { words: '180–300', moves: 'State the research aim in one sentence; name the gap it addresses; give the method in a clause, not a paragraph; report the principal findings concretely (with hedged magnitudes); close with the implication for the field. No citations, no roadmap, no "this thesis will".' },
+  'Introduction': { words: '300–450', moves: 'Open on the precise phenomenon, not the epoch (never "In recent years"). Move: established context → the specific problem within it → why existing responses fall short [Author, Year] → the thesis claim, stated as a defensible position → a one-sentence roadmap.' },
+  'Problem statement': { words: '280–420', moves: 'Move: the observable symptom with a concrete instance → the underlying gap that produces it → the cost of leaving it unresolved (technical, economic, or scholarly) → the research question, stated verbatim as a question.' },
+  'Literature review (excerpt)': { words: '300–450', moves: 'Synthesize by THEME, never author-by-author summary. Each paragraph advances one position that sources jointly support or contest [Author, Year]; place agreements against disagreements; end by naming the gap this thesis fills. Critique the literature, do not merely report it.' },
+  'Methodology': { words: '300–450', moves: 'Move: the design choice → its justification AGAINST the plausible alternatives (why not X) → procedure at reproducibility level → threats to validity and how the design bounds them. Justify, do not narrate.' },
+  'Results & discussion (excerpt)': { words: '300–450', moves: 'Report each finding plainly with placeholder magnitudes ("a reduction of [X]%"), then interpret: expected or surprising, and against what prior work [Author, Year]. Reconcile contradictions rather than ignoring them; end each claim bounded to what the data can carry.' },
+  'Conclusion': { words: '280–420', moves: 'Restate the argument as something now DEMONSTRATED, not a summary of chapters. Move: the claim as established → the specific contributions (knowledge, method, practice) → limitations stated plainly without apology → future work that follows from the limitations, not a generic list.' },
+  'Research proposal summary': { words: '280–420', moves: 'Move: the problem and its cost → the proposed approach and why it can succeed where prior attempts have not [Author, Year] → the expected contribution → feasibility (data, access, timeline) in measured terms.' },
+};
 document.getElementById('w-run').addEventListener('click', async () => {
   const topic = document.getElementById('w-topic').value.trim();
   if (!topic) { document.getElementById('w-topic').focus(); return; }
@@ -2877,10 +2893,18 @@ document.getElementById('w-run').addEventListener('click', async () => {
   setLoading('w', true);
   document.getElementById('w-result').style.display = 'none';
   try {
+    const sec = SECTION_MOVES[section] || { words: '280–420', moves: 'Structure the section around its argumentative purpose within a thesis.' };
     const prompt =
-`You are a master academic thesis writer with 25 years of experience supervising ${level.toLowerCase()} work. Write the "${section}" for a ${level} in ${field} on the topic: "${topic}". Citation style: ${style}.
+`You are a master academic thesis writer with 25 years of experience supervising ${level.toLowerCase()} work, writing for an examination board that grades argument defensibility, evidence coverage, structure, and register. Write the "${section}" for a ${level} in ${field} on the topic: "${topic}". Citation style: ${style}.
 ${notes ? 'Incorporate these author notes: ' + notes : ''}
-Requirements: genuinely scholarly register with calibrated hedging (suggests/indicates, never proves); explicit logical transitions; no filler or promotional tone; where a citation is needed, insert a bracketed placeholder like [Author, Year] for the author to replace with a real source — do not invent specific real references. Write 250–420 words of polished continuous prose. Return ONLY the prose, no preamble, no markdown headings.${getVoice('w-voice') === 'human' ? HUMAN_STYLE : ''}`;
+SECTION MOVES (follow this structure): ${sec.moves}
+REGISTER — non-negotiable:
+- Every paragraph opens with a topic sentence carrying its claim; the paragraph then earns that claim.
+- Calibrated hedging: suggests/indicates/appears, never proves/clearly shows; claims sized exactly to the evidence available.
+- Attach a bracketed placeholder like [Author, Year] to EVERY empirical or contested assertion — do not invent specific real references, and do not leave such assertions bare.
+- Precise ${field} terminology, with contested terms defined at first use; no rhetorical inflation (ban: crucial, vital, groundbreaking, revolutionary, "plays a key role").
+- Cohesion through the logic of given-to-new information, not stock connectors; no bullet lists, continuous prose only.
+Write ${sec.words} words of polished continuous prose. Return ONLY the prose, no preamble, no markdown headings.${getVoice('w-voice') === 'human' ? HUMAN_STYLE : ''}`;
     const text = await callClaude(prompt);
     const words = text.split(/\s+/).filter(Boolean).length;
     document.getElementById('w-meta').textContent = section + ' · ' + style + ' · ' + words + ' words';

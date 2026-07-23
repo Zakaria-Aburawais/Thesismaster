@@ -46,7 +46,7 @@ function reply(prompt) {
     const overall = 71;
     return JSON.stringify({
       grade: 'B', overall,
-      summary: 'A competent chapter with a clear method. Sourcing and originality need work before submission.',
+      summary: '[MOCK — fixed test scores, not a real audit] A competent chapter with a clear method. Sourcing and originality need work before submission.',
       dims: DIM_NOTES,
       flags: [
         { issue: 'claim stated without support', quote: q, suggestion: 'attach a source or soften the claim',
@@ -63,7 +63,7 @@ function reply(prompt) {
   if (p.includes('model_passage')) {
     return JSON.stringify({
       score: 68,
-      verdict: 'A solid draft with a defensible structure. The argument leans on assertion where it needs evidence, and the register slips into informality.',
+      verdict: '[MOCK — this fixed 68/100 is test data, not a real judgment] A solid draft with a defensible structure. The argument leans on assertion where it needs evidence, and the register slips into informality.',
       strengths: ['clear methodological sequence', 'consistent terminology', 'readable paragraph structure'],
       issues: [
         { severity: 'high', excerpt: q, comment: 'asserted without evidence an examiner would accept', revision: 'Evidence indicates that ' + q.charAt(0).toLowerCase() + q.slice(1) },
@@ -132,7 +132,8 @@ function reply(prompt) {
   }
 
   // --- WRITE (and any other plain-prose call) ---
-  return 'The transition to distributed solar generation reshapes the assumptions on which low-voltage distribution networks were designed. ' +
+  return '[MOCK ENGINE — placeholder text, NOT written by Claude. Scores and prose from this engine are meaningless test data.] ' +
+    'The transition to distributed solar generation reshapes the assumptions on which low-voltage distribution networks were designed. ' +
     'Where the network once carried power in a single direction, from substation to consumer, embedded generation now reverses that flow during periods of high irradiance [Author, Year]. ' +
     'This inversion has consequences that are technical and institutional at once: protection schemes calibrated for unidirectional fault current may mis-operate, and the regulatory settlement that assigns responsibility for voltage quality becomes harder to apply [Author, Year]. ' +
     'The literature has examined each consequence in isolation, but rarely together. ' +
