@@ -9,6 +9,10 @@
 npm install
 node server.js        # or use the host's Node app manager / pm2
 ```
+**Restart the Node app whenever you replace `public/index.html`** — the strict
+Content-Security-Policy hashes the inline script at boot; a stale hash blocks
+the new script entirely.
+
 Serve over HTTPS (Hostinger provides SSL). The app auto-detects deployed mode:
 login gate appears, all AI calls route through /api/claude (your key stays server-side),
 and each user's theses live in their own rows in thesismaster.db.

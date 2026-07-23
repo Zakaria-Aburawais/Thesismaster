@@ -193,6 +193,27 @@ test('paddle webhook fails closed when no secret is configured', async () => {
   } finally { p2.kill(); }
 });
 
+test('security headers: strict CSP with hashed inline script, HSTS, nosniff', async () => {
+  const r = await fetch('http://127.0.0.1:3905/');
+  assert.equal(r.status, 200, 'app served from repo public/ fallback');
+  const csp = r.headers.get('content-security-policy') || '';
+  assert.ok(csp.includes("default-src 'self'"));
+  assert.ok(/script-src [^;]*'sha256-/.test(csp), 'inline script allowed by hash, not unsafe-inline');
+  assert.ok(!/script-src [^;]*'unsafe-inline'/.test(csp), 'no unsafe-inline for scripts');
+  assert.ok(/font-src [^;]*data:/.test(csp), 'embedded fonts allowed');
+  assert.ok(r.headers.get('strict-transport-security'), 'HSTS present');
+  assert.equal(r.headers.get('x-content-type-options'), 'nosniff');
+  assert.equal(r.headers.get('referrer-policy'), 'no-referrer');
+});
+
+test('http behind the proxy is redirected to https', async () => {
+  const r = await fetch('http://127.0.0.1:3905/', {
+    headers: { 'X-Forwarded-Proto': 'http' }, redirect: 'manual'
+  });
+  assert.equal(r.status, 301);
+  assert.ok((r.headers.get('location') || '').startsWith('https://'));
+});
+
 /* LAST: this deliberately trips the shared per-IP limiter. */
 test('per-IP rate limiter trips on repeated auth attempts', async () => {
   let tripped = false;

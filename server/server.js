@@ -3,6 +3,8 @@
 require('dotenv').config();
 const express = require('express');
 const { rateLimit } = require('express-rate-limit');
+const helmet = require('helmet');
+const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Database = require('better-sqlite3');
@@ -46,8 +48,46 @@ function noteAuthFail(email) {
 const clearAuthFails = email => db.prepare('DELETE FROM auth_fails WHERE email = ?').run(email);
 const isLocked = email => { const r = lockRow(email); return r && r.locked_until > Date.now(); };
 
+/* ---- security headers (S3) ---- */
+// The app is ONE file with ONE inline <script>: hash it at boot so script-src
+// can be strict — no 'unsafe-inline' for scripts anywhere. Inline style
+// attributes are part of the app's design, so style-src keeps 'unsafe-inline'
+// (script injection is the threat model that matters; see docs/AUDIT-baseline.md S3).
+const PUBLIC_DIR = [path.join(__dirname, 'public'), path.join(__dirname, '..', 'public')]
+  .find(p => fs.existsSync(path.join(p, 'index.html'))) || path.join(__dirname, 'public');
+let scriptHash = null;
+try {
+  const html = fs.readFileSync(path.join(PUBLIC_DIR, 'index.html'), 'utf8');
+  const m = html.match(/<script>([\s\S]*)<\/script>/);
+  if (m) scriptHash = "'sha256-" + require('crypto').createHash('sha256').update(m[1]).digest('base64') + "'";
+} catch (e) { console.warn('CSP: no public/index.html found — inline script hash omitted'); }
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'https://cdnjs.cloudflare.com'].concat(scriptHash ? [scriptHash] : []),
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", 'data:'],
+      fontSrc: ["'self'", 'data:'],
+      connectSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      baseUri: ["'self'"],
+      formAction: ["'self'"],
+      frameAncestors: ["'self'"],
+    },
+  },
+  strictTransportSecurity: { maxAge: 15552000, includeSubDomains: true }, // 180 days
+  referrerPolicy: { policy: 'no-referrer' },
+  crossOriginEmbedderPolicy: false, // COEP would block nothing here but can break embeds
+}));
+// behind the host's TLS terminator: force HTTPS (no-op for direct local traffic)
+app.use((req, res, next) => {
+  if (req.headers['x-forwarded-proto'] === 'http') return res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
+  next();
+});
+
 /* ---- serve the app ---- */
-app.use(express.static(path.join(__dirname, 'public'))); // put thesismaster.html here as index.html
+app.use(express.static(PUBLIC_DIR)); // put thesismaster.html here as index.html
 
 /* ---- auth ---- */
 const sign = u => jwt.sign({ uid: u.id, email: u.email }, JWT_SECRET, { expiresIn: '30d' });
