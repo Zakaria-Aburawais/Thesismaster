@@ -1873,7 +1873,9 @@ const I18N = {
     src_insert: 'Insert citation', src_inserted: '✓ Inserted',
     src_none: 'No [Author, Year] placeholders found in this text.',
     src_empty: 'No confident real sources were found — the claims may need your own library.',
-    src_refs: 'References'
+    src_refs: 'References',
+    acc_btn: 'Account', acc_export: 'Export all my data (JSON)', acc_signout: 'Sign out',
+    acc_delete: 'Delete account & all data', acc_delete2: 'Click again to permanently delete EVERYTHING'
   },
   ar: {
     nav_cap: 'القدرات', nav_fac: 'هيئة الامتحان', nav_std: 'الاستوديو', nav_met: 'المنهج', nav_how: 'طريقة الاستخدام', nav_cta: 'افتح الاستوديو',
@@ -1906,7 +1908,9 @@ const I18N = {
     src_insert: 'أدرج الاستشهاد', src_inserted: '✓ أُدرج',
     src_none: 'لا توجد استشهادات مؤقتة [Author, Year] في هذا النص.',
     src_empty: 'لم يُعثر على مصادر حقيقية موثوقة — قد تحتاج هذه الادعاءات إلى مكتبتك الخاصة.',
-    src_refs: 'المراجع'
+    src_refs: 'المراجع',
+    acc_btn: 'الحساب', acc_export: 'صدّر جميع بياناتي (JSON)', acc_signout: 'تسجيل الخروج',
+    acc_delete: 'احذف الحساب وكل البيانات', acc_delete2: 'اضغط مرة أخرى للحذف النهائي لكل شيء'
   },
   tr: {
     nav_cap: 'Yetenekler', nav_fac: 'Jüri', nav_std: 'Stüdyo', nav_met: 'Yöntem', nav_how: 'Nasıl kullanılır', nav_cta: 'Stüdyoyu aç',
@@ -1939,7 +1943,9 @@ const I18N = {
     src_insert: 'Atıfı ekle', src_inserted: '✓ Eklendi',
     src_none: 'Bu metinde [Author, Year] yer tutucusu yok.',
     src_empty: 'Güvenilir gerçek kaynak bulunamadı — bu iddialar kendi kütüphanenizi gerektirebilir.',
-    src_refs: 'Kaynaklar'
+    src_refs: 'Kaynaklar',
+    acc_btn: 'Hesap', acc_export: 'Tüm verilerimi dışa aktar (JSON)', acc_signout: 'Çıkış yap',
+    acc_delete: 'Hesabı ve tüm verileri sil', acc_delete2: 'KALICI olarak silmek için tekrar tıklayın'
   },
   id: {
     nav_cap: 'Kemampuan', nav_fac: 'Dewan penguji', nav_std: 'Studio', nav_met: 'Metode', nav_how: 'Cara pakai', nav_cta: 'Buka studio',
@@ -1972,7 +1978,9 @@ const I18N = {
     src_insert: 'Sisipkan sitasi', src_inserted: '✓ Tersisip',
     src_none: 'Tidak ada placeholder [Author, Year] di teks ini.',
     src_empty: 'Tidak ditemukan sumber nyata yang meyakinkan — klaim ini mungkin butuh pustaka Anda sendiri.',
-    src_refs: 'Referensi'
+    src_refs: 'Referensi',
+    acc_btn: 'Akun', acc_export: 'Ekspor semua data saya (JSON)', acc_signout: 'Keluar',
+    acc_delete: 'Hapus akun & semua data', acc_delete2: 'Klik lagi untuk menghapus SEMUANYA secara permanen'
   },
   fr: {
     nav_cap: 'Capacités', nav_fac: 'Le jury', nav_std: 'Studio', nav_met: 'Méthode', nav_how: 'Mode d’emploi', nav_cta: 'Ouvrir le studio',
@@ -2005,7 +2013,9 @@ const I18N = {
     src_insert: 'Insérer la citation', src_inserted: '✓ Insérée',
     src_none: 'Aucune balise [Author, Year] dans ce texte.',
     src_empty: 'Aucune source réelle fiable trouvée — ces affirmations relèvent peut-être de votre propre bibliothèque.',
-    src_refs: 'Références'
+    src_refs: 'Références',
+    acc_btn: 'Compte', acc_export: 'Exporter toutes mes données (JSON)', acc_signout: 'Se déconnecter',
+    acc_delete: 'Supprimer le compte et toutes les données', acc_delete2: 'Cliquez encore pour TOUT supprimer définitivement'
   },
   es: {
     nav_cap: 'Capacidades', nav_fac: 'El tribunal', nav_std: 'Estudio', nav_met: 'Método', nav_how: 'Cómo se usa', nav_cta: 'Abrir el estudio',
@@ -2038,7 +2048,9 @@ const I18N = {
     src_insert: 'Insertar cita', src_inserted: '✓ Insertada',
     src_none: 'No hay marcadores [Author, Year] en este texto.',
     src_empty: 'No se hallaron fuentes reales fiables — estas afirmaciones pueden requerir tu propia biblioteca.',
-    src_refs: 'Referencias'
+    src_refs: 'Referencias',
+    acc_btn: 'Cuenta', acc_export: 'Exportar todos mis datos (JSON)', acc_signout: 'Cerrar sesión',
+    acc_delete: 'Eliminar cuenta y todos los datos', acc_delete2: 'Haz clic otra vez para borrar TODO definitivamente'
   }
 };
 function t(k) { return (I18N[uiLang] && I18N[uiLang][k]) || I18N.en[k] || k; }
@@ -2146,6 +2158,8 @@ function applyI18N() {
   }
   const lt = document.getElementById('lang-toggle');
   if (lt) lt.textContent = uiLang === 'ar' ? 'ع' : uiLang.toUpperCase();
+  const acc = document.getElementById('tm-account-btn');
+  if (acc) acc.textContent = t('acc_btn');
 }
 function setUILang(lang) {
   uiLang = LANGS.some(l => l.c === lang) ? lang : 'en';
@@ -2187,7 +2201,10 @@ async function initSettings() {
     document.addEventListener('click', e => { if (!pop.contains(e.target)) pop.classList.remove('open'); });
   }
 }
-initSettings();
+/* NOTE: initSettings() is deliberately NOT called here. It reads storageOK,
+   which is declared much later — calling it from this line threw a silent
+   TDZ ReferenceError on every load and left the language switcher dead.
+   The call now lives directly after the storageOK declaration. */
 
 /* engines reply in the document's own language, whatever the UI language */
 function docLangLine(t2) {
@@ -2624,14 +2641,14 @@ if (PLATFORM.mode === 'deployed') {
     const wrap = document.querySelector('.prof-wrap');
     if (!wrap) return;
     const b = document.createElement('button');
-    b.className = 'prof-switch'; b.style.marginInlineStart = '8px';
-    b.textContent = 'Account';
+    b.className = 'prof-switch'; b.id = 'tm-account-btn'; b.style.marginInlineStart = '8px';
+    b.textContent = t('acc_btn');
     b.addEventListener('click', async () => {
       const pop = document.getElementById('prof-pop');
       pop.innerHTML =
-        '<div class="prof-item" id="tm-export">Export all my data (JSON)</div>' +
-        '<div class="prof-item" id="tm-signout">Sign out</div>' +
-        '<div class="prof-item" id="tm-delete" style="color:var(--bad)">Delete account & all data</div>';
+        '<div class="prof-item" id="tm-export">' + esc(t('acc_export')) + '</div>' +
+        '<div class="prof-item" id="tm-signout">' + esc(t('acc_signout')) + '</div>' +
+        '<div class="prof-item" id="tm-delete" style="color:var(--bad)">' + esc(t('acc_delete')) + '</div>';
       pop.classList.add('open');
       pop.querySelector('#tm-export').onclick = async () => {
         const r = await fetch(PLATFORM.api + '/me/export', { headers: { 'Authorization': 'Bearer ' + tmToken() } });
@@ -2640,7 +2657,7 @@ if (PLATFORM.mode === 'deployed') {
       };
       pop.querySelector('#tm-signout').onclick = () => { tmToken(null); location.reload(); };
       pop.querySelector('#tm-delete').onclick = async function () {
-        if (this.dataset.arm !== '1') { this.dataset.arm = '1'; this.textContent = 'Click again to permanently delete EVERYTHING'; return; }
+        if (this.dataset.arm !== '1') { this.dataset.arm = '1'; this.textContent = t('acc_delete2'); return; }
         await fetch(PLATFORM.api + '/me', { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + tmToken() } });
         tmToken(null); location.reload();
       };
@@ -2728,6 +2745,7 @@ function disclosureText(ch) {
 }
 
 let storageOK = !!(window.storage && window.storage.get && window.storage.set);
+initSettings(); // must run AFTER storageOK exists (see note at its definition)
 let saveTimer = null, storageWarned = false;
 const isCapabilityError = e => /capab|not available|unsupported|denied|not implemented/i.test(String(e && e.message || e));
 function disableStorage(reason) {
