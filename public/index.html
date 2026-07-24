@@ -1860,7 +1860,20 @@ const I18N = {
     s3t: '3 · Read the verdict', s3b: 'You get a grade, a score for every dimension with the examiner’s reasoning, a citation scan of the whole document, and specific flagged passages.',
     s4t: '4 · Fix and climb', s4b: 'Apply the suggested corrections, or run “Audit until it passes”: the board rewrites, re-examines blindly, and changes strategy each round until it reaches your target.',
     s5t: '5 · Close the gap', s5b: 'When only substance remains, the assistant matches uncited paragraphs to your existing sources — you approve each one — and proposes original framing angles.',
-    s6t: '6 · Verify and export', s6b: 'The References tab checks that every source is real and every citation matches. Then export to Word or PDF with an AI-assistance disclosure statement.'
+    s6t: '6 · Verify and export', s6b: 'The References tab checks that every source is real and every citation matches. Then export to Word or PDF with an AI-assistance disclosure statement.',
+    wp: '{w} words · ≈ {p} pages in Word (double-spaced)',
+    gate_head: 'ThesisMaster Accounts', gate_signin: 'Sign in', gate_signup: 'Create account',
+    gate_sub: 'Your theses are private to your account — never used to train models, exportable and deletable at any time.',
+    gate_email: 'Email', gate_pass: 'Password (8+ characters)', gate_pass2: 'Confirm password',
+    gate_go_in: 'Sign in', gate_go_up: 'Create my account',
+    gate_err_email: 'Enter a valid email.', gate_err_pass: 'Password must be at least 8 characters.', gate_err_match: 'The passwords do not match.', gate_err_net: 'Network error — try again.',
+    src_btn: 'Find real sources for the placeholders', src_searching: 'Searching the live web for real published sources… (about a minute)',
+    src_head: 'Real source candidates — approve each one yourself',
+    src_note: 'Found by live web search. Only insert a source if it truly supports your claim — then verify it in the References tab before submission.',
+    src_insert: 'Insert citation', src_inserted: '✓ Inserted',
+    src_none: 'No [Author, Year] placeholders found in this text.',
+    src_empty: 'No confident real sources were found — the claims may need your own library.',
+    src_refs: 'References'
   },
   ar: {
     nav_cap: 'القدرات', nav_fac: 'هيئة الامتحان', nav_std: 'الاستوديو', nav_met: 'المنهج', nav_how: 'طريقة الاستخدام', nav_cta: 'افتح الاستوديو',
@@ -1880,7 +1893,20 @@ const I18N = {
     s3t: '٣ · اقرأ الحكم', s3b: 'تحصل على درجة، ودرجة لكل معيار مع تعليل الممتحن، ومسح للاستشهادات في كامل المستند، ومقاطع محددة مُعلَّمة.',
     s4t: '٤ · صحّح وارتقِ', s4b: 'طبّق التصحيحات المقترحة، أو شغّل «دقّق حتى النجاح»: تعيد اللجنة الصياغة ثم تمتحن من جديد بحيادية، وتغيّر استراتيجيتها كل جولة حتى تبلغ هدفك.',
     s5t: '٥ · أغلق الفجوة', s5b: 'حين يتبقى الجوهر فقط، يطابق المساعد الفقرات غير الموثّقة مع مصادرك الموجودة — وتعتمد أنت كل اقتراح — ويقترح زوايا تحليلية أصيلة.',
-    s6t: '٦ · تحقّق وصدّر', s6b: 'يتحقق تبويب المراجع من أن كل مصدر حقيقي وأن كل استشهاد مطابق. ثم صدّر إلى Word أو PDF مع بيان الإفصاح عن استخدام الذكاء الاصطناعي.'
+    s6t: '٦ · تحقّق وصدّر', s6b: 'يتحقق تبويب المراجع من أن كل مصدر حقيقي وأن كل استشهاد مطابق. ثم صدّر إلى Word أو PDF مع بيان الإفصاح عن استخدام الذكاء الاصطناعي.',
+    wp: '{w} كلمة · ≈ {p} صفحة في Word (تباعد مزدوج)',
+    gate_head: 'حسابات ThesisMaster', gate_signin: 'تسجيل الدخول', gate_signup: 'إنشاء حساب',
+    gate_sub: 'أطروحاتك خاصة بحسابك — لا تُستخدم أبداً لتدريب النماذج، ويمكنك تصديرها أو حذفها في أي وقت.',
+    gate_email: 'البريد الإلكتروني', gate_pass: 'كلمة المرور (8 أحرف فأكثر)', gate_pass2: 'تأكيد كلمة المرور',
+    gate_go_in: 'ادخل', gate_go_up: 'أنشئ حسابي',
+    gate_err_email: 'أدخل بريداً إلكترونياً صحيحاً.', gate_err_pass: 'يجب ألا تقل كلمة المرور عن 8 أحرف.', gate_err_match: 'كلمتا المرور غير متطابقتين.', gate_err_net: 'خطأ في الاتصال — حاول مجدداً.',
+    src_btn: 'ابحث عن مصادر حقيقية للاستشهادات المؤقتة', src_searching: 'يجري البحث في الويب عن مصادر منشورة حقيقية… (نحو دقيقة)',
+    src_head: 'مصادر حقيقية مقترحة — اعتمد كلاً منها بنفسك',
+    src_note: 'وُجدت عبر بحث مباشر في الويب. لا تُدرج مصدراً إلا إذا كان يدعم ادعاءك فعلاً — ثم تحقق منه في تبويب المراجع قبل التسليم.',
+    src_insert: 'أدرج الاستشهاد', src_inserted: '✓ أُدرج',
+    src_none: 'لا توجد استشهادات مؤقتة [Author, Year] في هذا النص.',
+    src_empty: 'لم يُعثر على مصادر حقيقية موثوقة — قد تحتاج هذه الادعاءات إلى مكتبتك الخاصة.',
+    src_refs: 'المراجع'
   },
   tr: {
     nav_cap: 'Yetenekler', nav_fac: 'Jüri', nav_std: 'Stüdyo', nav_met: 'Yöntem', nav_how: 'Nasıl kullanılır', nav_cta: 'Stüdyoyu aç',
@@ -1900,7 +1926,20 @@ const I18N = {
     s3t: '3 · Kararı okuyun', s3b: 'Bir not, her ölçüt için gerekçeli puan, tüm belge için atıf taraması ve işaretlenmiş belirli pasajlar alırsınız.',
     s4t: '4 · Düzeltin ve yükselin', s4b: 'Önerilen düzeltmeleri uygulayın veya “Geçene kadar denetle”yi çalıştırın: jüri yeniden yazar, tarafsızca yeniden sınar ve hedefinize ulaşana dek her turda strateji değiştirir.',
     s5t: '5 · Farkı kapatın', s5b: 'Geriye yalnızca içerik kaldığında, asistan atıfsız paragrafları mevcut kaynaklarınızla eşleştirir — her birini siz onaylarsınız — ve özgün çerçeveleme açıları önerir.',
-    s6t: '6 · Doğrulayın ve dışa aktarın', s6b: 'Kaynaklar sekmesi her kaynağın gerçek, her atfın eşleşir olduğunu denetler. Ardından Word veya PDF olarak, YZ kullanım beyanıyla dışa aktarın.'
+    s6t: '6 · Doğrulayın ve dışa aktarın', s6b: 'Kaynaklar sekmesi her kaynağın gerçek, her atfın eşleşir olduğunu denetler. Ardından Word veya PDF olarak, YZ kullanım beyanıyla dışa aktarın.',
+    wp: '{w} kelime · ≈ {p} Word sayfası (çift aralık)',
+    gate_head: 'ThesisMaster Hesapları', gate_signin: 'Giriş yap', gate_signup: 'Hesap oluştur',
+    gate_sub: 'Tezleriniz hesabınıza özeldir — asla model eğitiminde kullanılmaz; istediğiniz an dışa aktarabilir veya silebilirsiniz.',
+    gate_email: 'E-posta', gate_pass: 'Şifre (en az 8 karakter)', gate_pass2: 'Şifreyi doğrula',
+    gate_go_in: 'Giriş yap', gate_go_up: 'Hesabımı oluştur',
+    gate_err_email: 'Geçerli bir e-posta girin.', gate_err_pass: 'Şifre en az 8 karakter olmalı.', gate_err_match: 'Şifreler eşleşmiyor.', gate_err_net: 'Ağ hatası — tekrar deneyin.',
+    src_btn: 'Yer tutucular için gerçek kaynak bul', src_searching: 'Gerçek yayımlanmış kaynaklar için canlı web taranıyor… (yaklaşık bir dakika)',
+    src_head: 'Gerçek kaynak adayları — her birini kendiniz onaylayın',
+    src_note: 'Canlı web aramasıyla bulundu. Bir kaynağı ancak iddianızı gerçekten destekliyorsa ekleyin — teslimden önce Kaynaklar sekmesinde doğrulayın.',
+    src_insert: 'Atıfı ekle', src_inserted: '✓ Eklendi',
+    src_none: 'Bu metinde [Author, Year] yer tutucusu yok.',
+    src_empty: 'Güvenilir gerçek kaynak bulunamadı — bu iddialar kendi kütüphanenizi gerektirebilir.',
+    src_refs: 'Kaynaklar'
   },
   id: {
     nav_cap: 'Kemampuan', nav_fac: 'Dewan penguji', nav_std: 'Studio', nav_met: 'Metode', nav_how: 'Cara pakai', nav_cta: 'Buka studio',
@@ -1920,7 +1959,20 @@ const I18N = {
     s3t: '3 · Baca putusannya', s3b: 'Anda menerima nilai, skor tiap dimensi beserta alasan penguji, pemindaian sitasi seluruh dokumen, dan bagian-bagian yang ditandai.',
     s4t: '4 · Perbaiki dan naik', s4b: 'Terapkan koreksi yang disarankan, atau jalankan “Audit sampai lulus”: dewan menulis ulang, menguji ulang secara buta, dan mengganti strategi tiap putaran hingga target tercapai.',
     s5t: '5 · Tutup selisihnya', s5b: 'Ketika tinggal soal substansi, asisten mencocokkan paragraf tanpa sitasi dengan sumber yang sudah Anda punya — Anda menyetujui satu per satu — dan mengusulkan sudut analisis orisinal.',
-    s6t: '6 · Verifikasi dan ekspor', s6b: 'Tab Referensi memastikan setiap sumber nyata dan setiap sitasi cocok. Lalu ekspor ke Word atau PDF beserta pernyataan penggunaan AI.'
+    s6t: '6 · Verifikasi dan ekspor', s6b: 'Tab Referensi memastikan setiap sumber nyata dan setiap sitasi cocok. Lalu ekspor ke Word atau PDF beserta pernyataan penggunaan AI.',
+    wp: '{w} kata · ≈ {p} halaman Word (spasi ganda)',
+    gate_head: 'Akun ThesisMaster', gate_signin: 'Masuk', gate_signup: 'Buat akun',
+    gate_sub: 'Tesis Anda privat untuk akun Anda — tak pernah dipakai melatih model, bisa diekspor atau dihapus kapan saja.',
+    gate_email: 'Email', gate_pass: 'Kata sandi (8+ karakter)', gate_pass2: 'Konfirmasi kata sandi',
+    gate_go_in: 'Masuk', gate_go_up: 'Buat akun saya',
+    gate_err_email: 'Masukkan email yang valid.', gate_err_pass: 'Kata sandi minimal 8 karakter.', gate_err_match: 'Kata sandi tidak cocok.', gate_err_net: 'Gangguan jaringan — coba lagi.',
+    src_btn: 'Cari sumber nyata untuk placeholder', src_searching: 'Mencari sumber terbitan nyata di web… (sekitar satu menit)',
+    src_head: 'Kandidat sumber nyata — setujui satu per satu',
+    src_note: 'Ditemukan lewat pencarian web langsung. Sisipkan hanya jika benar-benar mendukung klaim Anda — lalu verifikasi di tab Referensi sebelum diserahkan.',
+    src_insert: 'Sisipkan sitasi', src_inserted: '✓ Tersisip',
+    src_none: 'Tidak ada placeholder [Author, Year] di teks ini.',
+    src_empty: 'Tidak ditemukan sumber nyata yang meyakinkan — klaim ini mungkin butuh pustaka Anda sendiri.',
+    src_refs: 'Referensi'
   },
   fr: {
     nav_cap: 'Capacités', nav_fac: 'Le jury', nav_std: 'Studio', nav_met: 'Méthode', nav_how: 'Mode d’emploi', nav_cta: 'Ouvrir le studio',
@@ -1940,7 +1992,20 @@ const I18N = {
     s3t: '3 · Lisez le verdict', s3b: 'Vous obtenez une note, un score par dimension avec le raisonnement de l’examinateur, une analyse des citations du document entier et des passages précisément signalés.',
     s4t: '4 · Corrigez et progressez', s4b: 'Appliquez les corrections proposées ou lancez « Examiner jusqu’à la réussite » : le jury réécrit, réexamine à l’aveugle et change de stratégie à chaque tour jusqu’à votre objectif.',
     s5t: '5 · Combler l’écart', s5b: 'Quand il ne reste que le fond, l’assistant rapproche les paragraphes sans citation de vos sources existantes — vous validez chaque proposition — et suggère des angles d’analyse originaux.',
-    s6t: '6 · Vérifiez et exportez', s6b: 'L’onglet Références contrôle que chaque source existe vraiment et que chaque citation correspond. Exportez ensuite en Word ou PDF avec une déclaration d’usage de l’IA.'
+    s6t: '6 · Vérifiez et exportez', s6b: 'L’onglet Références contrôle que chaque source existe vraiment et que chaque citation correspond. Exportez ensuite en Word ou PDF avec une déclaration d’usage de l’IA.',
+    wp: '{w} mots · ≈ {p} pages Word (double interligne)',
+    gate_head: 'Comptes ThesisMaster', gate_signin: 'Se connecter', gate_signup: 'Créer un compte',
+    gate_sub: 'Vos thèses restent privées — jamais utilisées pour entraîner des modèles, exportables et supprimables à tout moment.',
+    gate_email: 'E-mail', gate_pass: 'Mot de passe (8 caractères min.)', gate_pass2: 'Confirmer le mot de passe',
+    gate_go_in: 'Se connecter', gate_go_up: 'Créer mon compte',
+    gate_err_email: 'Saisissez un e-mail valide.', gate_err_pass: 'Le mot de passe doit compter au moins 8 caractères.', gate_err_match: 'Les mots de passe ne correspondent pas.', gate_err_net: 'Erreur réseau — réessayez.',
+    src_btn: 'Trouver de vraies sources pour les balises', src_searching: 'Recherche de sources réellement publiées sur le web… (environ une minute)',
+    src_head: 'Sources réelles candidates — validez chacune vous-même',
+    src_note: 'Trouvées par recherche web en direct. N’insérez une source que si elle étaye vraiment votre propos — puis vérifiez-la dans l’onglet Références avant de rendre.',
+    src_insert: 'Insérer la citation', src_inserted: '✓ Insérée',
+    src_none: 'Aucune balise [Author, Year] dans ce texte.',
+    src_empty: 'Aucune source réelle fiable trouvée — ces affirmations relèvent peut-être de votre propre bibliothèque.',
+    src_refs: 'Références'
   },
   es: {
     nav_cap: 'Capacidades', nav_fac: 'El tribunal', nav_std: 'Estudio', nav_met: 'Método', nav_how: 'Cómo se usa', nav_cta: 'Abrir el estudio',
@@ -1960,7 +2025,20 @@ const I18N = {
     s3t: '3 · Lee el veredicto', s3b: 'Recibes una calificación, una puntuación por dimensión con el razonamiento del examinador, un análisis de citas de todo el documento y pasajes concretos señalados.',
     s4t: '4 · Corrige y sube', s4b: 'Aplica las correcciones sugeridas o ejecuta «Examinar hasta aprobar»: el tribunal reescribe, vuelve a examinar a ciegas y cambia de estrategia en cada ronda hasta tu objetivo.',
     s5t: '5 · Cierra la brecha', s5b: 'Cuando solo queda el fondo, el asistente empareja los párrafos sin cita con tus fuentes existentes — tú apruebas cada una — y propone enfoques analíticos originales.',
-    s6t: '6 · Verifica y exporta', s6b: 'La pestaña Referencias comprueba que cada fuente es real y que cada cita concuerda. Después exporta a Word o PDF con una declaración de uso de IA.'
+    s6t: '6 · Verifica y exporta', s6b: 'La pestaña Referencias comprueba que cada fuente es real y que cada cita concuerda. Después exporta a Word o PDF con una declaración de uso de IA.',
+    wp: '{w} palabras · ≈ {p} páginas en Word (doble espacio)',
+    gate_head: 'Cuentas ThesisMaster', gate_signin: 'Iniciar sesión', gate_signup: 'Crear cuenta',
+    gate_sub: 'Tus tesis son privadas de tu cuenta — nunca se usan para entrenar modelos; puedes exportarlas o borrarlas cuando quieras.',
+    gate_email: 'Correo electrónico', gate_pass: 'Contraseña (8+ caracteres)', gate_pass2: 'Confirmar contraseña',
+    gate_go_in: 'Entrar', gate_go_up: 'Crear mi cuenta',
+    gate_err_email: 'Introduce un correo válido.', gate_err_pass: 'La contraseña debe tener al menos 8 caracteres.', gate_err_match: 'Las contraseñas no coinciden.', gate_err_net: 'Error de red — inténtalo de nuevo.',
+    src_btn: 'Buscar fuentes reales para los marcadores', src_searching: 'Buscando fuentes publicadas reales en la web… (alrededor de un minuto)',
+    src_head: 'Fuentes reales candidatas — apruébalas tú mismo',
+    src_note: 'Halladas mediante búsqueda web en vivo. Inserta una fuente solo si respalda de verdad tu afirmación — y verifícala en la pestaña Referencias antes de entregar.',
+    src_insert: 'Insertar cita', src_inserted: '✓ Insertada',
+    src_none: 'No hay marcadores [Author, Year] en este texto.',
+    src_empty: 'No se hallaron fuentes reales fiables — estas afirmaciones pueden requerir tu propia biblioteca.',
+    src_refs: 'Referencias'
   }
 };
 function t(k) { return (I18N[uiLang] && I18N[uiLang][k]) || I18N.en[k] || k; }
@@ -2046,6 +2124,8 @@ function setLastText(el, txt) {
   if (node) node.textContent = ' ' + txt; else el.appendChild(document.createTextNode(' ' + txt));
 }
 function applyI18N() {
+  (wpUpdaters || []).forEach(f => { try { f(); } catch (e) {} }); // word/page counters follow the UI language (var-hoisted; empty on first pre-init call)
+  if (window.__renderGate && document.getElementById('tm-login')) { try { window.__renderGate(); } catch (e) {} }
   SEL_KEYS.forEach(([sel, key]) => {
     const el = document.querySelector(sel);
     if (el) setLastText(el, t(key));
@@ -2072,6 +2152,7 @@ function setUILang(lang) {
   const meta = langMeta(uiLang);
   document.documentElement.lang = uiLang;
   document.documentElement.dir = meta.dir;
+  try { localStorage.setItem('tm:uilang', uiLang); } catch (e) {} // pre-login persistence (server store needs auth)
   applyI18N();
   if (document.getElementById('tour-modal')) renderTour();
   persistSettings();
@@ -2084,6 +2165,10 @@ async function initSettings() {
   let lang = 'en';
   if (storageOK) {
     try { const r = await window.storage.get('settings:ui'); if (r && r.value) lang = JSON.parse(r.value).lang || 'en'; } catch (e) {}
+  }
+  if (!LANGS.some(l => l.c === lang) || lang === 'en') {
+    // server settings unavailable before sign-in: honour the choice made on the gate
+    try { const ls = localStorage.getItem('tm:uilang'); if (ls && LANGS.some(l => l.c === ls)) lang = ls; } catch (e) {}
   }
   if (!LANGS.some(l => l.c === lang)) {
     const nav = (navigator.language || 'en').slice(0, 2);
@@ -2473,34 +2558,64 @@ function showLoginGate() {
   if (document.getElementById('tm-login')) return;
   const d = document.createElement('div');
   d.id = 'tm-login';
-  d.innerHTML =
-    '<div class="tm-login-card"><div class="section-eyebrow">ThesisMaster Accounts</div>' +
-    '<h3 style="font-family:var(--font-display);margin:8px 0 4px">Sign in to your studio</h3>' +
-    '<p class="hint-line" style="margin:0 0 14px">Your theses are private to your account \u2014 encrypted in transit, never used to train models, exportable and deletable at any time.</p>' +
-    '<input id="tm-email" type="email" placeholder="Email" autocomplete="email">' +
-    '<input id="tm-pass" type="password" placeholder="Password (8+ characters)" autocomplete="current-password">' +
-    '<div id="tm-login-err" class="hint-line" style="color:var(--bad);min-height:18px;margin:6px 0"></div>' +
-    '<div style="display:flex;gap:10px"><button class="run-btn" id="tm-login-btn" style="flex:1;margin:0">Sign in</button>' +
-    '<button class="ch-btn" id="tm-reg-btn" style="flex:1">Create account</button></div></div>';
-  document.body.appendChild(d);
-  const err = d.querySelector('#tm-login-err');
-  async function go(path) {
-    err.textContent = '';
-    const email = d.querySelector('#tm-email').value.trim();
-    const pass = d.querySelector('#tm-pass').value;
-    if (!/^\S+@\S+\.\S+$/.test(email)) { err.textContent = 'Enter a valid email.'; return; }
-    if (pass.length < 8) { err.textContent = 'Password must be at least 8 characters.'; return; }
-    try {
-      const r = await fetch(PLATFORM.api + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, pass }) });
-      const j = await r.json().catch(() => ({}));
-      if (!r.ok) { err.textContent = j.error || 'Could not sign in.'; return; }
-      tmToken(j.token);
-      d.remove();
-      location.reload();
-    } catch (e) { err.textContent = 'Network error \u2014 try again.'; }
+  let mode = 'in'; // 'in' = sign in, 'up' = create account \u2014 a clear tab each
+  const render = () => {
+    const keep = {
+      email: (d.querySelector('#tm-email') || {}).value || '',
+      pass: (d.querySelector('#tm-pass') || {}).value || '',
+      pass2: (d.querySelector('#tm-pass2') || {}).value || ''
+    };
+    d.innerHTML =
+      '<div class="tm-login-card" dir="' + (uiLang === 'ar' ? 'rtl' : 'ltr') + '">' +
+      '<div style="display:flex;gap:5px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:10px">' +
+        LANGS.map(l => '<button class="ch-btn tm-lang" data-lang="' + l.c + '" style="padding:3px 9px;font-size:10.5px' +
+          (l.c === uiLang ? ';background:var(--accent);color:#141927;border-color:var(--accent)' : '') + '">' + l.c.toUpperCase() + '</button>').join('') +
+      '</div>' +
+      '<div class="section-eyebrow">' + esc(t('gate_head')) + '</div>' +
+      '<div style="display:flex;gap:8px;margin:12px 0 6px">' +
+        '<button class="ch-btn' + (mode === 'in' ? ' primary' : '') + '" id="tm-tab-in" style="flex:1" aria-pressed="' + (mode === 'in') + '">' + esc(t('gate_signin')) + '</button>' +
+        '<button class="ch-btn' + (mode === 'up' ? ' primary' : '') + '" id="tm-tab-up" style="flex:1" aria-pressed="' + (mode === 'up') + '">' + esc(t('gate_signup')) + '</button>' +
+      '</div>' +
+      '<p class="hint-line" style="margin:8px 0 14px">' + esc(t('gate_sub')) + '</p>' +
+      '<input id="tm-email" type="email" placeholder="' + esc(t('gate_email')) + '" autocomplete="email">' +
+      '<input id="tm-pass" type="password" placeholder="' + esc(t('gate_pass')) + '" autocomplete="' + (mode === 'up' ? 'new-password' : 'current-password') + '">' +
+      (mode === 'up' ? '<input id="tm-pass2" type="password" placeholder="' + esc(t('gate_pass2')) + '" autocomplete="new-password">' : '') +
+      '<div id="tm-login-err" class="hint-line" style="color:var(--bad);min-height:18px;margin:6px 0"></div>' +
+      '<button class="run-btn" id="tm-go" style="width:100%;margin:0">' + esc(mode === 'in' ? t('gate_go_in') : t('gate_go_up')) + '</button>' +
+      '</div>';
+    if (keep.email) d.querySelector('#tm-email').value = keep.email;
+    if (keep.pass) d.querySelector('#tm-pass').value = keep.pass;
+    if (keep.pass2 && d.querySelector('#tm-pass2')) d.querySelector('#tm-pass2').value = keep.pass2;
+    wire();
+  };
+  function wire() {
+    d.querySelector('#tm-tab-in').addEventListener('click', () => { mode = 'in'; render(); });
+    d.querySelector('#tm-tab-up').addEventListener('click', () => { mode = 'up'; render(); });
+    d.querySelectorAll('.tm-lang').forEach(b => b.addEventListener('click', () => { setUILang(b.dataset.lang); render(); }));
+    const err = d.querySelector('#tm-login-err');
+    async function go() {
+      err.textContent = '';
+      const email = d.querySelector('#tm-email').value.trim();
+      const pass = d.querySelector('#tm-pass').value;
+      if (!/^\S+@\S+\.\S+$/.test(email)) { err.textContent = t('gate_err_email'); return; }
+      if (pass.length < 8) { err.textContent = t('gate_err_pass'); return; }
+      if (mode === 'up' && pass !== d.querySelector('#tm-pass2').value) { err.textContent = t('gate_err_match'); return; }
+      try {
+        const r = await fetch(PLATFORM.api + (mode === 'in' ? '/auth/login' : '/auth/register'),
+          { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, pass }) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) { err.textContent = j.error || t('gate_err_net'); return; }
+        tmToken(j.token);
+        d.remove();
+        location.reload();
+      } catch (e) { err.textContent = t('gate_err_net'); }
+    }
+    d.querySelector('#tm-go').addEventListener('click', go);
+    d.querySelectorAll('input').forEach(inp => inp.addEventListener('keydown', e => { if (e.key === 'Enter') go(); }));
   }
-  d.querySelector('#tm-login-btn').addEventListener('click', () => go('/auth/login'));
-  d.querySelector('#tm-reg-btn').addEventListener('click', () => go('/auth/register'));
+  render();
+  document.body.appendChild(d);
+  window.__renderGate = render; // applyI18N re-renders the gate when the language resolves after async init
 }
 if (PLATFORM.mode === 'deployed' && !tmToken()) showLoginGate();
 /* account menu (deployed only): export / delete / sign out */
@@ -2655,6 +2770,28 @@ document.addEventListener('visibilitychange', () => {
 });
 const fmtDate = ts => new Date(ts).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 const wc = t => (t || '').split(/\s+/).filter(Boolean).length;
+/* words + Word-page estimate (double-spaced, ~250 words/page) — students plan
+   in pages; every text surface shows both, in the UI language */
+function wpLine(text) {
+  const w = wc(String(text || ''));
+  if (!w) return '';
+  const p = Math.max(0.1, Math.round(w / 250 * 10) / 10);
+  return t('wp').replace('{w}', w.toLocaleString()).replace('{p}', p.toLocaleString());
+}
+var wpUpdaters = []; // var: applyI18N may run before this line evaluates
+function wireCounter(id) {
+  const ta = document.getElementById(id);
+  if (!ta) return;
+  const d = document.createElement('div');
+  d.className = 'hint-line wp-count';
+  d.style.marginTop = '6px';
+  ta.insertAdjacentElement('afterend', d);
+  const u = () => { d.textContent = wpLine(ta.value); };
+  ta.addEventListener('input', u);
+  wpUpdaters.push(u);
+  u();
+}
+['r-text', 'a-text', 'f-text', 'dch-text'].forEach(wireCounter);
 
 const HUMAN_STYLE = `
 STYLE — write like a thoughtful human scholar, not a language model:
@@ -2931,15 +3068,112 @@ REGISTER — non-negotiable:
 Write ${sec.words} words of polished continuous prose. Return ONLY the prose, no preamble, no markdown headings.${getVoice('w-voice') === 'human' ? HUMAN_STYLE : ''}`;
     const text = await callClaude(prompt);
     const words = text.split(/\s+/).filter(Boolean).length;
-    document.getElementById('w-meta').textContent = section + ' · ' + style + ' · ' + words + ' words';
+    document.getElementById('w-meta').textContent = section + ' · ' + style + ' · ' + wpLine(text);
     document.getElementById('w-prose').textContent = text;
     document.getElementById('w-result').style.display = 'block';
+    setupSrcZone();
   } catch (err) {
     showError('w', err.message);
   } finally {
     setLoading('w', false);
   }
 });
+
+/* ---------- real-source finder: live web search + per-item human approval ----------
+   The writer never invents references (hard rule 2). This assistant SEARCHES the
+   live web (scholarly results included) for REAL published sources matching each
+   [Author, Year] placeholder, and each candidate sits behind its own Insert
+   button — attaching a source to a claim stays a human decision. Evidence-gated:
+   the model may only return sources present in its search results, and claims
+   with no confident source are omitted, never guessed (hard invariant 8). */
+let wSrc = { items: [], base: null, code: 'apa' };
+function wStyleCode() {
+  const s = (document.getElementById('w-style').value || 'apa').toLowerCase().split(/\s/)[0];
+  return ['apa', 'harvard', 'mla', 'chicago', 'ieee', 'vancouver'].indexOf(s) > -1 ? s : 'apa';
+}
+function setupSrcZone() {
+  wSrc = { items: [], base: null, code: wStyleCode() };
+  let z = document.getElementById('w-src-zone');
+  if (!z) { z = document.createElement('div'); z.id = 'w-src-zone'; document.getElementById('w-result').appendChild(z); }
+  z.innerHTML = '<button class="ch-btn primary" id="w-src-btn" style="margin-top:14px">' + esc(t('src_btn')) + '</button><div id="w-src-out"></div>';
+  document.getElementById('w-src-btn').addEventListener('click', findRealSources);
+}
+function inTextAuthorYear(it) {
+  const A = splitAuthors(it.authors).map(nameParts);
+  const nm = !A.length ? (it.title || '').slice(0, 12) : A.length === 1 ? A[0].last : A.length === 2 ? A[0].last + ' & ' + A[1].last : A[0].last + ' et al.';
+  return '(' + nm + ', ' + it.year + ')';
+}
+function srcRefList(code) {
+  const numeric = NUMERIC_STYLES.indexOf(code) > -1;
+  const items = numeric ? wSrc.items :
+    wSrc.items.slice().sort((a, b) => (nameParts(splitAuthors(a.authors)[0] || '').last || '').localeCompare(nameParts(splitAuthors(b.authors)[0] || '').last || ''));
+  return t('src_refs') + '\n' + items.map((it, i) => (numeric ? '[' + (i + 1) + '] ' : '') + formatRef(it, code).replace(/<\/?i>/g, '')).join('\n');
+}
+async function findRealSources() {
+  const out = document.getElementById('w-src-out');
+  const prose = wSrc.base == null ? document.getElementById('w-prose').textContent : wSrc.base;
+  const re = /\[[^\[\]\n]*(?:Author|Year)[^\[\]\n]*\]/g;
+  const claims = []; let m;
+  while ((m = re.exec(prose)) && claims.length < 6) {
+    const s = prose.lastIndexOf('.', m.index) + 1;
+    const e = prose.indexOf('.', m.index + m[0].length);
+    claims.push({ ph: m[0], ctx: prose.slice(Math.max(0, s), e < 0 ? prose.length : e + 1).trim() });
+  }
+  if (!claims.length) { out.innerHTML = '<p class="hint-line" style="margin-top:10px">' + esc(t('src_none')) + '</p>'; return; }
+  out.innerHTML = '<p class="hint-line" style="margin-top:10px">' + esc(t('src_searching')) + '</p>';
+  document.getElementById('w-src-btn').disabled = true;
+  try {
+    const prompt =
+'You are a research librarian sourcing support for thesis claims. For each numbered claim below, use web search to find ONE real, published, citable source (peer-reviewed article, conference paper, book, or reputable institutional report) that directly supports it. Prefer scholarly results: Google Scholar, publisher pages, DOI records, institutional repositories.\n' +
+'STRICT RULES: only sources actually present in your search results — real authors, exact title, real venue and year, and a URL taken from the results. If no confident real source exists for a claim, OMIT that claim. NEVER invent or guess any field. Perform at most 6 searches, then STOP and reply with ONLY this JSON, no fences:\n' +
+'{"suggestions":[{"i":<claim number>,"authors":"<Last, F. and Last, F.>","title":"<exact title>","container":"<journal, conference or publisher>","year":"<yyyy>","url":"<from the results>","why":"<under 12 words: how it supports the claim>"}]}\n' +
+'CLAIMS:\n' + claims.map((c, i) => (i + 1) + '. ' + c.ctx).join('\n');
+    const d = await callJSONSearch(prompt);
+    const sugs = (d.suggestions || []).filter(x => x && x.title && x.authors && x.year && claims[x.i - 1]);
+    if (!sugs.length) { out.innerHTML = '<p class="hint-line" style="margin-top:10px">' + esc(t('src_empty')) + '</p>'; return; }
+    out._sugs = sugs; out._claims = claims;
+    out.innerHTML =
+      '<p class="sub-label" style="margin-top:16px">' + esc(t('src_head')) + '</p>' +
+      '<p class="hint-line">' + esc(t('src_note')) + '</p>' +
+      sugs.map((x, n) =>
+        '<div class="issue low" id="w-sug-' + n + '"><blockquote>&ldquo;' + esc(claims[x.i - 1].ctx.slice(0, 130)) + '&rdquo;</blockquote>' +
+        '<div class="i-comment"><strong style="color:var(--accent-bright)">' + esc(x.authors) + ' (' + esc(x.year) + ').</strong> ' + esc(x.title) + '.' +
+        (x.container ? ' <i>' + esc(x.container) + '</i>.' : '') +
+        (x.url ? ' <a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(String(x.url).replace(/^https?:\/\//, '').slice(0, 44)) + '</a>' : '') +
+        (x.why ? '<br>' + esc(x.why) : '') + '</div>' +
+        '<div style="margin-top:9px"><button class="ch-btn primary" data-src-insert="' + n + '">' + esc(t('src_insert')) + '</button></div></div>').join('');
+    out.querySelectorAll('[data-src-insert]').forEach(b => b.addEventListener('click', () => insertSource(+b.dataset.srcInsert)));
+  } catch (err) {
+    out.innerHTML = '<div class="err-box">' + esc(err.message) + '</div>';
+  } finally {
+    const btn = document.getElementById('w-src-btn');
+    if (btn) btn.disabled = false;
+  }
+}
+function insertSource(n) {
+  const out = document.getElementById('w-src-out');
+  const x = out._sugs[n], claim = out._claims[x.i - 1];
+  if (!claim) return;
+  const proseEl = document.getElementById('w-prose');
+  let base = wSrc.base == null ? proseEl.textContent : wSrc.base;
+  const item = { type: 'article', authors: x.authors, title: x.title, container: x.container || '', year: String(x.year), url: x.url || '' };
+  wSrc.items.push(item);
+  const code = wSrc.code;
+  const marker = NUMERIC_STYLES.indexOf(code) > -1 ? '[' + wSrc.items.length + ']' : inTextAuthorYear(item);
+  const hit = fuzzyFind(base, claim.ctx);
+  if (hit) {
+    base = base.slice(0, hit.start) + base.slice(hit.start, hit.end).replace(claim.ph, marker) + base.slice(hit.end);
+  } else {
+    base = base.replace(claim.ph, marker);
+  }
+  wSrc.base = base;
+  const display = base + '\n\n' + srcRefList(code);
+  proseEl.textContent = display;
+  const meta = document.getElementById('w-meta').textContent.split(' · ');
+  document.getElementById('w-meta').textContent = meta[0] + ' · ' + meta[1] + ' · ' + wpLine(display);
+  const b = out.querySelector('[data-src-insert="' + n + '"]');
+  if (b) { b.disabled = true; b.textContent = t('src_inserted'); }
+}
 
 /* ---------- REVIEW engine ---------- */
 let rDocName = '';
@@ -3015,6 +3249,7 @@ PASSAGE:
     const words = wc(text);
     const box = document.getElementById('r-result');
     box.innerHTML =
+      '<p class="hint-line" style="margin:0 0 10px">' + esc(wpLine(text)) + '</p>' +
       '<div class="verdict"><div class="v-score">' + esc(d.score) + '<small>/ 100</small></div><p>' + esc(d.verdict) +
       (rDocName ? ' <span style="color:var(--text-3)">Reviewed: ' + esc(rDocName) + ' (' + words.toLocaleString() + ' words).</span>' : '') + '</p></div>' +
       '<p class="sub-label">Strengths noted</p>' +
@@ -3343,6 +3578,7 @@ function renderAuditReport(d, cs, sample, text, opts) {
 
   box.innerHTML =
     trailHtml +
+    '<p class="hint-line" style="margin:0 0 10px">' + esc(wpLine(lastAudit.text || '')) + '</p>' +
     '<div class="audit-top">' +
       '<div class="seal' + (passed ? ' approved' : '') + '" id="a-seal"><div class="seal-ring"></div><div class="seal-grade"' + (passed ? ' style="font-size:44px"' : '') + '>' + esc(d.grade) + '</div><div class="seal-label">' + (passed ? 'Passed' : 'Examiner&rsquo;s seal') + '</div></div>' +
       '<div class="audit-overall"><div class="ao-num"><span id="a-count">0</span><small> / 100</small></div><p>' + esc(d.summary) +

@@ -115,6 +115,15 @@ function reply(prompt) {
     });
   }
 
+  // --- REAL-SOURCE FINDER (write tab) ---
+  if (p.includes('research librarian') && p.includes('"suggestions"')) {
+    return JSON.stringify({
+      suggestions: [
+        { i: 1, authors: 'Mockman, M. and Testov, T.', title: '[MOCK] A Placeholder Study of Nothing Real', container: 'Journal of Mock Results', year: '2020', url: 'https://example.org/mock', why: '[MOCK] test data — not a real source' },
+      ],
+    });
+  }
+
   // --- LIBRARY: structured reference extraction ---
   if (p.includes('"authors"') && p.includes('"container"')) {
     return JSON.stringify({
