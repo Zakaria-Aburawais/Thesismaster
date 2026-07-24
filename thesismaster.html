@@ -2830,6 +2830,30 @@ function fuzzyFind(text, find) {
   const end = (idx + f.norm.length < t.map.length) ? t.map[idx + f.norm.length - 1] + 1 : text.length;
   return { start, end };
 }
+/* Review revisions are full corrected sentences located by a short quoted
+   fragment. Splicing a sentence over a fragment corrupts the prose (orphaned
+   tails, doubled subjects — a real 72->31 bug), so: find the fragment, then
+   replace the ENTIRE sentence containing it. Boundaries are decimal-safe
+   (a period counts only before whitespace/end) and Arabic-aware (؟).
+   Returns null when the fragment cannot be located. */
+function replaceSentenceIn(text, excerpt, revision) {
+  const hit = fuzzyFind(text, excerpt);
+  if (!hit) return null;
+  const isEnd = i => /[.!?؟]/.test(text[i]) && (i + 1 >= text.length || /\s/.test(text[i + 1]));
+  let s = hit.start;
+  while (s > 0 && text[s - 1] !== '\n' && !isEnd(s - 1)) s--;
+  while (s < hit.start && /\s/.test(text[s])) s++;
+  let e = hit.end;
+  while (e < text.length && text[e] !== '\n' && !isEnd(e)) e++;
+  if (e < text.length && isEnd(e)) e++;
+  const rev = revision.trim();
+  return text.slice(0, s) + rev + (/[.!?؟]$/.test(rev) ? '' : '.') + text.slice(e);
+}
+/* An instruction to the author is not replacement text — pasting it into the
+   document is exactly how advice ends up inside a submitted thesis. */
+function looksLikeAdvice(revision) {
+  return /^(replace|add|remove|consider|ensure|verify|include|cite|provide|avoid|delete|insert|use|check)\b/i.test(String(revision).trim());
+}
 function fuzzyReplaceAll(text, find, replace, cap) {
   cap = cap || 1;
   let out = '', rest = text, count = 0;
@@ -2980,8 +3004,10 @@ document.getElementById('r-run').addEventListener('click', async () => {
     const prompt =
 `You are a rigorous but constructive thesis supervisor conducting a "${focus}" of the passage below. Quote the author's exact sentences when flagging issues.
 Respond with ONLY a valid JSON object, no markdown fences, no preamble, in exactly this shape:
-{"score": <integer 0-100>, "verdict": "<2-3 sentence overall supervisor judgment>", "strengths": ["<short strength>", "..."], "issues": [{"severity": "high|medium|low", "excerpt": "<exact short quote from the text, copied character-for-character>", "comment": "<what is wrong and why it matters to an examiner>", "revision": "<a concrete rewritten version of that excerpt>"}], "model_passage": "<the weakest 2-3 sentences of the text rewritten at publication standard>"}
-Give exactly 3 issues and 2-3 strengths. Keep it COMPACT: every excerpt under 12 words, every comment and revision under 20 words, model_passage under 60 words. Excerpts MUST be verbatim so they can be located automatically.${getVoice('r-voice') === 'human' ? '\nWrite every "revision" and the "model_passage" in this style:' + HUMAN_STYLE : ''}
+{"score": <integer 0-100>, "verdict": "<2-3 sentence overall supervisor judgment>", "strengths": ["<short strength>", "..."], "issues": [{"severity": "high|medium|low", "excerpt": "<exact short quote from the text, copied character-for-character>", "comment": "<what is wrong and why it matters to an examiner>", "revision": "<the ENTIRE corrected sentence, publishable replacement text>"}], "model_passage": "<the weakest 2-3 sentences of the text rewritten at publication standard>"}
+Give exactly 3 issues and 2-3 strengths. Keep it COMPACT: every excerpt under 12 words, every comment under 20 words, every revision under 35 words, model_passage under 60 words.
+Excerpts MUST be verbatim and distinctive enough to locate uniquely — never quote only a citation placeholder like [Author, Year].
+Each revision REPLACES the whole sentence containing its excerpt, so it must be the complete corrected sentence — publishable prose only, NEVER advice or an instruction to the author (put advice in "comment").${getVoice('r-voice') === 'human' ? '\nWrite every "revision" and the "model_passage" in this style:' + HUMAN_STYLE : ''}
 ${docLangLine(clip)}
 PASSAGE:
 """${clip(text, 6000)}"""`;
@@ -3016,16 +3042,20 @@ PASSAGE:
     document.getElementById('r-apply').addEventListener('click', function () {
       let newText = text, applied = 0, missed = 0;
       (d.issues || []).forEach(i => {
-        if (i.excerpt && i.revision) {
-          const rr = fuzzyReplaceAll(newText, i.excerpt, i.revision, 3);
-          if (rr.count) { newText = rr.text; applied += rr.count; } else missed++;
+        // the excerpt only LOCATES the problem; the revision replaces the whole
+        // containing sentence (splicing over the fragment corrupted texts \u2014
+        // real bug: applying revisions dropped a 72 to 31). Advice-shaped
+        // "revisions" are never pasted into the document.
+        if (i.excerpt && i.revision && !looksLikeAdvice(i.revision)) {
+          const patched = replaceSentenceIn(newText, i.excerpt, i.revision);
+          if (patched) { newText = patched; applied++; } else missed++;
         } else missed++;
       });
       document.getElementById('r-text').value = newText;
       const r = document.getElementById('r-apply-result');
       r.innerHTML = '<div class="rw-block" style="margin-top:16px"><b>Revisions applied</b>' +
         '<p style="font-family:var(--font-body);font-size:13.5px">' + applied + ' of ' + (applied + missed) + ' revisions were applied to your draft' +
-        (missed ? ' \u2014 ' + missed + ' excerpt(s) could not be located exactly and need manual editing.' : '.') +
+        (missed ? ' \u2014 ' + missed + ' need your manual edit (not located, or the suggestion was advice rather than replacement text).' : '.') +
         ' The revised text is now loaded above: download it below, or run the review again.</p>' +
         '<span id="dlm-reviewed" style="display:inline-block;margin-top:12px"></span></div>';
       this.style.display = 'none';
@@ -3376,7 +3406,9 @@ function renderAuditReport(d, cs, sample, text, opts) {
     let newText = lastAudit.text, applied = 0, missed = 0;
     lastAudit.flags.forEach(f => {
       if (f.quote && f.corrected) {
-        const rr = fuzzyReplaceAll(newText, f.quote, f.corrected, 3);
+        // cap 1: a flag corrects the passage it quoted, once — document-wide
+        // fixes are the recurring[] mechanism below, never the flags
+        const rr = fuzzyReplaceAll(newText, f.quote, f.corrected, 1);
         if (rr.count) { newText = rr.text; applied += rr.count; } else missed++;
       } else missed++;
     });
@@ -4534,7 +4566,7 @@ document.getElementById('a-pass').addEventListener('click', async () => {
       });
       (res.d.flags || []).forEach(f => {
         if (f && f.quote && f.corrected) {
-          const rr = fuzzyReplaceAll(curText, f.quote, f.corrected, 3);
+          const rr = fuzzyReplaceAll(curText, f.quote, f.corrected, 1); // one flag = one quoted passage
           if (rr.count) { curText = rr.text; appliedTotal += rr.count; }
         }
       });
